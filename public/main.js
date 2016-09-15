@@ -10,7 +10,9 @@ function filter (str, rules = ['ЛОЛ']) {
             length: rule.length
         };
     });
-
+	var test = [];
+	rules.forEach(rule =>{test[test.length] = rule.regexp.exec(str)});
+    console.log(test);
     rules.forEach(rule=> {
        str = str.replace(rule.regexp, (new Array(rule.length +1)).join('*'))
     });
