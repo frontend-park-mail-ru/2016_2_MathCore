@@ -10,17 +10,36 @@ function filter (str, rules = ['ЛОЛ']) {
             length: rule.length
         };
     });
-	var test = [];
+/*	var test = [];
 	rules.forEach(rule =>{test[test.length] = rule.regexp.exec(str)});
-    console.log(test);
+	test.forEach(tst=>{ if(tst){ if(tst.index>0){ tst.index+=1 }} });
+    console.log(test);*/
     rules.forEach(rule=> {
-       str = str.replace(rule.regexp, (new Array(rule.length +1)).join('*'))
+       str = str.replace(rule.regexp, replacer)
     });
 //	str = str.substr(2, str.length-2);
 //	console.log(rules);
 //	console.log(str);
     return str;
 }
+function replacer(str, p1, p2, offset, s) {
+    var score = str.split('');
+	if(('а'<score[0] && score[0]<'я')||('А'<score[0] && score[0]<'Я')||score[0]=='Ё'||score[0]=='ё') {
+        var i = 0;
+		while ( i < str.length ) {
+		    score[i]='*';
+			i++;
+		};
+    } else {
+        var i = 1;
+		while ( i < str.length ) {
+		    score[i]='*';
+			i++;
+		};
+	}
+	return score.join('');
+}
+
 /*
 function win2unicode(str) {
    var charmap   = unescape(
