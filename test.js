@@ -11,3 +11,4 @@ assert.equal(filter('ЛОЛ   '), '***   ');
 assert.equal(filter('asdЛОЛasd'), 'asdЛОЛasd');
 assert.equal(filter('ЛОЛЛОЛ'), 'ЛОЛЛОЛ');
 assert.equal(filter('    ЛОЛ'), '    ***');
+assert.equal(filter('    ЛОЛ лол'), '    *** ***');
