@@ -40,7 +40,7 @@ exports.post = {
 			"validator": function (res) {
 
 				if (typeof res.id !== 'number' ) {
-					return 'не корректный id';
+					return 'некорректный id';
 				}
 
 				if (typeof res.message !== 'string') {
