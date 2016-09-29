@@ -62,134 +62,133 @@ function jsonRequest (url, data) {
 	if (typeof window !== 'object') {
 		return;
 	}
-			// import
-			let Chat = window.Chat;
-			let Form = window.Form;
+	// import
+	let Chat = window.Chat;
+	let Form = window.Form;
 
-			let loginPage = document.querySelector('.js-login');
-			let chatPage = document.querySelector('.js-chat');
-			let regPage = document.querySelector('.js-reg');
+	let loginPage = document.querySelector('.js-login');
+	let chatPage = document.querySelector('.js-chat');
+	let regPage = document.querySelector('.js-reg');
 
-			// Форма авторизации
-			let signInForm = new Form({
-				el: document.createElement('div'),
-				data: {
-					title: 'Войдите как пользователь:',
-					fields: [{
-						name: 'login',
-						type: 'text',
-						placeholder: 'Логин',
-						required: true,
-					}, {
-						name: 'password',
-						type: 'password',
-						placeholder: 'Пароль',
-						required: true,
-					}, ],
-					controls: [{
-						text: 'Войти',
-						attrs: {
-							type: 'submit',
-							class: 'buttonsignup',
-						},
-					}, {
-						text: 'Зарегистрироваться',
-						attrs: {
-							type: 'reset',
-							class: 'buttonreg',
-						},
-					}, ],
+	// Форма авторизации
+	let signInForm = new Form({
+		el: document.createElement('div'),
+		data: {
+			title: 'Войдите как пользователь:',
+			fields: [{
+				name: 'login',
+				type: 'text',
+				placeholder: 'Логин',
+				required: true,
+			}, {
+				name: 'password',
+				type: 'password',
+				placeholder: 'Пароль',
+				required: true,
+			}, ],
+			controls: [{
+				text: 'Войти',
+				attrs: {
+					type: 'submit',
+					class: 'buttonsignup',
 				},
-			});
-
-
-			// Чат
-			let chat = new Chat({
-				el: document.createElement('div'),
-
-			});
-
-			signInForm.on('submit', (event) => {
-				event.preventDefault();
-
-				let formData = signInForm.getFormData();
-
-				// обращение к серверу--авторизация
-				jsonRequest('https://java-heroku-test-victor.herokuapp.com/session', formData);
-
-
-
-				chat.set({
-					username: formData.username,
-
-				}).render();
-
-				chat.subscribe();
-
-				loginPage.hidden = true;
-				chatPage.hidden = false;
-			});
-
-			signInForm.on('reset', (event) => {
-				event.preventDefault();
-
-				loginPage.hidden = true;
-				regPage.hidden = false;
-			});
-
-			loginPage.appendChild(signInForm.el);
-			chatPage.appendChild(chat.el);
-
-			loginPage.hidden = false;
-
-			// Форма регистрации
-			let formReg = new Form({
-				el: document.createElement('div'),
-				data: {
-					title: 'Регистрация нового пользователя:',
-					fields: [{
-
-						name: 'login',
-						type: 'text',
-						placeholder: 'Введите логин',
-						required: true,
-
-					}, {
-						name: 'password',
-						type: 'password',
-						placeholder: 'Введите пароль',
-						required: true,
-					}, {
-
-						name: 'email',
-						type: 'email',
-						placeholder: 'Введите e-mail',
-						required: true,
-
-					}, ],
-					controls: [{
-						text: 'Зарегистрироваться',
-						attrs: {
-							type: 'submit',
-							class: 'buttonreg',
-						},
-					}, ],
+			}, {
+				text: 'Зарегистрироваться',
+				attrs: {
+					type: 'reset',
+					class: 'buttonreg',
 				},
-			});
-			formReg.on('submit', (event) => {
-				event.preventDefault();
-
-				let formData = formReg.getFormData();
-
-				// обращение к серверу--регистрация
-				jsonRequest('https://java-heroku-test-victor.herokuapp.com/user', formData);
-				regPage.hidden = true;
-				alert('Регистрация прошла успешно!')
-			});
-			regPage.appendChild(formReg.el);
+			}, ],
+		},
+	});
 
 
-		}());
+	// Чат
+	let chat = new Chat({
+		el: document.createElement('div'),
+	});
+
+	signInForm.on('submit', (event) => {
+		event.preventDefault();
+
+		let formData = signInForm.getFormData();
+
+		// обращение к серверу--авторизация
+		jsonRequest('https://java-heroku-test-victor.herokuapp.com/session', formData);
+
+
+
+		chat.set({
+			username: formData.username,
+
+		}).render();
+
+		chat.subscribe();
+
+		loginPage.hidden = true;
+		chatPage.hidden = false;
+	});
+
+	signInForm.on('reset', (event) => {
+		event.preventDefault();
+
+		loginPage.hidden = true;
+		regPage.hidden = false;
+	});
+
+	loginPage.appendChild(signInForm.el);
+	chatPage.appendChild(chat.el);
+
+	loginPage.hidden = false;
+
+	// Форма регистрации
+	let formReg = new Form({
+		el: document.createElement('div'),
+		data: {
+			title: 'Регистрация нового пользователя:',
+			fields: [{
+
+				name: 'login',
+				type: 'text',
+				placeholder: 'Введите логин',
+				required: true,
+
+			}, {
+				name: 'password',
+				type: 'password',
+				placeholder: 'Введите пароль',
+				required: true,
+			}, {
+
+				name: 'email',
+				type: 'email',
+				placeholder: 'Введите e-mail',
+				required: true,
+
+			}, ],
+			controls: [{
+				text: 'Зарегистрироваться',
+				attrs: {
+					type: 'submit',
+					class: 'buttonreg',
+				},
+			}, ],
+		},
+	});
+	formReg.on('submit', (event) => {
+		event.preventDefault();
+
+		let formData = formReg.getFormData();
+
+		// обращение к серверу--регистрация
+		jsonRequest('https://java-heroku-test-victor.herokuapp.com/user', formData);
+		regPage.hidden = true;
+		alert('Регистрация прошла успешно!')
+	});
+	regPage.appendChild(formReg.el);
+
+
+}());
 
 function hello (text) {
 	return 'Привет, ' + text;
