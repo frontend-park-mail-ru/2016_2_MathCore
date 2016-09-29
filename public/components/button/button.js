@@ -1,30 +1,30 @@
 (function () {
-  class Button {
-    constructor(options) {
-      this.text = options.text;
-      this.attrs = options.attrs || [];
-      this.el = document.createElement('button');
-    }
+	class Button {
+	constructor(options) {
+		this.text = options.text;
+		this.attrs = options.attrs || [];
+		this.el = document.createElement('button');
+	}
 
-    setAttrs(attrs) {
-      Object.keys(attrs).forEach((name) => {
-        this.el.setAttribute(name, attrs[name]);
-      });
-    }
+	setAttrs(attrs) {
+		Object.keys(attrs).forEach((name) => {
+		this.el.setAttribute(name, attrs[name]);
+		});
+	}
 
-    render() {
-      console.log(this.attrs);
-      this.el.innerHTML = this.text;
-      
-      this.setAttrs(this.attrs);
-      return this;
-    }
+	render() {
+		console.log(this.attrs);
+		this.el.innerHTML = this.text;
 
-    toString() {
-      return this.el.outerHTML;
-    }
-  }
+		this.setAttrs(this.attrs);
+		return this;
+	}
 
-  // export
-  window.Button = Button;
+	toString() {
+		return this.el.outerHTML;
+	}
+	}
+
+	// export
+	window.Button = Button;
 }());

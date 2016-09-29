@@ -1,89 +1,89 @@
 (function () {
-    'use strict';
+	'use strict';
 
-    // import
-    let Button = window.Button;
+	// import
+	let Button = window.Button;
 
-    class Form {
+	class Form {
 
 
-        constructor (options = { data: {} }) {
-            this.data = options.data;
-            this.el = options.el;
+		constructor (options = { data: {} }) {
+			this.data = options.data;
+			this.el = options.el;
 
-            this.render();
-        }
+			this.render();
+		}
 
-        render () {
-            this._updateHtml()
-            this._installControls();
-        }
+		render () {
+			this._updateHtml()
+			this._installControls();
+		}
 
-        // Вернуть поля формы  @return {string}
+		// Вернуть поля формы	@return {string}
 
-        _getFields () {
-            let { fields = [] } = this.data;
+		_getFields () {
+			let { fields = [] } = this.data;
 
-            return fields.map((field) => {
-                return `<input ${field.required ? 'required' : ''} placeholder="${field.placeholder}" type="${field.type}" name="${field.name}">`;
-            }).join(' ');
-        }
+			return fields.map((field) => {
+				return `<input ${field.required ? 'required' : ''} placeholder="${field.placeholder}" type="${field.type}" name="${field.name}">`;
+			}).join(' ');
+		}
 
-        // Обновить html компонента
+		// Обновить html компонента
 
-        
-        _updateHtml() {
-          this.el.innerHTML = `
-          <h1>${this.data.title}</h1>
-          <form action="/" method="POST">
-          <div>
-          ${this._getFields()}
-          </div>
-          <div class="js-controls">
-          </div>
-          </form> `;
-      }
 
-        // Вставить управляющие элементы в форму
+		_updateHtml() {
+			this.el.innerHTML = `
+			<h1>${this.data.title}</h1>
+			<form action="/" method="POST">
+			<div>
+			${this._getFields()}
+			</div>
+			<div class="js-controls">
+			</div>
+			</form> `;
+		}
 
-        _installControls() {
-          let { controls = [] } = this.data;
+		// Вставить управляющие элементы в форму
 
-          controls.forEach((data) => {
-            let control = new Button({ text: data.text, attrs: data.attrs }).render();
-            this.el.querySelector('.js-controls').appendChild(control.el);
-        });
-      }
+		_installControls() {
+			let { controls = [] } = this.data;
 
-        // Подписка на событие @param {string} type - имя события @param {function} callback - коллбек
+			controls.forEach((data) => {
+			let control = new Button({ text: data.text, attrs: data.attrs }).render();
+			this.el.querySelector('.js-controls').appendChild(control.el);
+		});
+		}
 
-        on (type, callback) {
-            this.el.addEventListener(type, callback);
-        }
+		// Подписка на событие @param {string} type - имя события @param {function} callback - коллбек
 
-        // Взять данные формы @return {object}
+		on (type, callback) {
+			this.el.addEventListener(type, callback);
+		}
 
-        getFormData () {
-            let form = this.el.querySelector('form');
-            let elements = form.elements;
-            let fields = {};
+		// Взять данные формы @return {object}
 
-            Object.keys(elements).forEach(element => {
-                let name = elements[element].name;
-                let value = elements[element].value;
+		getFormData () {
+			let form = this.el.querySelector('form');
+			let elements = form.elements;
+			let fields = {};
 
-                if (!name) {
-                    return;
-                }
+			Object.keys(elements).forEach(element => {
+				let name = elements[element].name;
+				let value = elements[element].value;
 
-                fields[name] = value;
-            });
+				if (!name) {
+					return;
+				}
 
-            return fields;
-        }
+				fields[name] = value;
+			});
 
-    }
+			return fields;
+		}
 
-    // export
-    window.Form = Form;
+	}
+
+	// export
+	window.Form = Form;
 })();

@@ -5,7 +5,7 @@ exports.post = {
 	"consumes":"application/json",
 	"parameters": [
 		{
-		    "in":"body",
+			"in":"body",
 			"name":"body",
 			"required":"true",
 			"schema": {
@@ -24,7 +24,7 @@ exports.post = {
 						"type": "password",
 						"minLength": 6,
 						"maxLength": 50
-					},		
+					},
 					"email": {
 						"description": "E-mail пользователя",
 						"type": "string",
@@ -52,7 +52,7 @@ exports.post = {
 		},
 		"403": {
 			"description": "Логин/email уже используются или что-то еще пошло не так"
-		}			  
+		}
 	},
 	"x-amples": [{
 		"description": "создание тестового пользователя",
@@ -81,7 +81,7 @@ exports.post = {
 				if (typeof res.email !== 'string') {
 					return 'некорректный e-mail';
 				}
-				
+
 				return true;
 			}
 		}

@@ -1,11 +1,11 @@
 exports.post = {
 	"tags": ["session"],
 	"description": "Метод позволяет пользователю авторизироваться",
-    "produces":"application/json",
+	"produces":"application/json",
 	"consumes":"application/json",
 	"parameters": [
 		{
-		    "in":"body",
+			"in":"body",
 			"name":"body",
 			"required":"true",
 			"schema": {
@@ -24,7 +24,7 @@ exports.post = {
 						"type": "password",
 						"minLength": 6,
 						"maxLength": 50
-					}		
+					}
 				},
 				"required": ["name", "password"]
 			}
@@ -66,7 +66,7 @@ exports.post = {
 				if (typeof res.password !== 'string') {
 					return 'некорректный пароль';
 				}
-				
+
 				return true;
 			}
 		}
