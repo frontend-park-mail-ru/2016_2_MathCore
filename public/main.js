@@ -115,7 +115,7 @@ function jsonRequest (url, data) {
                 let formData = signInForm.getFormData();
 
                 // обращение к серверу--авторизация
-                jsonRequest('https://java-heroku-test-victor.herokuapp.com/api/session', formData);
+                jsonRequest('https://java-heroku-test-victor.herokuapp.com/session', formData);
 
 
 
@@ -182,7 +182,7 @@ function jsonRequest (url, data) {
                 let formData = formReg.getFormData();
 
                 // обращение к серверу--регистрация
-                jsonRequest('https://java-heroku-test-victor.herokuapp.com/api/user/', formData);
+                jsonRequest('https://java-heroku-test-victor.herokuapp.com/user', formData);
                 regPage.hidden = true;
                 alert('Регистрация прошла успешно!')
             });
