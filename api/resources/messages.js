@@ -11,6 +11,11 @@ exports.post = {
 			"name": "message",
 			"description": "Текст сообщения",
 			"type": "string"
+		},
+		{
+			"name": "message_id",
+			"description": "Проверка АПИ",
+			"type": "integer"			
 		}
 	],
 	"responses": {
@@ -44,11 +49,11 @@ exports.post = {
 				}
 
 				if (typeof res.message !== 'string') {
-					return 'не корректный текст сообщения';
+					return 'некорректный текст сообщения';
 				}
 
 				if (typeof res.email !== 'string') {
-					return 'не корректный login';
+					return 'некорректный login';
 				}
 
 				return true;
