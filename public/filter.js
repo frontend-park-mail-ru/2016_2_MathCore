@@ -3,6 +3,7 @@
 // Функция filter - dz 2
 
 function filter (str, rules = ['ЛОЛ']) {
+	'use strict';
 	rules = rules.map(rule => {
 		return {
 			regexp: new RegExp('((^|\[^a-zA-Zа-яёА-ЯЁ]))' + rule + '(?=($|\[^a-zA-Zа-яёА-ЯЁ]))', 'ig'),
