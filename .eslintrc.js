@@ -9,7 +9,7 @@ module.exports = {
 	"strict" : 0,
 	"arrow-body-style": [0],
 	"padded-blocks": 0,
-	"indent": [0, "tab", {"SwitchCase": 1}],
+	"indent": [4, "tab", {"SwitchCase": 1}],
 	"react/prop-types": 0,
 	"class-methods-use-this": 0,
 	"no-underscore-dangle": 0,
