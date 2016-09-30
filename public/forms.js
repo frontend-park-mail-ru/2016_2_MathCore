@@ -1,11 +1,9 @@
-// Форма регистрация и авторизации
-
 function jsonRequest (url, data) {
 	let temp = new XMLHttpRequest();
 	temp.open('POST', url, false);
-	 temp.setRequestHeader('Content-Type', 'application/json');
+	temp.setRequestHeader('Content-Type', 'application/json');
 	temp.send(JSON.stringify(data));
-	return temp.responseText;
+	return temp;
 }
 
 
@@ -67,19 +65,20 @@ function jsonRequest (url, data) {
 		let formData = signInForm.getFormData();
 
 		// обращение к серверу--авторизация
-		jsonRequest('https://java-heroku-test-victor.herokuapp.com/session', formData);
-
-
-
-		chat.set({
-			username: formData.username,
-
-		}).render();
-
-		chat.subscribe();
-
-		loginPage.hidden = true;
-		chatPage.hidden = false;
+		let resultRequest = jsonRequest('https://java-heroku-test-victor.herokuapp.com/session', formData);
+		if (resultRequest.status !== 200) {
+			alert('Неправильный логин/пароль');
+		} else {
+			technolibs.request('/api/login', formData);
+			chat.set({
+				username: formData.login,
+				email: 'temp@temp'
+			}).render();
+			chat.subscribe();
+			alert('Вы успешно авторизовались');
+			loginPage.hidden = true;
+			chatPage.hidden = false;
+		}
 	});
 
 	signInForm.on('reset', (event) => {
@@ -135,11 +134,11 @@ function jsonRequest (url, data) {
 
 		// обращение к серверу--регистрация
 		jsonRequest('https://java-heroku-test-victor.herokuapp.com/user', formData);
+		alert('Регистрация прошла успешно!');
 		regPage.hidden = true;
-		alert('Регистрация прошла успешно!')
+		loginPage.hidden = false;
 	});
 	regPage.appendChild(formReg.el);
 
 
 }());
-
