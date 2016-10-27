@@ -9,7 +9,7 @@
 	class LoginView extends View {
 		constructor(options = {}) {
 			super(options);
-			this._el = document.querySelector('.js-login');
+			this._el = document.querySelector('.js-welcome-panel');
 		//	this.hide();
 
 			// TODO: дописать реализацию
@@ -17,6 +17,7 @@
 			let form = new Form({
 				el: this._el,
 				data: {
+					title: 'WELCOME TO JACKAL|SPACE',
 					fields: [
 						{
 							name: 'login',

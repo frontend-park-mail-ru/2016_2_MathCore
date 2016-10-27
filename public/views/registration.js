@@ -9,7 +9,7 @@
 	class RegistrationView extends View {
 		constructor(options = {}) {
 			super(options);
-			this._el = document.querySelector('.js-registration');
+			this._el = document.querySelector('.js-welcome-panel');
 			this.hide();
 
 			// TODO: дописать реализацию

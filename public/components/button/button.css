@@ -1,18 +1,14 @@
 .button {
-	background-color: #4dca62;
-    border: .1rem solid #4dca62;
-    border-radius: .4rem;
-    color: #fff;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 1.1rem;
-    font-weight: 700;
-    height: 3.8rem;
-    letter-spacing: .1rem;
-    line-height: 3.8rem;
-    padding: 0 3rem;
-    text-align: center;
-    text-decoration: none;
-    text-transform: uppercase;
-    white-space: nowrap;
+	width: 200px;
+  height: 40px;
+  margin-left: 100px;
+  margin-top: 10px;
+  background-color: red;
+  border-radius: 15px;
+  border:1px solid red;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
 }

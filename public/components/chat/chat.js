@@ -27,6 +27,7 @@
 		 */
 		init() {
 			this._updateHtml();
+			
 			this.form = new Form({
 				el: this._el.querySelector('.js-chat-form'),
 				data: {
@@ -90,22 +91,22 @@
 			const message = new Message(data);
 			message.save().then(() => {
 				this.form.reset();
-				
+
 				message.fetch().then((data) => {
 					console.log('Our model', data);
-					
+
 					message.remove().then(data => {
 						console.log('DELETED');
-						
+
 						message.fetch().then((data) => {
 							console.log('Our model 2', data);
 						});
 					})
 				});
-				
-				
+
+
 			});
-			
+
 		}
 
 		/**
