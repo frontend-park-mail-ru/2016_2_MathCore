@@ -4,14 +4,16 @@
   const Block = window.Block;
 
   class Menu extends Block{
+
     constructor(options = {data: {}}) {
-      super('div');
+      super('div', options);
+      this._el = document.querySelector(".js-topmenu");
 			this.template = window.fest['menu/menu.tmpl'];
-      this._el = document.getElementsByTagName('body');
-			this.render();
+      this.init();
+      this._el.innerHTML = this.template();
 		}
 
-    render() {
+    init() {
 			this._updateHtml();
     }
 

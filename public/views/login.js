@@ -10,10 +10,9 @@
 		constructor(options = {}) {
 			super(options);
 			this._el = document.querySelector('.js-login');
-			this.hide();
+		//	this.hide();
 
 			// TODO: дописать реализацию
-			//let menu = new Menu();
 
 			let form = new Form({
 				el: this._el,
@@ -49,6 +48,9 @@
 				},
 			});
 
+			this.init();
+			this.show();
+
 			/* Попробуем обратиться к серверу через модели */
 			form.on('submit', (event) => {
 				event.preventDefault();
@@ -66,12 +68,13 @@
 				)
 			})
 
-			this.show();
+
 		}
 
 		init(options = {}) {
 			// TODO: дописать реализацию
-
+			let menu = new Menu();
+		  menu._updateHtml();
 	  }
 	}
 

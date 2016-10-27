@@ -3,6 +3,7 @@
 
 	const View = window.View;
 	const Form = window.Form;
+	const Menu = window.Menu;
 	const User = window.User;
 
 	class RegistrationView extends View {
@@ -54,6 +55,8 @@
 				}
 			};
  			var form = new Form(options);
+			this.init();
+			this.show();
 
 			/* Попробуем обратиться к серверу через модели */
 			form.on('submit', (event) => {
@@ -75,6 +78,8 @@
 
 		init(options = {}) {
 			// TODO: дописать реализацию
+			let menu = new Menu();
+			menu._updateHtml();
 		}
 	}
 

@@ -1,13 +1,16 @@
-.topmenu{
-
-}
-.topmenu ul{
+.js-topmenu{
   list-style-type: none;
   padding: 0;
   margin: 0;
   width: 100%;
 }
-.topmenu li{
+.js-topmenu ul{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+.js-topmenu li{
   display: block;
   float: left;
   min-height: 50px;
@@ -15,12 +18,13 @@
   font-size: 20px;
   background-color: black;
 }
-.topmenu li a{
+.js-topmenu li a{
   color: #fff;
   padding:0px 100px;
+  height: 70px;
   margin-top: 10px;
   text-decoration: none;
 }
-.topmenu li a:hover{
+.js-topmenu li a:hover{
   background-color: gray;
 }

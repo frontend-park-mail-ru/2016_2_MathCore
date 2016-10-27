@@ -3,6 +3,7 @@
 
 	const View = window.View;
 	const Chat = window.Chat;
+	const Menu = window.Menu;
 
 	class ChatView extends View {
 		constructor(options = {}) {
@@ -24,6 +25,8 @@
 			this._component.render();
 			this._component.subscribe();
 
+			let menu = new Menu();
+		  menu._updateHtml();
 			this.show();
 		}
 
