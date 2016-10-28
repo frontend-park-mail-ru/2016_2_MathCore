@@ -6,6 +6,7 @@
 	const MainView = window.MainView;
 	const LoginView = window.LoginView;
 	const RegistrationView = window.RegistrationView;
+	const ScoreBoardView = window.ScoreBoardView;
 
 
 	// TIP: роуты нужно указывать от наиболее специфичного к наименее специфичному
@@ -13,6 +14,7 @@
 	(new Router)
 	//  .addRoute('/chat', ChatView)
 	//	.addRoute('/session', LoginView)
+	  .addRoute('/scores', ScoreBoardView)
 		.addRoute('/user', RegistrationView)
 		.addRoute('/', LoginView) //Welcome Page
 		.start();
