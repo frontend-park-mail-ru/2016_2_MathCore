@@ -7,10 +7,13 @@ const Scoreboard = window.Scoreboard;
   constructor(options = {}) {
     super(options);
     this._init();
+		this.show();
   }
 
   _init() {
-    let container = document.querySelector('.js-welcome-panel');
+    //let container = document.querySelector('.js-welcome-panel');
+		let container = document.querySelector('.scoreboard_container');
+		container.hidden = false;
     this._menu = new Scoreboard({
       data: {
         scores: [
@@ -38,6 +41,12 @@ const Scoreboard = window.Scoreboard;
   resume(options = {}) {
     this.show();
   }
+
+	pause(options = {}) {
+		let container = document.querySelector('.scoreboard_container');
+		container.hidden = true; //&
+		this.hide();
+	}
 }
 
 window.ScoreBoardView = ScoreBoardView;

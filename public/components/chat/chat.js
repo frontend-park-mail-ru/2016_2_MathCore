@@ -2,160 +2,120 @@
 	'use strict';
 
 	// import
-	const Block = window.Block;
-	const Form = window.Form;
-	const Message = window.Message;
+	let Button = window.Button;
 
-
-	class Chat extends Block {
+	class Chat {
 
 		/**
 		 * Конструктор класса Chat
-		 */
-		constructor({data = {messages: [], username: '', email: ''}, el}) {
-			super('form');
-			this.template = window.fest['chat/chat.tmpl'];
+ 		 */
+		constructor ({ data = {}, el }) {
 			this.data = data;
-			this._el = el;
+			this.el = el;
 
-			this.init();
 			this.render();
 		}
 
-		/**
-		 * Инициализация составных компонент
-		 */
-		init() {
+		render () {
 			this._updateHtml();
-			
-			this.form = new Form({
-				el: this._el.querySelector('.js-chat-form'),
-				data: {
-					fields: [
-						{
-							name: 'message',
-							type: 'text',
-							placeholder: 'Ваше сообщение'
-						}
-					],
-					controls: [
-						{
-							text: 'Отправить',
-							attrs: {
-								type: 'submit'
-							}
-						}
-					]
-				}
-			});
-			this.form.on('submit', this._sendMessage.bind(this));
-
-		}
-
-		/**
-		 * Обновление внешнего вида
-		 */
-		render() {
-			this._renderMessages();
-			this._renderForm();
 		}
 
 		/**
 		 * Обновить данные компонента
-		 * @param {Object} data - данные компонента
-		 * @returns {Chat}
+		 * @param {object} data - данные компонента
 		 */
-		set(data) {
-			this.data = Object.assign({}, this.data, data);
-			return this.render();
+		set (data) {
+			this.data = data;
+
+			return this;
 		}
 
-		/**
-		 * Подписываем чат на сетевые и пользовательские события
-		 */
-		subscribe() {
-			technolibs.onMessage(this._updateMessages.bind(this));
+		_updateHtml () {
+			this.el.innerHTML = `
+				<h3 id="jsTitle">Ты в чате, ${this.data.username}!</h3>
+				<div id="jsMessages" class="chat">
+					<div class="cssload-wrap">
+						<div class="cssload-cssload-spinner"></div>
+					</div>
+				</div>
+				<form class="js-chat-form">
+					<textarea required class="chat__input" name="message" cols="30" rows="10"></textarea>
+					<button name="name">
+						Отправить
+					</button>
+				</form>
+			`;
 		}
 
-		/**
-		 * Обрабатываем отправку сообщения из чата
-		 */
-		_sendMessage(event) {
-			event.preventDefault();
+		filter (str, rules = ['КЕК']) {
+			return `//TODO: реализовать filter`;
+		}
 
+		createMessage (opts, isMy = false) {
+			let message = document.createElement('div');
+			let email = document.createElement('div');
+
+			message.classList.add('chat__message');
+			email.classList.add('chat__email');
+
+			if (isMy) {
+				message.classList.add('chat__message_my');
+			} else {
+				message.style.backgroundColor = `#${technolibs.colorHash(opts.email || '')}`;
+			}
+			message.innerHTML = opts.message;
+			email.innerHTML = opts.email;
+			message.appendChild(email);
+
+			return message;
+		}
+
+		onChat (form) {
 			let data = {
-				message: this.form.getFormData().message,
+				message: form.elements['message'].value,
 				email: this.data.email
 			};
 
-			const message = new Message(data);
-			message.save().then(() => {
-				this.form.reset();
+			let result = technolibs.request('/api/messages', data);
+			form.reset();
+		}
 
-				message.fetch().then((data) => {
-					console.log('Our model', data);
+		renderMessages (items) {
+			let messages = this.el.querySelector('#jsMessages');
+			messages.innerHTML = '';
 
-					message.remove().then(data => {
-						console.log('DELETED');
+			items.forEach(item => {
+				let message = this.createMessage(item, item.email === this.data.email);
+				messages.appendChild(message);
+			});
+			messages.scrollTop = messages.scrollHeight;
+		}
 
-						message.fetch().then((data) => {
-							console.log('Our model 2', data);
-						});
-					})
-				});
-
-
+		subscribe () {
+			technolibs.onMessage(data => {
+				this.renderMessages(Object.keys(data).map(key => data[key]));
 			});
 
+			this.el.querySelector('.js-chat-form')
+				.addEventListener('submit', (event) => {
+					event.preventDefault();
+					this.onChat(event.target);
+				})
 		}
 
-		/**
-		 * Обновляем HTML элемента
-		 */
-		_updateHtml() {
-			this.data.username = this.data.username || this.data.user || 'Anon';
-			this._el.innerHTML = this.template(this.data);
+		on (type, callback) {
+			this.el.addEventListener(type, callback);
 		}
 
-		/**
-		 * Обновляем список сообщений
-		 * @return {[type]} [description]
-		 */
-		_renderMessages() {
-			let wrapper = this._el.querySelector('.js-messages');
-			console.log(this.data);
-
-			wrapper.innerHTML = this.template({
-				block: 'chat__messages',
-				data: this.data.messages
-			});
-
-			wrapper.scrollTop = wrapper.scrollHeight;
+		//TODO вернуть данные формы
+		getFormData () {
+			return {
+				key: 'value'
+			};
 		}
 
-		/**
-		 * Обновляем форму
-		 */
-		_renderForm() {
-			this.form.render();
-		}
-
-		/**
-		 * Обновляем список сообщений
-		 * @param {Object} data
-		 */
-		_updateMessages(data) {
-			let messages = Object.keys(data).map(key => {
-				let entry = data[key];
-
-				entry.background = technolibs.colorHash(entry.email || '');
-				entry.isMy = this.data.email === entry.email;
-
-				return entry;
-			});
-
-			this.set({messages});
-			this._renderMessages();
+		install (el) {
+			el.appendChild(this.el);
 		}
 	}
 

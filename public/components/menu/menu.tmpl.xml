@@ -1,6 +1,22 @@
 <fest:template xmlns:fest="http://fest.mail.ru">
   <div class="main-page__head-line"></div>
 
+  <fest:set name="main-logo">
+    <div class="main-logo">
+        <div class="main-logo__text">
+            <div class="main-logo-text">
+                <div class="main-logo__header  ">
+                    <!-- Jackal|Space -->
+                </div>
+                <div class="main-logo__subtext">
+                    <!-- MathCore 2016 -->
+                </div>
+            </div>
+        </div>
+        <div class="main-logo__image">
+
+  </fest:set>
+
   <div class="main-page__line">
       <div class="main-menu">
         <a href="#" class='main-link main-link_menu main-link_menu_active' >Главная</a>
@@ -13,18 +29,7 @@
   <div class="main-page__line">
       <div class="main-pagelogo">
           <div class="main-pagelogo__current">
-              <div class="main-logo">
-                  <div class="main-logo__text">
-                      <div class="main-logo-text">
-                          <div class="main-logo__header  ">
-                              <!-- Jackal|Space -->
-                          </div>
-                          <div class="main-logo__subtext">
-                              <!-- MathCore 2016 -->
-                          </div>
-                      </div>
-                  </div>
-                  <div class="main-logo__image">
+                fest:get name=main_log
                  <!-- <img class="main-image main-image_pagelogo" src="image/logo.png"></img> -->
                   </div>
               </div>

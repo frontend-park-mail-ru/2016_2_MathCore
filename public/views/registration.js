@@ -10,7 +10,7 @@
 		constructor(options = {}) {
 			super(options);
 			this._el = document.querySelector('.js-welcome-panel');
-			this.hide();
+			//this.hide();
 
 			// TODO: дописать реализацию
 			var options = {
@@ -45,12 +45,6 @@
 								type: 'submit'
 							}
 						},
-						{
-							text: 'Назад',
-							attrs: {
-								type: 'button'
-							}
-						}
 					]
 				}
 			};
@@ -67,9 +61,10 @@
 				user.send('POST', userData).then(
 					() => {
 						alert('Регистрация прошла успешно!');
+						(new Router).go('/scores');
 					},
 					() => {
-						alert('Что-то пошло не так на сервере и это очень плохо');
+						//alert('Что-то пошло не так на сервере и это очень плохо');
 					}
 				)
 			})
@@ -81,6 +76,7 @@
 			let menu = new Menu();
 			menu._updateHtml();
 		}
+
 	}
 
 

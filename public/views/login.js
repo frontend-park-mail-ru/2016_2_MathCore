@@ -43,6 +43,7 @@
 							text: 'Зарегистрироваться',
 							attrs: {
 								type: 'button',
+								onclick: "form.hidden = true; (new Router).go('/user')"
 							},
 						}
 					],
@@ -52,6 +53,7 @@
 			this.init();
 			this.show();
 
+
 			/* Попробуем обратиться к серверу через модели */
 			form.on('submit', (event) => {
 				event.preventDefault();
@@ -60,15 +62,15 @@
 
 				session.send('POST', userData).then(
 					() => {
-						alert('Вы успешно авторизовались!');
-						alert('Дальше будем что-то делать с этим ....');
+						//alert('Вы успешно авторизовались!');
+					  (new Router).go('/scores');
 					},
 					() => {
-						alert('Неправильный логин/пароль, попробуем снова');
+						form.innerHtml = 'Неверные данные';
+						//alert('Неправильный логин/пароль, попробуем снова');
 					}
 				)
 			})
-
 
 		}
 
@@ -78,6 +80,12 @@
 		  menu._updateHtml();
 	  }
 	}
+
+/*	resume(options = {}) {
+		let form = document.querySelector('.js-welcome-panel__login-form');
+		form.hidden = false;
+    this.show();
+  }*/
 
 
 	// export
