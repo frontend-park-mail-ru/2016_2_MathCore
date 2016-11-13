@@ -7,6 +7,9 @@
 	<link rel="stylesheet" href="/components/menu/menu.css" />
 	<link rel="stylesheet" href="/components/form/form.css" />
 	<link rel="stylesheet" href="/components/scoreboard/scoreboard.css" />
+	<link rel="stylesheet" href="css/main.css" />
+	<script src="babylon.js"></script>
+	<script src="hand.js"></script>
 </head>
 <body>
 
@@ -14,8 +17,9 @@
 		<source src="static/stars.mp4" type="video/mp4"></source>
 	</video>
 
+  <canvas class="js-canvas" hidden="hidden"></canvas>
   <div class="js-topmenu"></div>
-	<div class="js-welcome-panel"></div>
+	<div class="js-welcome-panel" hidden="hidden"></div>
 	<div class="js-login" hidden="hidden"></div>
 	<div class="js-registration" hidden="hidden"></div>
 <!-- scoreboard -->
@@ -30,6 +34,7 @@
 
 	<script src="/models/session.js"></script>
 	<script src="/models/user.js"></script>
+	<script src="/models/player.js"></script>
 
 
 	<script src="/components/block/block.js"></script>
@@ -41,11 +46,12 @@
 	<script src="/components/scoreboard/scoreboard.js"></script>
 	<script src="/components/scoreboard/scoreboard.tmpl.js"></script>
 
-
+	<script src="/views/scene.js"></script>
 	<script src="/views/main.js"></script>
 	<script src="/views/login.js"></script>
 	<script src="/views/scoreboard.js"></script>
 	<script src="/views/registration.js"></script>
+	<script src="/views/gameplay.js"></script>
 
 	<script src="main.js"></script>
 </body>

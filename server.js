@@ -5,9 +5,8 @@ const app = express();
 const technoDoc = require('techno-gendoc');
 
 app.use('/', express.static('public', { maxAge: 1 }));
-//app.use('/chat', express.static('public', {maxAge: 1}));
 app.use('/user', express.static('public', {maxAge: 1})); //
-//app.use('/session', express.static('public', {maxAge: 1})); //
+app.use('/play', express.static('public', {maxAge: 1})); //
 app.use('/scores', express.static('public', {maxAge: 1})); //
 technoDoc.generate(require('./api'), 'public');
 

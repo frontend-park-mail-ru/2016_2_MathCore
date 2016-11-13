@@ -79,7 +79,12 @@
 			let menu = new Menu();
 		  menu._updateHtml();
 	  }
+
+		
+
+
 	}
+
 
 /*	resume(options = {}) {
 		let form = document.querySelector('.js-welcome-panel__login-form');
