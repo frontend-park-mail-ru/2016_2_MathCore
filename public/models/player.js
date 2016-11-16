@@ -8,37 +8,50 @@
       super(attributes);
       this.pirats = [];
 
-      var redMaterial = new BABYLON.StandardMaterial("RedPirat",scene);
-      var redMaterial1 = new BABYLON.StandardMaterial("RedPirat",scene);
-      var redMaterial2 = new BABYLON.StandardMaterial("RedPirat",scene);
+      var red1 = new BABYLON.StandardMaterial("RedPirat",scene);
+      var red2 = new BABYLON.StandardMaterial("RedPirat",scene);
+      var red3 = new BABYLON.StandardMaterial("RedPirat",scene);
 
-      redMaterial1.diffuseColor = new BABYLON.Color3(0.8,0,0);
-      redMaterial.diffuseColor = new BABYLON.Color3(1,0,0);
-      redMaterial2.diffuseColor = new BABYLON.Color3(0.4,0,0);
+      red1.diffuseColor = new BABYLON.Color3(1,0,0);
+      red2.diffuseColor = new BABYLON.Color3(1,0,0);
+      red3.diffuseColor = new BABYLON.Color3(1,0,0);
+
+      /*let pirat0, pirat1, pirat2;
+
+      BABYLON.SceneLoader.ImportMesh("Astronaut", "", "cosmo.babylon", scene, function (newMeshes) {
+      pirat0 = newMeshes[0];
+
+      pirat0.scaling = new BABYLON.Vector3(15,15,15);
+      pirat0.rotation.y = -Math.PI/2;
+      pirat0.material = red1;
+      pirat0.position = new BABYLON.Vector3(-610,15,0);
+      pirat0.renderingGroupId = 1;
+
+      pirat1 = pirat0.clone("pirat1");
+      pirat2 = pirat0.clone("pirat2");
+
+      pirat1.material = red2;
+      pirat1.position.z += 40;
+      pirat1.renderingGroupId = 1;
+
+      pirat2.material = red3;
+      pirat2.position.z -= 40;
+      pirat2.renderingGroupId = 1;
+
+    });*/
+
 
       var sphere = BABYLON.Mesh.CreateSphere("sphere1", 16, 16, scene);
       var pirat1 = BABYLON.Mesh.CreateSphere("pirat1", 16, 16, scene);
       var pirat2 = BABYLON.Mesh.CreateSphere("pirat2", 16, 16, scene);
 
-      /*
-      var params = {
-        1: {
-          'position' : new BABYLON.Vector3(-400, 15, 0),
-          'ids': [[44,55,66],[44,55,66],[44,55,66]],
-        },
-        2: {
-          'position' : new BABYLON.Vector3(-400, 15, 0),
-        }
+      sphere.position = new BABYLON.Vector3(-600, 15, 0);
+      pirat1.position = new BABYLON.Vector3(-600, 15, 20);
+      pirat2.position = new BABYLON.Vector3(-600, 15, -20);
 
-      }*/
-
-      sphere.position = new BABYLON.Vector3(-400, 15, 0);
-      pirat1.position = new BABYLON.Vector3(-400, 15, 20);
-      pirat2.position = new BABYLON.Vector3(-400, 15, -20);
-
-      sphere.material = redMaterial;
-      pirat1.material = redMaterial1;
-      pirat2.material = redMaterial2;
+      sphere.material = red1;
+      pirat1.material = red2;
+      pirat2.material = red3;
 
       sphere.renderingGroupId = 1;
       pirat1.renderingGroupId = 1;

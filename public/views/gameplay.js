@@ -18,7 +18,7 @@
       var createScene = function(){
         var scene = new BABYLON.Scene(engine);
         var camera = new BABYLON.ArcRotateCamera("Camera", -Math.PI/2, Math.PI / 3,
-				                                        12, new BABYLON.Vector3(0,100,0), scene);
+				                                         12, new BABYLON.Vector3(-100,100,100), scene);
         camera.lowerBetaLimit = 0.1;
         camera.lowerRadiusLimit = 30;
         camera.upperRadiusLimit = 250;
@@ -26,39 +26,17 @@
         var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
         light.intensity = .5;
 
-
-				//---------------------------------------------
-				var dude;
-				BABYLON.SceneLoader.ImportMesh("him", "", "cosmo.babylon", scene, function (newMeshes, particleSystems, skeletons) {
-				debugger;
-				dude = newMeshes[0];
-			//	alert(dude);
-
-			//	dude.scaling = new BABYLON.Vector3(0.9,0.9,0.9);
-			//  skeleton.scaling = new BABYLON.Vector3(0.02,0.02,0.02);
-
-
-			/*	scene.registerBeforeRender(function () {
-				    dude.position = new BABYLON.Vector3(-410,15,30);
-						dude.renderingGroupId = 1;
-		   	});*/
-				});
-
-				//-------------------------------------------------------------
-
         return scene;
       }
 
       var scene = createScene();
-
 			const player1 = new Player([[44,55,66],[44,55,66],[44,55,66]], scene, {});
 			var pirats = player1.get_pirats();
 			var possibleIds = player1.get_ids();
 
-			//this.createSkyBox(scene);
-			//var gameField = this.createGameField(scene);
-
-		//	this.game_init(possibleIds, gameField, pirats, scene);
+			this.createSkyBox(scene);
+			var gameField = this.createGameField(scene);
+			this.game_init(possibleIds, gameField, pirats, scene);
 
       engine.runRenderLoop(function () {
         scene.render();
@@ -88,10 +66,10 @@
 		}
 
 		createGameField(scene){
-			 var xmin = -400,  zmin = -400;
-			 var xmax =  400,  zmax =  400;
+			 var xmin = -600,  zmin = -600;
+			 var xmax =  600,  zmax =  600;
 			 var precision = {"w" : 1, "h" : 1};
-			 var subdivisions = {'h' : 11, 'w' : 11};
+			 var subdivisions = {'h' : 13, 'w' : 13};
 
 			 var tiledGround = new BABYLON.Mesh.CreateTiledGround("Tiled Ground", xmin, zmin, xmax, zmax,
 																														 subdivisions, precision, scene);
@@ -106,11 +84,15 @@
 			 bumpMaterial.emissiveColor = new BABYLON.Color3(0.5, 0.5 , 0.5);
 
 			 var DarkGreen = new BABYLON.StandardMaterial("DGreen", scene);
-			 DarkGreen.diffuseColor = new BABYLON.Color3(0, 1, 0);
+			 DarkGreen.diffuseTexture = new BABYLON.Texture("texture1.2.jpg", scene);
+			 DarkGreen.bumpTexture = new BABYLON.Texture("normalMap.jpg", scene);
+			 DarkGreen.emissiveColor = new BABYLON.Color3(0, 0 , 1);
+			 DarkGreen.alpha = 0.4;
 
 			 var multimat = new BABYLON.MultiMaterial("multi", scene);
 			 multimat.subMaterials.push(LightGreen);
 			 multimat.subMaterials.push(bumpMaterial);
+			 multimat.subMaterials.push(DarkGreen);
 
 			 tiledGround.material = multimat;
 			 tiledGround.renderingGroupId = 1;
@@ -119,11 +101,37 @@
 
 			 tiledGround.subMeshes = [];
 			 var base = 0;
-			 for (var row = 0; row < subdivisions.h; row++) {
-					 for (var col = 0; col < subdivisions.w; col++) {
-								 new BABYLON.SubMesh(1, 0, verticesCount, base , tileIndicesLength, tiledGround);
-								 base += tileIndicesLength;
-					 }
+
+
+			 for(var j = 0; j < 2*subdivisions.h; j++){
+				 var subMeshIndex = 2;
+				 if((j > 14)&&(j < 24)){
+					 subMeshIndex = 1;
+				 }
+				 new BABYLON.SubMesh(subMeshIndex, 0, verticesCount, base , tileIndicesLength, tiledGround);
+				 base += tileIndicesLength;
+			 }
+
+       for(var j = 0; j < subdivisions.h - 4; j++){
+				 new BABYLON.SubMesh(2, 0, verticesCount, base , tileIndicesLength, tiledGround);
+				 base += tileIndicesLength;
+
+				 for(var i = 0; i < subdivisions.w - 2; i++){
+					 new BABYLON.SubMesh(1, 0, verticesCount, base , tileIndicesLength, tiledGround);
+					 base += tileIndicesLength;
+				 }
+
+				 new BABYLON.SubMesh(2, 0, verticesCount, base , tileIndicesLength, tiledGround);
+				 base += tileIndicesLength;
+			 }
+
+			 for(var j = 0; j < 2*subdivisions.h; j++){
+				 var subMeshIndex = 2;
+				 if((j > 1)&&(j < 15-4)){
+					 subMeshIndex = 1;
+				 }
+				 new BABYLON.SubMesh(subMeshIndex, 0, verticesCount, base , tileIndicesLength, tiledGround);
+				 base += tileIndicesLength;
 			 }
 
 			 return tiledGround;
