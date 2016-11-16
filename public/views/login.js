@@ -17,7 +17,7 @@
 			let form = new Form({
 				el: this._el,
 				data: {
-					title: 'WELCOME TO JACKAL|SPACE',
+					title: 'WELCOME TO SPACECORE',
 					fields: [
 						{
 							name: 'login',
@@ -28,19 +28,19 @@
 						{
 							name: 'password',
 							type: 'password',
-							placeholder: 'Yor password here',
+							placeholder: 'Your password here',
 							required : true,
 						},
 					],
 					controls: [
 						{
-							text: 'Войти в игру!',
+							text: 'SignIn',
 							attrs: {
 								type: 'submit',
 							},
 						},
 						{
-							text: 'Зарегистрироваться',
+							text: 'SignUp',
 							attrs: {
 								type: 'button',
 								onclick: "form.hidden = true; (new Router).go('/user')"
@@ -80,7 +80,7 @@
 		  menu._updateHtml();
 	  }
 
-		
+
 
 
 	}

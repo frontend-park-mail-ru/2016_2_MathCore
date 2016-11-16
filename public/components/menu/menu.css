@@ -5,6 +5,51 @@
 
 }
 
+.main-head
+{
+    height:36px;
+}
+
+.main-head__welcome
+{
+    float:right;
+}
+
+.main-welcome__input
+{
+    display:inline-block;
+}
+
+.main-input
+{
+    background-color: #0c163d;
+    border:0px;
+}
+
+.main-input_welcome
+{
+    height:32px;
+    padding:0 10px;
+    width:205px;
+    border-right:none;
+}
+.main-button
+{
+    color:#fefefe;
+    height:32px;
+    padding:0 12px;
+    line-height:33px;
+    cursor:pointer;
+    background-color:#1b70d1;
+}
+
+
+.main-head__logo
+{
+    float: left;
+}
+
+
 .main-page__line
 {
 
@@ -28,14 +73,14 @@
 .main-link_menu
 {
     text-align:center;
-    color:#bfbfbf;
+    color:white;
     cursor:pointer;
-    font-family:  Verdana;
+    font-family: 'Lilita One', cursive;
     font-size:20px;
     height:40px;
-    background-color:#133e70;
+    background-color:#0c163d;
     line-height:45px;
-    border: 1px solid #e7e7e7;
+    border: 0.5px solid #07195d;
     display:table-cell;
     text-decoration: none;
 }
@@ -45,30 +90,4 @@
     color:#fefefe;
     background-color:#1b70d1;
     border:0px solid #0fb9dd;
-}
-
-.main-logo__text
-{
-    position:relative;
-    top:100px;
-    left:450px;
-    z-index:10;
-}
-
-.main-logo__header
-{
-    font-size:62px;
-    color:#ffffff;
-}
-
-.main-logo__subtext
-{
-    font-size:20px;
-    color:#ffffff;
-}
-
-.main-logo__image
-{
-    z-index: 0;
-    margin-top:-130px;
 }

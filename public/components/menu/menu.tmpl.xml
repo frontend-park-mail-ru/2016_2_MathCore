@@ -1,39 +1,25 @@
 <fest:template xmlns:fest="http://fest.mail.ru">
   <div class="main-page__head-line"></div>
 
-  <fest:set name="main-logo">
-    <div class="main-logo">
-        <div class="main-logo__text">
-            <div class="main-logo-text">
-                <div class="main-logo__header  ">
-                    <!-- Jackal|Space -->
-                </div>
-                <div class="main-logo__subtext">
-                    <!-- MathCore 2016 -->
-                </div>
-            </div>
-        </div>
-        <div class="main-logo__image">
-
-  </fest:set>
+  <div class="main-page__line">
+       <div class="main-head">
+           <div class="main-head__welcome">
+               <div class="main-welcome">
+                   <div class="main-welcome__input">
+                       <input type="text" class="main-input main-input_welcome" placeholder="Welcome,user"></input>
+                   </div><div class="main-welcome__input"><div class="main-button">LogOut</div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
 
   <div class="main-page__line">
       <div class="main-menu">
-        <a href="#" class='main-link main-link_menu main-link_menu_active' >Главная</a>
-        <a href="#" class='main-link main-link_menu'>Новости</a>
-        <a href="#" class='main-link main-link_menu'>Об игре</a>
-        <a href="#" class='main-link main-link_menu'>Правила</a>
-        <a href="#" class='main-link main-link_menu'>Профиль</a>
-      </div>
-  </div>
-  <div class="main-page__line">
-      <div class="main-pagelogo">
-          <div class="main-pagelogo__current">
-                fest:get name=main_log
-                 <!-- <img class="main-image main-image_pagelogo" src="image/logo.png"></img> -->
-                  </div>
-              </div>
-          </div>
+        <a href="#" class='main-link main-link_menu main-link_menu_active' >Main</a>
+        <a href="#" class='main-link main-link_menu'>About game</a>
+        <a href="#" class='main-link main-link_menu'>Rules</a>
+        <a href="#" class='main-link main-link_menu'>Profile</a>
       </div>
   </div>
 </fest:template>
