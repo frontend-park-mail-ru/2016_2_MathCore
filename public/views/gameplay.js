@@ -108,27 +108,35 @@
 					elem.isPickable = true;
 				});
 
+				var picked = false;
+
 				if(pickResult.hit){
 					mesh = pickResult.pickedMesh;
-					mesh.material.diffuseColor = new BABYLON.Color3(0, 1, 0);
+					if(pirats.indexOf(mesh)!= -1){
+						mesh.material.diffuseColor = new BABYLON.Color3(0, 1, 0);
 
-					//здесь нужно получить от сервера смежные клетки
-					//подать нужно: айди клетки
-					var index = pirats.indexOf(mesh);
-					var ids = player1.get_ids(); //номер пирата
-					var cellIndex = ids[index]; //айди клетки
+						//здесь нужно получить от сервера смежные клетки
+						var index = pirats.indexOf(mesh);
+						var ids = player1.get_ids(); //номер пирата
+						var cellIndex = ids[index]; //айди клетки
 
-					//узнаем соседей
-				//	function getNeighbors(cIndex){
-		      	messaging.sendGetNeighbors(cellIndex);
-		    //  }
+			      messaging.sendGetNeighbors(cellIndex);
 
-		      //setTimeout(Send,1000,cellIndex);
-					//console.log(neighbors);
+			      //setTimeout(Send,1000,cellIndex);
+						//console.log(neighbors);
 
-					for(var i = 0; i < neighbors.length; ++i){
-						gameField.subMeshes[neighbors[i]].materialIndex = 0;
+						for(var i = 0; i < neighbors.length; ++i){
+							gameField.subMeshes[neighbors[i]].materialIndex = 0;
+						}
+
+						picked = true;
 					}
+					if((mesh === gameField)&&(picked == true)){
+						//здесь уже выбираем из смежных клетку, на которую пойдем
+						//передвигаем шарик
+						//посылаем серверу инфу о ходе
+					}
+
 				}
 
 
