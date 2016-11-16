@@ -3,14 +3,70 @@
 
 	const View = window.View;
 	const Player = window.Player;
+	const MessagingTools = window.MessagingTools;
 
 	class GamePlayView extends View {
 		constructor(options = {}) {
 			super(options);
 			this._el = document.querySelector('.js-canvas');
+			this.gameCellIds = [];
+			this.allowGameStart = false;
 
       this.init();
       this.show();
+
+      //потом сюда надо будет вбить урл сервера
+			//---------------------------------------------------------------------
+      var socket = new WebSocket("wss://java-heroku-test-victor.herokuapp.com/game");
+            var messaging = new MessagingTools(socket);
+      socket.onopen = function () {
+        // Socket open.. start the game loop.
+        console.log('Info: WebSocket connection opened.');
+        console.log('Info: Waiting for another player...');
+      };
+
+      function Send(){
+      	messaging.sendJoinGameMsg();
+      }
+
+      setTimeout(Send,1000);
+      socket.onclose = function () {
+        console.log('Info: WebSocket closed.');
+      };
+
+			var neighbors = [];
+
+
+      socket.onmessage = function (event) {
+      	var content = {};
+        var responseContent = {};
+        var response = {};
+        var message = JSON.parse(event.data);
+        if (message.type === "ru.mail.park.websocket.MessageToClient$Request") {
+            content = JSON.parse(message.content);
+            responseContent.myMessage = content.myMessage;
+            console.log(responseContent.myMessage);
+            return;
+        }
+        if ( message.type === "ru.mail.park.mechanics.requests.BoardMapForUsers$Request"){
+            console.log("Wow. Seems loke game been started");
+            content = JSON.parse(message.content);
+            console.log(content);
+            this.gameCellIds = content.gameBoard;
+						this.allowGameStart = true; //поехали отсюда)
+            console.log('Раскладка игрового поля: ' + this.gameCellIds);
+        }
+				if ( message.type === "ru.mail.park.mechanics.requests.NeighborsMessage$Request"){
+            console.log("Получены соседи клетки!");
+            content = JSON.parse(message.content);
+            console.log(content);
+						neighbors = content.neighbors;
+            console.log('Соседи: ' + neighbors);
+        }
+        console.log(message.type);
+      }
+
+			//--------------------------------------------------------------------------
 
       var engine = new BABYLON.Engine(this._el, true);
       var canvas = this._el;
@@ -30,13 +86,58 @@
       }
 
       var scene = createScene();
-			const player1 = new Player([[44,55,66],[44,55,66],[44,55,66]], scene, {});
-			var pirats = player1.get_pirats();
-			var possibleIds = player1.get_ids();
+
+			//начинаем игровой цикл
+			const player1 = new Player(0, scene, {}); //первый игрок и его меши
+			const player2 = new Player(1, scene, {}); // 2-й игрок и его меши
+
+
+		//	var pirats = player1.get_pirats();
+		//	var possibleIds = player1.get_ids();
 
 			this.createSkyBox(scene);
 			var gameField = this.createGameField(scene);
-			this.game_init(possibleIds, gameField, pirats, scene);
+
+			//пошёл цикл
+			var pirats = player1.get_pirats();
+			var mesh;
+		//	var neighbors = [];
+			scene.onPointerDown = function(evt, pickResult){
+				//ходит 1-й игрок
+				pirats.forEach(function(elem){
+					elem.isPickable = true;
+				});
+
+				if(pickResult.hit){
+					mesh = pickResult.pickedMesh;
+					mesh.material.diffuseColor = new BABYLON.Color3(0, 1, 0);
+
+					//здесь нужно получить от сервера смежные клетки
+					//подать нужно: айди клетки
+					var index = pirats.indexOf(mesh);
+					var ids = player1.get_ids(); //номер пирата
+					var cellIndex = ids[index]; //айди клетки
+
+					//узнаем соседей
+				//	function getNeighbors(cIndex){
+		      	messaging.sendGetNeighbors(cellIndex);
+		    //  }
+
+		      //setTimeout(Send,1000,cellIndex);
+					//console.log(neighbors);
+
+					for(var i = 0; i < neighbors.length; ++i){
+						gameField.subMeshes[neighbors[i]].materialIndex = 0;
+					}
+				}
+
+
+
+			}
+
+
+
+		//	this.game_init(possibleIds, gameField, pirats, scene);
 
       engine.runRenderLoop(function () {
         scene.render();

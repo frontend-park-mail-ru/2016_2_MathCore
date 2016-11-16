@@ -4,9 +4,23 @@
   const Model = window.Model;
 
   class Player extends Model {
-    constructor(ids, scene, attributes = {}) {
+    constructor(index, scene, attributes = {}) {
       super(attributes);
       this.pirats = [];
+      this.ids = [];
+      this.index = index;
+
+      var x, y = 15, z = 0;
+
+      if(index == 0){
+        this.ids = [92, 92, 92];
+        x = -600;
+      }
+
+      if(index == 1){
+        this.ids = [104, 104, 104];
+        x = 600;
+      }
 
       var red1 = new BABYLON.StandardMaterial("RedPirat",scene);
       var red2 = new BABYLON.StandardMaterial("RedPirat",scene);
@@ -40,28 +54,21 @@
 
     });*/
 
+      this.pirats[0] = BABYLON.Mesh.CreateSphere("sphere1", 16, 16, scene);
+      this.pirats[1] = BABYLON.Mesh.CreateSphere("sphere2", 16, 16, scene);
+      this.pirats[2] = BABYLON.Mesh.CreateSphere("sphere3", 16, 16, scene);
 
-      var sphere = BABYLON.Mesh.CreateSphere("sphere1", 16, 16, scene);
-      var pirat1 = BABYLON.Mesh.CreateSphere("pirat1", 16, 16, scene);
-      var pirat2 = BABYLON.Mesh.CreateSphere("pirat2", 16, 16, scene);
+      this.pirats[0].material = red1;
+      this.pirats[1].material = red2;
+      this.pirats[2].material = red3;
 
-      sphere.position = new BABYLON.Vector3(-600, 15, 0);
-      pirat1.position = new BABYLON.Vector3(-600, 15, 20);
-      pirat2.position = new BABYLON.Vector3(-600, 15, -20);
+      this.pirats.forEach(function(elem){
+        elem.position = new BABYLON.Vector3(x, y, z);
+        z += 20;
+        elem.renderingGroupId = 1;
+        elem.isPickable = false;
+      })
 
-      sphere.material = red1;
-      pirat1.material = red2;
-      pirat2.material = red3;
-
-      sphere.renderingGroupId = 1;
-      pirat1.renderingGroupId = 1;
-      pirat2.renderingGroupId = 1;
-
-      this.pirats[0] = sphere;
-      this.pirats[1] = pirat1;
-      this.pirats[2] = pirat2;
-
-      this.ids = ids;
       this.gold = 0;
     }
 
@@ -83,6 +90,10 @@
 
     get_ids(){
       return this.ids;
+    }
+
+    get_index(){
+      return this.index;
     }
 
     get_gold(){

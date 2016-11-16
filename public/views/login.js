@@ -63,7 +63,7 @@
 				session.send('POST', userData).then(
 					() => {
 						//alert('Вы успешно авторизовались!');
-					  (new Router).go('/scores');
+					  (new Router).go('/play');
 					},
 					() => {
 						form.innerHtml = 'Неверные данные';
@@ -80,7 +80,7 @@
 		  menu._updateHtml();
 	  }
 
-		
+
 
 
 	}
