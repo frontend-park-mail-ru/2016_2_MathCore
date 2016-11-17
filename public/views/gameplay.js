@@ -29,7 +29,7 @@
       	messaging.sendJoinGameMsg();
       }
 
-      setTimeout(Send,1500);
+      setTimeout(Send,2000);
       socket.onclose = function () {
         console.log('Info: WebSocket closed.');
       };
