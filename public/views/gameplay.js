@@ -190,6 +190,7 @@
 						 if(neighbors.indexOf(id) != -1){
 						 	console.log("мы кликнули на подсвеченную клетку");
 						 	 ball.position.x = pickResult.pickedPoint.x;
+						 	 ball.position.y = 15;
 							 ball.position.z = pickResult.pickedPoint.z;
 							 console.log("Куда мы должны были передвинуться")
 							 console.log(ball.position.x);
@@ -217,8 +218,8 @@
 					if(MovementUnresolved){
 						var enemyPirats = enemy.get_pirats();
 						var x, z, y = 15;
-						x = - (6 - MovementTargetCell%13 + 0.5)*(1200/13);
-						z = (6 - MovementTargetCell/13 + 0.5)*(1200/13);
+						x = - (6 - MovementTargetCell%13 + 0.3)*(1200/13);
+						z = - (6 - MovementTargetCell/13 + 0.3)*(1200/13);
 						console.log("Куда мы передвинулись по факту")
 						console.log(x);
 						console.log(z);
