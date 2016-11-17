@@ -9,7 +9,6 @@
 		constructor(options = {}) {
 			super(options);
 			this._el = document.querySelector('.js-canvas');
-			this.gameCellIds = [];
 			this.allowGameStart = false;
 
       this.init();
@@ -17,7 +16,8 @@
 
       //потом сюда надо будет вбить урл сервера
 			//---------------------------------------------------------------------
-      var socket = new WebSocket("wss://java-heroku-test-victor.herokuapp.com/game");
+      var socket = new WebSocket("ws://localhost:8080/game");
+      //var socket = new WebSocket("wss://java-heroku-test-victor.herokuapp.com/game");
             var messaging = new MessagingTools(socket);
       socket.onopen = function () {
         // Socket open.. start the game loop.
@@ -34,8 +34,6 @@
         console.log('Info: WebSocket closed.');
       };
 
-			var neighbors = [];
-
 
       socket.onmessage = function (event) {
       	var content = {};
@@ -51,20 +49,72 @@
         if ( message.type === "ru.mail.park.mechanics.requests.BoardMapForUsers$Request"){
             console.log("Wow. Seems loke game been started");
             content = JSON.parse(message.content);
-            console.log(content);
-            this.gameCellIds = content.gameBoard;
-						this.allowGameStart = true; //поехали отсюда)
-            console.log('Раскладка игрового поля: ' + this.gameCellIds);
+            gameCellIds = content.gameBoard;
+            gameCellIds = gameCellIds.split(",");
+            for(var j = 0; j < gameCellIds.length; j++){
+            	gameCellIds[j]= +gameCellIds[j];
+            };
+            if(content.active){
+            	thisPlayer = player1;
+            	enemy = player2;
+            	var pirats1 = player1.get_pirats();
+            	pirats1.forEach(function(elem){
+            		elem.isPickable = true;
+            	});
+            }
+            else{
+            	thisPlayer = player2;
+            	enemy = player1;
+            	var pirats2 = player2.get_pirats();
+            	pirats2.forEach(function(elem){
+            		elem.isPickable = false;
+            	})
+            }
+            console.log("Проверяем проставление активного игрока");
+            console.log(content.active);
+            console.log(thisPlayer);
+            console.log(player1);
+			//this.allowGameStart = true;
+
         }
-				if ( message.type === "ru.mail.park.mechanics.requests.NeighborsMessage$Request"){
+		if ( message.type === "ru.mail.park.mechanics.requests.NeighborsMessage$Request"){
             console.log("Получены соседи клетки!");
             content = JSON.parse(message.content);
             console.log(content);
-						neighbors = content.neighbors;
-            console.log('Соседи: ' + neighbors);
+			    neighbors = content.neighbors;
+				neighbors = neighbors.split(",");
+				for(var j = 0; j < neighbors.length; j++){
+            		neighbors[j]= +neighbors[j];
+            		console.log(typeof(neighbors[j]));
+            	};
+
+            console.log('Соседи: ' + neighbors.length);
+
+			for(var i = 0; i < neighbors.length; ++i){
+				gameField.subMeshes[neighbors[i]].materialIndex = 0;
+				//console.log("пытаемся подсветить клетку");
+			}
         }
-        console.log(message.type);
+        if(message.type === "ru.mail.park.mechanics.requests.PiratMoveMessage$Request") {
+        	console.log("О_о сервер ghbckfk ход другого игрока");
+            content = JSON.parse(message.content);
+            console.log(content);
+            if(content.active){
+            	var thisPirats = thisPlayer.get_pirats();
+            	thisPirats.forEach(function(elem){
+            		elem.isPickable = true;
+            	});
+            	MovementPiratId = content.piratId;
+            	MovementTargetCell = content.newCellIndexOfPirat;
+            	MovementUnresolved = true;
+
+            }
+
+
+        }
       }
+
+
 
 			//--------------------------------------------------------------------------
 
@@ -90,6 +140,8 @@
 			//начинаем игровой цикл
 			const player1 = new Player(0, scene, {}); //первый игрок и его меши
 			const player2 = new Player(1, scene, {}); // 2-й игрок и его меши
+			var thisPlayer, enemy;
+			var MovementPiratId, MovementTargetCell;
 
 
 		//	var pirats = player1.get_pirats();
@@ -97,45 +149,82 @@
 
 			this.createSkyBox(scene);
 			var gameField = this.createGameField(scene);
-
+			var gameCellIds = " ";
+			var MovementUnresolved = false;
+            //var str = " ";
 			//пошёл цикл
-			var pirats = player1.get_pirats();
+			var pirats ;
 			var mesh;
-		//	var neighbors = [];
+			var neighbors = [];
+			var picked = false;
+			var ball;
+			var index, ids = [], cellIndex, piratMove;
 			scene.onPointerDown = function(evt, pickResult){
-				//ходит 1-й игрок
-				pirats.forEach(function(elem){
-					elem.isPickable = true;
-				});
-
-				var picked = false;
 
 				if(pickResult.hit){
 					mesh = pickResult.pickedMesh;
+					pirats = thisPlayer.get_pirats();
 					if(pirats.indexOf(mesh)!= -1){
 						mesh.material.diffuseColor = new BABYLON.Color3(0, 1, 0);
+						ball = mesh;
 
 						//здесь нужно получить от сервера смежные клетки
-						var index = pirats.indexOf(mesh);
-						var ids = player1.get_ids(); //номер пирата
-						var cellIndex = ids[index]; //айди клетки
+						index = pirats.indexOf(mesh);
+					 	ids = thisPlayer.get_ids(); //номер пирата
+						cellIndex = ids[index]; //айди клетки
+						piratMove = {};
 
-			      messaging.sendGetNeighbors(cellIndex);
-
-			      //setTimeout(Send,1000,cellIndex);
-						//console.log(neighbors);
-
-						for(var i = 0; i < neighbors.length; ++i){
-							gameField.subMeshes[neighbors[i]].materialIndex = 0;
-						}
+				 		var getCellneighbors = {};
+			      		getCellneighbors.cellIndex = cellIndex;
+			      		messaging.sendGetNeighbors(getCellneighbors);
 
 						picked = true;
 					}
 					if((mesh === gameField)&&(picked == true)){
+
 						//здесь уже выбираем из смежных клетку, на которую пойдем
+						console.log("мы хотим передвинуть шарик");
+						var id = pickResult.subMeshId;
+						console.log(id);
+						console.log(typeof(+neighbors[0]));
+						 if(neighbors.indexOf(id) != -1){
+						 	console.log("мы кликнули на подсвеченную клетку");
+						 	 ball.position.x = pickResult.pickedPoint.x;
+							 ball.position.z = pickResult.pickedPoint.z;
+							 console.log("Куда мы должны были передвинуться")
+							 console.log(ball.position.x);
+							 console.log(ball.position.z);
+							 ball.material.diffuseColor = new BABYLON.Color3(1,0,0);
+							 ids[index] = id;
+							 thisPlayer.set_ids(ids);
+							 picked = false;
+							 for (var i = 0; i < neighbors.length; ++i){
+								 gameField.subMeshes[neighbors[i]].materialIndex = 1;
+							 }
+							 pirats.forEach(function(elem){
+					           elem.isPickable = false;
+				             });
+				             //отправляем сообщение на сервер, что мы сходили
+				             var piratMove = {};
+				             piratMove.targetCellIndex = id;
+				             piratMove.piratId = index;
+				             messaging.sendPiratMove(piratMove);
+						 }
 						//передвигаем шарик
 						//посылаем серверу инфу о ходе
 					}
+
+					if(MovementUnresolved){
+						var enemyPirats = enemy.get_pirats();
+						var x, z, y = 15;
+						x = - (6 - MovementTargetCell%13 + 0.5)*(1200/13);
+						z = (6 - MovementTargetCell/13 + 0.5)*(1200/13);
+						console.log("Куда мы передвинулись по факту")
+						console.log(x);
+						console.log(z);
+						enemyPirats[MovementPiratId].position = new BABYLON.Vector3(x,y,z);
+					}
+
 
 				}
 

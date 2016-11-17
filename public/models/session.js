@@ -9,7 +9,8 @@
      }
 
      url(id) {
-      let url = 'https://java-heroku-test-victor.herokuapp.com/session/';
+      let url = 'http://localhost:8080/session/';
+      //let url = 'https://java-heroku-test-victor.herokuapp.com/session/';
       if(id){
         return url;
       }

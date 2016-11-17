@@ -37,6 +37,7 @@
         var clientPiratMoveMessage = {};
         clientPiratMoveMessage.type = "ru.mail.park.mechanics.requests.PiratMoveRequest";
         clientPiratMoveMessage.content = JSON.stringify(piratMove);
+        console.log(JSON.stringify("Эгегей, сервер, подвинь мне пирата"));
         this.socket.send(JSON.stringify(clientPiratMoveMessage));
     }
 
@@ -51,6 +52,7 @@
         var clientCellMessage = {};
         clientCellMessage.type = "ru.mail.park.mechanics.requests.GetNeighbors";
         clientCellMessage.content = JSON.stringify(cellID);
+        console.log(JSON.stringify(clientCellMessage));
         this.socket.send(JSON.stringify(clientCellMessage));
         console.log('Отправлен запрос на получение смежных клеток...');
     }
