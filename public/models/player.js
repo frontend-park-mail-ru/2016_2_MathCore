@@ -38,7 +38,7 @@
       this.pirats[2] = this.pirats[0].clone("Astronaut2");
 
       //вызвали событие (меши загрузились)
-      document.dispatchEvent(this.myEvent);
+      document.dispatchEvent(this.myEvent); 
     }
 
     OnMeshLoad(e){
