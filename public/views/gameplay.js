@@ -18,18 +18,14 @@
 			//---------------------------------------------------------------------
       //var socket = new WebSocket("ws://localhost:8080/game");
       var socket = new WebSocket("wss://java-heroku-test-victor.herokuapp.com/game");
-            var messaging = new MessagingTools(socket);
+      var messaging = new MessagingTools(socket);
       socket.onopen = function () {
         // Socket open.. start the game loop.
         console.log('Info: WebSocket connection opened.');
         console.log('Info: Waiting for another player...');
+				messaging.sendJoinGameMsg();
       };
 
-      function Send(){
-      	messaging.sendJoinGameMsg();
-      }
-
-      setTimeout(Send,2000);
       socket.onclose = function () {
         console.log('Info: WebSocket closed.');
       };
@@ -214,23 +210,17 @@
 						//передвигаем шарик
 						//посылаем серверу инфу о ходе
 					}
-
-					if(MovementUnresolved){
-						var enemyPirats = enemy.get_pirats();
-						var x, z, y = 15;
-						x = - (6 - MovementTargetCell%13 + 0.3)*(1200/13);
-						z = - (6 - MovementTargetCell/13 + 0.3)*(1200/13);
-						console.log("Куда мы передвинулись по факту")
-						console.log(x);
-						console.log(z);
-						enemyPirats[MovementPiratId].position = new BABYLON.Vector3(x,y,z);
-					}
-
-
 				}
-
-
-
+				if(MovementUnresolved){
+					var enemyPirats = enemy.get_pirats();
+					var x, z, y = 15;
+					x = - (6 - MovementTargetCell%13 + 0.3)*(1200/13);
+					z = - (6 - MovementTargetCell/13 + 0.3)*(1200/13);
+					console.log("Куда мы передвинулись по факту")
+					console.log(x);
+					console.log(z);
+					enemyPirats[MovementPiratId].position = new BABYLON.Vector3(x,y,z);
+				}
 			}
 
 
