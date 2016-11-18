@@ -21,7 +21,7 @@ mime.define({
 app.use(parser.json());
 app.use('/libs', express.static('node_modules'));
 
-app.listen(process.env.PORT || 4000, () => {
+app.listen(process.env.PORT || 3001, () => {
   console.log(mime.lookup('cosmo.babylon'));
-  console.log(`App started on port ${process.env.PORT || 4000}`);
+  console.log(`App started on port ${process.env.PORT || 3001}`);
 });

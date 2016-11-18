@@ -10,7 +10,7 @@
 		constructor(options = {}) {
 			super(options);
 			this._el = document.querySelector('.js-welcome-panel');
-		//	this.hide();
+
 
 			// TODO: дописать реализацию
 
@@ -54,20 +54,21 @@
 			this.show();
 
 
-			/* Попробуем обратиться к серверу через модели */
+
 			form.on('submit', (event) => {
 				event.preventDefault();
 				let userData = form.getFormData();
-				const session = new Session(userData);
 
-				session.send('POST', userData).then(
+
+				window.session.send('POST', userData).then(
 					() => {
-						//alert('Вы успешно авторизовались!');
+						window.session.login(userData.login);
+						this.menu._updateHtml();
 					  (new Router).go('/scores');
 					},
 					() => {
 						form.innerHtml = 'Неверные данные';
-						//alert('Неправильный логин/пароль, попробуем снова');
+
 					}
 				)
 			})
@@ -75,9 +76,8 @@
 		}
 
 		init(options = {}) {
-			// TODO: дописать реализацию
-			let menu = new Menu();
-		  menu._updateHtml();
+			this.menu = new Menu();
+		  this.menu._updateHtml();
 	  }
 
 

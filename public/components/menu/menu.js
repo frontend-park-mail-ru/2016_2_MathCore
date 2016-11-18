@@ -10,15 +10,19 @@
       this._el = document.querySelector(".js-topmenu");
 			this.template = window.fest['menu/menu.tmpl'];
       this.init();
-      this._el.innerHTML = this.template();
 		}
 
     init() {
+
 			this._updateHtml();
+      document.addEventListener("updateMenu", this._updateHtml.bind(this));
     }
 
     _updateHtml() {
-      this._el.innerHTML = this.template();
+      let userData = {
+        login: window.session.getLogin() || ""
+      };
+      this._el.innerHTML = this.template(userData);
     }
   }
 
