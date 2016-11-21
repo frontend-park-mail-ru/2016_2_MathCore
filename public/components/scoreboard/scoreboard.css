@@ -1,4 +1,4 @@
-.scoreboard_container{
+.game__menu_score{
    width: 400px;
    height: 360px;
    position: fixed;
@@ -9,10 +9,8 @@
    opacity: 0.8;
    background: #000000;
    border-radius: 20px;
-   
 }
-
-.menu__title {
+.game__menu__title {
   width: 100%;
   font-size: 30px;
   text-align: center;
@@ -23,7 +21,6 @@
   color: #4eade8;
   font-family: 'Lilita One', cursive;
 }
-
 .score {
   width: 100%;
   margin-top: 20px;
@@ -39,9 +36,4 @@
   width: 20%;
   text-align: center;
   color:#4eade8;
-}
-.score__title {
-  font-weight: bold,
-  font-family: 'Lilita One', cursive;
-
 }

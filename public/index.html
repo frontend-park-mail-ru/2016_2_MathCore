@@ -12,61 +12,54 @@
 	<link rel="stylesheet" href="css/main.css" />
 	<script src="babylon.js"></script>
 	<script src="hand.js"></script>
+
+
+ <canvas class="js-canvas" hidden="hidden"></canvas>
+ <div class="js-topmenu"></div>
+ <div class="js-welcome-panel" hidden="hidden"></div>
+ <div class="js-login" hidden="hidden"></div>
+ <div class="js-registration" hidden="hidden"></div>
+ <div class="scoreboard_container" hidden="hidden"></div>
+ <div class="js-logo"></div>
+ <div class="js-rules" hidden="hidden"></div>
+
+ <script src="/libs/technolibs/index.js"></script>
+ <script src="/modules/pathToRegex.js"></script>
+ <script src="/modules/view.js"></script>
+ <script src="/modules/model.js"></script>
+ <script src="/modules/route.js"></script>
+ <script src="/modules/router.js"></script>
+
+ <script src="/models/session.js"></script>
+ <script src="/models/user.js"></script>
+ <script src="/models/player.js"></script>
+ <script src="/models/collectionUser.js"></script>
+ <script src="/components/block/block.js"></script>
+ <script src="/components/button/button.js"></script>
+ <script src="/components/form/form.tmpl.js"></script>
+ <script src="/components/form/form.js"></script>
+ <script src="/components/menu/menu.tmpl.js"></script>
+ <script src="/components/menu/menu.js"></script>
+ <script src="/components/scoreboard/scoreboard.js"></script>
+ <script src="/components/scoreboard/scoreboard.tmpl.js"></script>
+ <script src="/components/gamerules/rules.js"></script>
+ <script src="/components/gamerules/rules.tmpl.js"></script>
+ <script src="/components/logo/logo.js"></script>
+ <script src="/components/logo/logo.tmpl.js"></script>
+ <script src="/views/main.js"></script>
+ <script src="/views/login.js"></script>
+ <script src="/views/scoreboard.js"></script>
+ <script src="/views/registration.js"></script>
+ <script src="/views/gameplay.js"></script>
+ <script src="/views/gameplay.js"></script>
+ <script src="/views/gamerules.js"></script>
+ <script src="main.js"></script>
 </head>
-<body>
 
+	<body id="page" class="page">
+		<video autoplay loop muted class="bgvideo">
+		 <source src="static/stars.mp4" type="video/mp4"></source>
+		</video>
+  </body>
 
-	 <video autoplay loop muted class="bgvideo">
-		<source src="static/stars.mp4" type="video/mp4"></source>
-	</video>
-
-  <canvas class="js-canvas" hidden="hidden"></canvas>
-  <div class="js-topmenu"></div>
-	<div class="js-welcome-panel" hidden="hidden"></div>
-	<div class="js-login" hidden="hidden"></div>
-	<div class="js-registration" hidden="hidden"></div>
-	<div class="scoreboard_container" hidden="hidden"></div>
-	<div class="js-logo"></div>
-	<div class="js-rules" hidden="hidden"></div>
-
-
-
-	<script src="/libs/technolibs/index.js"></script>
-	<script src="/modules/pathToRegex.js"></script>
-	<script src="/modules/view.js"></script>
-	<script src="/modules/model.js"></script>
-	<script src="/modules/route.js"></script>
-	<script src="/modules/router.js"></script>
-
-	<script src="/models/session.js"></script>
-	<script src="/models/user.js"></script>
-	<script src="/models/player.js"></script>
-	<script src="/models/collectionUser.js"></script>
-
-
-	<script src="/components/block/block.js"></script>
-	<script src="/components/button/button.js"></script>
-	<script src="/components/form/form.tmpl.js"></script>
-	<script src="/components/form/form.js"></script>
-	<script src="/components/menu/menu.tmpl.js"></script>
-	<script src="/components/menu/menu.js"></script>
-	<script src="/components/scoreboard/scoreboard.js"></script>
-	<script src="/components/scoreboard/scoreboard.tmpl.js"></script>
-	<script src="/components/gamerules/rules.js"></script>
-	<script src="/components/gamerules/rules.tmpl.js"></script>
-	<script src="/components/logo/logo.js"></script>
-	<script src="/components/logo/logo.tmpl.js"></script>
-
-
-	<script src="/views/main.js"></script>
-	<script src="/views/login.js"></script>
-	<script src="/views/scoreboard.js"></script>
-	<script src="/views/registration.js"></script>
-	<script src="/views/gameplay.js"></script>
-	<script src="/views/gameplay.js"></script>
-	<script src="/views/gamerules.js"></script>
-
-
-	<script src="main.js"></script>
-</body>
 </html>

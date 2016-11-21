@@ -57,7 +57,6 @@
 				event.preventDefault();
 				let userData = form.getFormData();
 
-
 				window.session.send('POST', userData).then(
 					() => {
 						window.session.login(userData.login);

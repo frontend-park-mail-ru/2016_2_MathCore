@@ -1,34 +1,32 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name = "json">
-  <div class="main-page__head-line"></div>
-
-  <div class="main-page__line">
-    <div class="main-head">
-      <div class="main-head__welcome">
-        <div class="main-welcome">
-          <div class="main-welcome__input">
-            <input type="text" class="main-input main-input_welcome">
+  <div class="b-page__line">
+    <div class="b-head">
+      <div class="b-head__panel">
+        <div class="b-panel">
+          <div class="b-panel__form">
+            <input type="text" class="b-form b-form_welcome">
               <fest:attributes>
                 <fest:attribute name="placeholder">
                   <fest:text >Welcome</fest:text>
                   <fest:if test="json.login">
-                  <fest:text >, </fest:text>
+                    <fest:text >, </fest:text>
                     <fest:value>json.login</fest:value>
                   </fest:if>
                 </fest:attribute>
               </fest:attributes>
             </input>
-          </div><div class="main-welcome__input"><div class="main-button">LogOut</div>
+          </div><div class="b-panel__form"><div class="b-button">LogOut</div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="main-page__line">
-  <div class="main-menu">
-    <a href="#" class='main-link main-link_menu main-link_menu_active' >Main</a>
-    <a href="#" class='main-link main-link_menu'>About game</a>
-    <a href="#" class='main-link main-link_menu'>Rules</a>
-    <a href="#" class='main-link main-link_menu'>Profile</a>
+<div class="b-page__line">
+  <div class="b-menu">
+    <a href="#" class='b-link b-link_menu b-link_menu_active' >Main</a>
+    <a href="#" class='b-link b-link_menu'>About game</a>
+    <a href="#" class='b-link b-link_menu'>Rules</a>
+    <a href="#" class='b-link b-link_menu'>Profile</a>
   </div>
 </div>
 </fest:template>
