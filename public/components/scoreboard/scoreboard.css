@@ -1,25 +1,27 @@
 .scoreboard_container{
    width: 400px;
-   height: 380px;
+   height: 360px;
    position: fixed;
-   top: 50%;
+   top: 80%;
    left: 50%;
-   margin-top: -190px;
+   margin-top: -150px;
    margin-left: -200px;
    opacity: 0.8;
    background: #000000;
    border-radius: 20px;
-   color: white;
+   
 }
+
 .menu__title {
   width: 100%;
-  font-size: 24px;
+  font-size: 30px;
   text-align: center;
   height: 30px;
   line-height: 25px;
-  margin-top: 15px;
+  margin-top: 55px;
   margin-bottom: 15px;
   color: #4eade8;
+  font-family: 'Lilita One', cursive;
 }
 
 .score {
@@ -40,5 +42,6 @@
 }
 .score__title {
   font-weight: bold,
+  font-family: 'Lilita One', cursive;
 
 }

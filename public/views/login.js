@@ -4,15 +4,13 @@
 	const View = window.View;
 	const Form = window.Form;
 	const Menu = window.Menu;
+	const Scoreboard = window.Scoreboard;
 	const Session = window.Session;
 
 	class LoginView extends View {
 		constructor(options = {}) {
 			super(options);
 			this._el = document.querySelector('.js-welcome-panel');
-
-
-			// TODO: дописать реализацию
 
 			let form = new Form({
 				el: this._el,
@@ -79,18 +77,7 @@
 			this.menu = new Menu();
 		  this.menu._updateHtml();
 	  }
-
-
-
-
 	}
-
-
-/*	resume(options = {}) {
-		let form = document.querySelector('.js-welcome-panel__login-form');
-		form.hidden = false;
-    this.show();
-  }*/
 
 
 	// export

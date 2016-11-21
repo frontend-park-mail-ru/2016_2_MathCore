@@ -1,0 +1,90 @@
+
+.spoiler {
+    display: block;
+}
+
+
+
+
+.text{
+  color: white;
+}
+
+.library_elem_title {
+	position: relative;
+
+}
+
+.library_elem_title h3 {
+
+	padding-right: 200px;
+	margin-bottom: 0;
+	font-size: 19px;
+	text-transform: uppercase;
+	font-weight: normal;
+	font-style: normal;
+	font-family: 'Lilita One', cursive;
+	padding-top: 22px;
+	padding-bottom: 20px;
+  color: white;
+}
+
+
+.btn {
+    display: inline-block;
+    border: none;
+    border-radius: 10px;
+    font-size: 22px;
+    padding: 10px 20px;
+    background: #1b70d1;
+    color: #fff;
+    font-family: HelveticaNeue-Bold;
+    cursor: pointer;
+    width: 100px;
+    height: 20px;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    display: block;
+    overflow: hidden;
+    text-align: center;
+}
+
+
+.btn:hover {
+  background-color: #ff3434;
+}
+
+.spoiler input[type=checkbox] {
+    display: none;
+}
+
+.prokrutka {
+overflow-y: scroll; /* прокрутка по вертикали */
+}
+
+.text {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 12px 0 20px;
+}
+
+.spoiler input[type=checkbox] ~ .text {
+    display: none;
+
+}
+
+.spoiler input[type=checkbox]:checked ~ .text {
+    display: block;
+
+}
+
+.mainn-page__line
+{
+
+    width: 1200px;
+    margin:-20px auto;
+    opacity: 0.9;
+    background: #000000;
+}

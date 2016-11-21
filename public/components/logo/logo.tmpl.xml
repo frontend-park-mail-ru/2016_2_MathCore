@@ -1,0 +1,25 @@
+
+<fest:template xmlns:fest="http://fest.mail.ru" context_name = "json">
+  <div class="main-page__line">
+
+
+    <div class="main-logo">
+      <div class="main-logo__text">
+        <div class="main-logo-text">
+          <div class="main-logo__header">
+            SpaceCore
+          </div>
+          <div class="main-logo__subtext">
+            Strategy Game
+          </div>
+        </div>
+      </div>
+      <div class="main-logo__image">
+        <img class="main-image main-image_logo" src="static/logo.png"></img>
+      </div>
+    </div>
+
+
+
+  </div>
+</fest:template>

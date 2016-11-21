@@ -1,0 +1,57 @@
+<fest:template xmlns:fest="http://fest.mail.ru">
+<div class="prokrutka">
+
+<div class="mainn-page__line">
+  <div class="library_elem_title">
+    <h3>The idea of the game</h3>
+      <div class="spoiler">
+          <label class="btn" for="spoiler_1">Idea</label>
+          <input type="checkbox" id="spoiler_1"/>
+          <div class="text">
+              The purpose of this game is to collect as many coins as possible and
+              bring them to your ship. Seek them by fair means or foul.
+              Do you like to bravely go into battle, tactfully avoid meetings with enemies,
+              and you are a skillful truce envoy?
+               It is in your power. The main thing is to catch cherished gold!!
+          </div>
+      </div>
+  </div>
+
+<div class="library_elem_title">
+  <h3>The rules of the figth</h3>
+      <div class="spoiler">
+          <label class="btn" for="spoiler_2">Fight</label>
+          <input type="checkbox" id="spoiler_2"/>
+          <div class="text">
+              Fight - if you stand on a cell with an enemy (except a Jungle cell) than all
+              enemy's units (except Chunga-Changa) go to the ship (if a Fight has been on water, enemy's Pirates die).
+              The purpose of this game is to collect as many coins as possible and
+              bring them to your ship. Seek them by fair means or foul.
+              Do you like to bravely go into battle, tactfully avoid meetings with enemies,
+              and you are a skillful truce envoy?
+               It is in your power. The main thing is to catch cherished gThe purpose of this game is to collect as many coins as possible and
+               bring them to your ship. Seek them by fair means or foul.
+               Do you like to bravely go into battle, tactfully avoid meetings with enemies,
+               and you are a skillful truce envoy?
+                It is in your power. The main thing is to catch cherished g
+          </div>
+      </div>
+  </div>
+
+<div class="library_elem_title">
+  <h3>Description of cell fields</h3>
+      <div class="spoiler">
+          <label class="btn" for="spoiler_3">Field</label>
+          <input type="checkbox" id="spoiler_3"/>
+          <div class="text">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet aspernatur dolorem ducimus eaque!
+              Alias assumenda, blanditiis dignissimos facilis fuga ipsam molestias necessitatibus nostrum numquam
+              raesentium quo sed sit! Aut, vitae?
+          </div>
+      </div>
+</div>
+</div>
+</div>
+
+
+</fest:template>

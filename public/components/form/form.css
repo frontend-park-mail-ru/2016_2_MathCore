@@ -7,9 +7,9 @@ body {
   }
 .js-welcome-panel{
    width: 400px;
-   height: 380px;
+   height: 350px;
    position: fixed;
-   top: 50%;
+   top: 40%;
    left: 50%;
    margin-top: -190px;
    margin-left: -200px;

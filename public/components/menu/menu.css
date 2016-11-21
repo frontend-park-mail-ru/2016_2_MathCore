@@ -41,6 +41,7 @@
     line-height:33px;
     cursor:pointer;
     background-color:#1b70d1;
+    font-family: HelveticaNeue-Bold;
 }
 
 
@@ -56,6 +57,7 @@
     width: 1200px;
     margin-top:27px;
     margin: 0 auto;
+    
 }
 
 .main-menu

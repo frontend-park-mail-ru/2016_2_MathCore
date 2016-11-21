@@ -1,7 +1,8 @@
 <fest:template xmlns:fest = "http://fest.mail.ru" context_name = "json">
+  <div class = "scoreboard_container">
   <div id = "scoreboard" class = "menu">
     <div class = "menu__title">
-      Рейтинг лучших игроков
+      The best players
     </div>
     <table class = "score">
       <fest:for iterate = "json.scores" index = "i" value = "v">
@@ -15,5 +16,6 @@
         </tr>
       </fest:for>
     </table>
-  </div>
+</div>
+</div>
 </fest:template>
