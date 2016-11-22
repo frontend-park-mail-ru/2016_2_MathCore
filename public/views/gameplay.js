@@ -1,231 +1,33 @@
 (function () {
-	'use strict';
+	'use strict'
 
 	const View = window.View;
 	const Player = window.Player;
 	const MessagingTools = window.MessagingTools;
+	const Socket = window.Socket;
 
 	class GamePlayView extends View {
 		constructor(options = {}) {
 			super(options);
 			this._el = document.querySelector('.js-canvas');
-			this.allowGameStart = false;
-
       this.init();
       this.show();
 
-      //потом сюда надо будет вбить урл сервера
-			//---------------------------------------------------------------------
-      //var socket = new WebSocket("ws://localhost:8080/game");
-      var socket = new WebSocket("wss://java-heroku-test-victor.herokuapp.com/game");
-      var messaging = new MessagingTools(socket);
-      socket.onopen = function () {
-        // Socket open.. start the game loop.
-        console.log('Info: WebSocket connection opened.');
-        console.log('Info: Waiting for another player...');
-				messaging.sendJoinGameMsg();
-      };
+			let socket = new Socket();
+			this.messaging = socket.getMessaging();
 
-      socket.onclose = function () {
-        console.log('Info: WebSocket closed.');
-      };
-
-
-      socket.onmessage = function (event) {
-      	var content = {};
-        var responseContent = {};
-        var response = {};
-        var message = JSON.parse(event.data);
-        if (message.type === "ru.mail.park.websocket.MessageToClient$Request") {
-            content = JSON.parse(message.content);
-            responseContent.myMessage = content.myMessage;
-            console.log(responseContent.myMessage);
-            return;
-        }
-        if ( message.type === "ru.mail.park.mechanics.requests.BoardMapForUsers$Request"){
-            console.log("Wow. Seems loke game been started");
-            content = JSON.parse(message.content);
-            gameCellIds = content.gameBoard;
-            gameCellIds = gameCellIds.split(",");
-            for(var j = 0; j < gameCellIds.length; j++){
-            	gameCellIds[j]= +gameCellIds[j];
-            };
-            if(content.active){
-            	thisPlayer = player1;
-            	enemy = player2;
-            	var pirats1 = player1.get_pirats();
-            	pirats1.forEach(function(elem){
-            		elem.isPickable = true;
-            	});
-            }
-            else{
-            	thisPlayer = player2;
-            	enemy = player1;
-            	var pirats2 = player2.get_pirats();
-            	pirats2.forEach(function(elem){
-            		elem.isPickable = false;
-            	})
-            }
-            console.log("Проверяем проставление активного игрока");
-            console.log(content.active);
-            console.log(thisPlayer);
-            console.log(player1);
-			//this.allowGameStart = true;
-
-        }
-		if ( message.type === "ru.mail.park.mechanics.requests.NeighborsMessage$Request"){
-            console.log("Получены соседи клетки!");
-            content = JSON.parse(message.content);
-            console.log(content);
-			    neighbors = content.neighbors;
-				neighbors = neighbors.split(",");
-				for(var j = 0; j < neighbors.length; j++){
-            		neighbors[j]= +neighbors[j];
-            		console.log(typeof(neighbors[j]));
-            	};
-
-            console.log('Соседи: ' + neighbors.length);
-
-			for(var i = 0; i < neighbors.length; ++i){
-				gameField.subMeshes[neighbors[i]].materialIndex = 0;
-				//console.log("пытаемся подсветить клетку");
-			}
-        }
-        if(message.type === "ru.mail.park.mechanics.requests.PiratMoveMessage$Request") {
-        	console.log("О_о сервер ghbckfk ход другого игрока");
-            content = JSON.parse(message.content);
-            console.log(content);
-            if(content.active){
-            	var thisPirats = thisPlayer.get_pirats();
-            	thisPirats.forEach(function(elem){
-            		elem.isPickable = true;
-            	});
-            	MovementPiratId = content.piratId;
-            	MovementTargetCell = content.newCellIndexOfPirat;
-            	MovementUnresolved = true;
-
-            }
-
-
-        }
-      }
-
-
-
-			//--------------------------------------------------------------------------
-
-      var engine = new BABYLON.Engine(this._el, true);
-      var canvas = this._el;
-
-      var createScene = function(){
-        var scene = new BABYLON.Scene(engine);
-        var camera = new BABYLON.ArcRotateCamera("Camera", -Math.PI/2, Math.PI / 3,
-				                                         12, new BABYLON.Vector3(-100,100,100), scene);
-        camera.lowerBetaLimit = 0.1;
-        camera.lowerRadiusLimit = 30;
-        camera.upperRadiusLimit = 250;
-        camera.attachControl(canvas, true);
-        var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
-        light.intensity = .5;
-
-        return scene;
-      }
-
-      var scene = createScene();
-
-			//начинаем игровой цикл
-			const player1 = new Player(0, scene, {}); //первый игрок и его меши
-			const player2 = new Player(1, scene, {}); // 2-й игрок и его меши
-			var thisPlayer, enemy;
-			var MovementPiratId, MovementTargetCell;
-
-
-		//	var pirats = player1.get_pirats();
-		//	var possibleIds = player1.get_ids();
+      let engine = new BABYLON.Engine(this._el, true);
+      let canvas = this._el;
+      let scene = this.createScene(engine, canvas);
 
 			this.createSkyBox(scene);
-			var gameField = this.createGameField(scene);
-			var gameCellIds = " ";
-			var MovementUnresolved = false;
-            //var str = " ";
-			//пошёл цикл
-			var pirats ;
-			var mesh;
-			var neighbors = [];
-			var picked = false;
-			var ball;
-			var index, ids = [], cellIndex, piratMove;
-			scene.onPointerDown = function(evt, pickResult){
+			this.gameField = this.createGameField(scene);
+			this.player1 = new Player(0, scene, {});
+			this.player2 = new Player(1, scene, {});
+			this.MovementUnresolved = false;
+			this.picked = false;
 
-				if(pickResult.hit){
-					mesh = pickResult.pickedMesh;
-					pirats = thisPlayer.get_pirats();
-					if(pirats.indexOf(mesh)!= -1){
-						mesh.material.diffuseColor = new BABYLON.Color3(0, 1, 0);
-						ball = mesh;
-
-						//здесь нужно получить от сервера смежные клетки
-						index = pirats.indexOf(mesh);
-					 	ids = thisPlayer.get_ids(); //номер пирата
-						cellIndex = ids[index]; //айди клетки
-						piratMove = {};
-
-				 		var getCellneighbors = {};
-			      		getCellneighbors.cellIndex = cellIndex;
-			      		messaging.sendGetNeighbors(getCellneighbors);
-
-						picked = true;
-					}
-					if((mesh === gameField)&&(picked == true)){
-
-						//здесь уже выбираем из смежных клетку, на которую пойдем
-						console.log("мы хотим передвинуть шарик");
-						var id = pickResult.subMeshId;
-						console.log(id);
-						console.log(typeof(+neighbors[0]));
-						 if(neighbors.indexOf(id) != -1){
-						 	console.log("мы кликнули на подсвеченную клетку");
-						 	 ball.position.x = pickResult.pickedPoint.x;
-						 	 ball.position.y = 15;
-							 ball.position.z = pickResult.pickedPoint.z;
-							 console.log("Куда мы должны были передвинуться")
-							 console.log(ball.position.x);
-							 console.log(ball.position.z);
-							 ball.material.diffuseColor = new BABYLON.Color3(1,0,0);
-							 ids[index] = id;
-							 thisPlayer.set_ids(ids);
-							 picked = false;
-							 for (var i = 0; i < neighbors.length; ++i){
-								 gameField.subMeshes[neighbors[i]].materialIndex = 1;
-							 }
-							 pirats.forEach(function(elem){
-					           elem.isPickable = false;
-				             });
-				             //отправляем сообщение на сервер, что мы сходили
-				             var piratMove = {};
-				             piratMove.targetCellIndex = id;
-				             piratMove.piratId = index;
-				             messaging.sendPiratMove(piratMove);
-						 }
-						//передвигаем шарик
-						//посылаем серверу инфу о ходе
-					}
-				}
-				if(MovementUnresolved){
-					var enemyPirats = enemy.get_pirats();
-					var x, z, y = 15;
-					x = - (6 - MovementTargetCell%13 + 0.3)*(1200/13);
-					z = - (6 - MovementTargetCell/13 + 0.3)*(1200/13);
-					console.log("Куда мы передвинулись по факту")
-					console.log(x);
-					console.log(z);
-					enemyPirats[MovementPiratId].position = new BABYLON.Vector3(x,y,z);
-				}
-			}
-
-
-
-		//	this.game_init(possibleIds, gameField, pirats, scene);
+			scene.onPointerDown = this.gameInit.bind(this);
 
       engine.runRenderLoop(function () {
         scene.render();
@@ -237,13 +39,114 @@
 		}
 
 		init(options = {}) {
-      var video = document.querySelector('.bgvideo');
+      let video = document.querySelector('.bgvideo');
       video.hidden = true;
+
+			document.addEventListener("StartGame", this.startGame.bind(this));
+			document.addEventListener("GetNeighbors", this.getNeighbors.bind(this));
+			document.addEventListener("Movement", this.movement.bind(this));
+		}
+
+		startGame(evt){
+				let temp = evt.content.gameBoard;
+				this.gameCellIds = temp.split(",");
+				for(let j = 0; j < this.gameCellIds.length; j++){
+					this.gameCellIds[j]= +this.gameCellIds[j];
+				};
+				if(evt.content.active){
+					this.Player = this.player1;
+					this.Enemy = this.player2;
+				}
+				else{
+					this.Player = this.player2;
+					this.Enemy = this.player1;
+				}
+				this.pirats = this.Player.get_pirats();
+				this.pirats.forEach(function(mesh){
+					mesh.isPickable = true;
+				});
+		}
+
+		getNeighbors(evt){
+				let temp = evt.content.neighbors;
+				this.neighbors = temp.split(",");
+				for(let j = 0; j < this.neighbors.length; j++){
+					this.neighbors[j]= +this.neighbors[j];
+					this.gameField.subMeshes[this.neighbors[j]].materialIndex = 0;
+				}
+		}
+
+		movement(evt){
+				if(evt.content.active){
+					this.pirats.forEach(function(mesh){
+						mesh.isPickable = true;
+					});
+					this.PiratId = evt.content.piratId;
+					this.TargetCell = evt.content.newCellIndexOfPirat;
+					this.MovementUnresolved = true;
+			}
+		}
+
+		gameInit(evt, pickResult){
+			if(pickResult.hit){
+				let mesh = pickResult.pickedMesh; //!
+				if(this.pirats.indexOf(mesh) != -1){
+					mesh.material.diffuseColor = new BABYLON.Color3(0, 1, 0);
+					this.index = this.pirats.indexOf(mesh);
+					let ids = this.Player.get_ids();
+					let cellIndex = ids[this.index];
+					let getCellneighbors = {};
+					getCellneighbors.cellIndex = cellIndex;
+					this.messaging.sendGetNeighbors(getCellneighbors);
+					this.picked = true;
+				}
+				if((mesh === this.gameField)&&(this.picked == true)){
+					let id = pickResult.subMeshId;
+					if(this.neighbors.indexOf(id) != -1){
+						this.pirats[this.index].position = pickResult.pickedPoint;
+						this.pirats[this.index].position.y = 5;
+						this.pirats[this.index].material.diffuseColor = new BABYLON.Color3(1,0,0);
+						let ids = this.Player.get_ids();
+						ids[this.index] = id;
+						this.Player.set_ids(ids);
+						this.picked = false;
+						for (let i = 0; i < this.neighbors.length; ++i){
+							this.gameField.subMeshes[this.neighbors[i]].materialIndex = 1;
+						}
+						this.pirats.forEach(function(elem){
+							elem.isPickable = false;
+						});
+						let piratMove = {};
+						piratMove.targetCellIndex = id;
+						piratMove.piratId = this.index;
+						this.messaging.sendPiratMove(piratMove);
+					}
+				}
+			}
+			if(this.MovementUnresolved){
+				let enemyPirats = this.Enemy.get_pirats();
+				let x = - (6 - this.TargetCell%13 + 0.3)*(1200/13);
+				let z = - (6 - this.TargetCell/13 + 0.3)*(1200/13);
+				enemyPirats[this.PiratId].position = new BABYLON.Vector3(x,5,z);
+			}
+		}
+
+		createScene(engine, canvas){
+			let scene = new BABYLON.Scene(engine);
+			let camera = new BABYLON.ArcRotateCamera("Camera", -Math.PI/2, Math.PI / 3,
+																							 12, new BABYLON.Vector3(-100,100,100), scene);
+			camera.lowerBetaLimit = 0.1;
+			camera.lowerRadiusLimit = 30;
+			camera.upperRadiusLimit = 250;
+			camera.attachControl(canvas, true);
+			let light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
+			light.intensity = .5;
+			return scene;
 		}
 
 	  createSkyBox(scene){
-			var skybox = BABYLON.Mesh.CreateBox("skyBox", 10000.0, scene);
-			var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
+			let skybox = BABYLON.Mesh.CreateBox("skyBox", 10000.0, scene);
+			let skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
 			skyboxMaterial.backFaceCulling = false;
 			skyboxMaterial.disableLighting = true;
 			skybox.material = skyboxMaterial;
@@ -325,59 +228,8 @@
 
 			 return tiledGround;
 		 }
-
-
-
-		 game_init(Ids, gameField, pirats, scene){
-			 var condition = false;
-			 var pirat, mesh;
-			 var index;
-			 var sphere = pirats[0];
- 			 var pirat1 = pirats[1];
- 			 var pirat2 = pirats[2];
-			 scene.onPointerDown = function(evt, pickResult){
-				 if(pickResult.hit){
-					 pirat = pickResult.pickedMesh;
-					 if((pirat == sphere)||(pirat == pirat1)||(pirat == pirat2)){
-						 mesh = pirat;
-						 mesh.material.diffuseColor = new BABYLON.Color3(0, 1, 0);
-						 //----------------------------------------------------
-						 if(mesh == sphere){
-							 index = 0;
-						 }
-						 if(mesh == pirat1){
-							 index = 1;
-						 }
-						 if(mesh == pirat2){
-							 index = 2;
-						 }
-						 //-----------------------------------------------------
-						 for (var i = 0; i < Ids[index].length; ++i){
-							 gameField.subMeshes[Ids[index][i]].materialIndex = 0;
-						 }
-						 condition = true;
-					 }
-					 if((pirat == gameField)&&(condition == true)){
-						 var id = pickResult.subMeshId;
-						 if(Ids[index].indexOf(id) != -1){
-							 mesh.position.x = pickResult.pickedPoint.x;
-							 mesh.position.z = pickResult.pickedPoint.z;
-							 mesh.material.diffuseColor = new BABYLON.Color3(1,0,0);
-							 condition = false;
-							 for (var i = 0; i < Ids[index].length; ++i){
-								 gameField.subMeshes[Ids[index][i]].materialIndex = 1;
-							 }
-							 Ids[index] = [id+11, id-11, id+1, id-10, id+12, id - 1, id +10, id -12];
-						 }
-					 }
-				 }
-			 }
-		 }
-
 	}
 
-
-	// export
 	window.GamePlayView = GamePlayView;
 
 })();

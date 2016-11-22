@@ -11,9 +11,8 @@
       this.index = index;
       this.scene = scene;
 
-      //добавили обработчик на кастомное событие
       document.addEventListener("MeshLoading", this.OnMeshLoad.bind(this));
-      this.myEvent = new CustomEvent("MeshLoading", {});
+      this.MeshLoadEvent = new CustomEvent("MeshLoading", {});
 
       if(index == 0){
         this.ids = [78, 78, 78];
@@ -29,24 +28,20 @@
 
     onSceneLoad(newMeshes) {
       this.pirats[0] = newMeshes[0];
-
       this.pirats[0].scaling = new BABYLON.Vector3(15,15,15);
-    //  this.pirats[0].rotation.y = -Math.PI/2;
       this.pirats[0].renderingGroupId = 1;
-
       this.pirats[1] = this.pirats[0].clone("Astronaut1");
       this.pirats[2] = this.pirats[0].clone("Astronaut2");
 
-      //вызвали событие (меши загрузились)
-      document.dispatchEvent(this.myEvent); 
+      document.dispatchEvent(this.MeshLoadEvent);
     }
 
     OnMeshLoad(e){
-        var x, y = 5, z = -35;
-        var rotation;
-        var red1 = new BABYLON.StandardMaterial("RedPirat",this.scene);
-        var red2 = new BABYLON.StandardMaterial("RedPirat",this.scene);
-        var red3 = new BABYLON.StandardMaterial("RedPirat",this.scene);
+        let x, y = 5, z = -35;
+        let rotation;
+        let red1 = new BABYLON.StandardMaterial("RedPirat",this.scene);
+        let red2 = new BABYLON.StandardMaterial("RedPirat",this.scene);
+        let red3 = new BABYLON.StandardMaterial("RedPirat",this.scene);
 
         if(this.index === 0){
           x = -600;
@@ -61,20 +56,20 @@
         red2.diffuseColor = new BABYLON.Color3(1,0,0);
         red3.diffuseColor = new BABYLON.Color3(1,0,0);
 
-      this.pirats[0].material = red1;
-      this.pirats[1].material = red2;
-      this.pirats[2].material = red3;
+        this.pirats[0].material = red1;
+        this.pirats[1].material = red2;
+        this.pirats[2].material = red3;
 
-      this.pirats.forEach(function(elem){
-        elem.position = new BABYLON.Vector3(x, y, z);
-        elem.rotation.y = rotation;
-        z += 35;
-        elem.isPickable = false;
-      })
+        this.pirats.forEach(function(elem){
+          elem.position = new BABYLON.Vector3(x, y, z);
+          elem.rotation.y = rotation;
+          z += 35;
+          elem.isPickable = false;
+        })
     }
 
     url(id){
-      //связь с сервером и т.д.
+
     }
 
     set_ids(newIds){
@@ -104,9 +99,7 @@
     destroy_pirat(mesh){
 
     }
-
   }
 
-  //export
   window.Player = Player;
 })();
