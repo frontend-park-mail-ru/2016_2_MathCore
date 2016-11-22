@@ -1,11 +1,11 @@
-.main-logo__text
+.b-logo__text
 {
     position:relative;
     top:50px;
     left:450px;
 }
 
-.main-logo__header
+.b-logo__header
 {
     font-size:50px;
     color:#5a5a5a;
@@ -13,37 +13,35 @@
 
 }
 
-.main-logo__subtext
+.b-logo__subtext
 {
     font-size:20px;
     color:#FFFFFF
 }
 
-.main-logo__image
+.b-logo__image
 {
     z-index: 0;
     margin-top:-82px;
 }
 
-.main-logo__header{
+.b-logo__header{
   font-family: 'tengo a tus hijos';
   font-style: normal;
   font-weight: normal;
   color:#FFFFFF;
 }
 
-.main-page__line
+.b-page__line
 {
 
     width: 1200px;
     margin-top:27px;
     margin: 0 auto;
-    
+
 }
 
-
-
-div.main-logo{
+div.b-logo{
   width: 100%;
   max-width: 1200px;
   margin: 0 auto; /* центрируем основной контейнер */

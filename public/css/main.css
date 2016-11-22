@@ -12,6 +12,10 @@ body {
 	touch-action: none;
 }
 
+
+.scoreboard-container{
+	background: white;
+}
 .cssload-wrap {
 	display: flex;
 		display: -o-flex;

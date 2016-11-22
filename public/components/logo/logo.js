@@ -22,11 +22,6 @@
       this._el.innerHTML = this.template();
     }
 
-    /**
-     * Вставить управляющие элементы в форму
-     */
-    
-
   }
 
   window.Logo = Logo;
