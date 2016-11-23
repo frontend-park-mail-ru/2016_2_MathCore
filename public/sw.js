@@ -18,7 +18,6 @@ const cacheUrls = [
   "/modules/swLoader.js",
   "/sw.js",
 
-
   "/libs/technolibs/index.js",
   "/modules/pathToRegex.js",
   "/modules/view.js",
