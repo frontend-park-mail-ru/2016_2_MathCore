@@ -1,16 +1,16 @@
-.game__menu_score{
+.game__main_score{
    width: 400px;
    height: 360px;
    position: absolute;
-   top: 10%;
    left: 50%;
-   margin-top: -10px;
    margin-left: -200px;
    opacity: 0.8;
    background: #000000;
    border-radius: 20px;
+
+
 }
-.game__menu__title {
+.game-score__title {
   width: 100%;
   font-size: 30px;
   text-align: center;
@@ -40,6 +40,5 @@
 .game__main-page-conteiner{
   position: relative;
   min-width: 400px;
-  right: -50px
-
+  z-index: 1337;
 }

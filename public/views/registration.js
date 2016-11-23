@@ -40,7 +40,7 @@
 					],
 					controls: [
 						{
-							text: 'Зарегистрироваться',
+							text: 'SignUp',
 							attrs: {
 								type: 'submit'
 							}

@@ -44,6 +44,7 @@
 				menu._updateHtml();
 				let logo = new Logo();
 				logo._updateHtml();
+
 			}
 		}
 
