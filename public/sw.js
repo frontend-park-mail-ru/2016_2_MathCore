@@ -49,8 +49,6 @@ const cacheUrls = [
   "/views/gameplay.js",
   "/views/gamerules.js",
 
-  "/static/stars.mp4",
-
 	'/main.js'
 ];
 
