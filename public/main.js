@@ -19,7 +19,7 @@
 		if (userData.isAuthorized){
 
 			window.session.login(userData.login);
-		  document.dispatchEvent( new CustomEvent("updateMenu", {}) );
+			document.dispatchEvent( new CustomEvent("updateMenu", {}) );
 
 		}
 
@@ -30,9 +30,9 @@
 	// З.Ы. чтобы более ранние роуты не были префиксами более поздних ;]
 	(new Router)
 	.addRoute('/rules', GameRulesView)   // rules static page
-	  .addRoute('/play', GamePlayView) //игровое поле
-	  .addRoute('/scores', ScoreBoardView)
-		.addRoute('/user', RegistrationView)
-		.addRoute('/', LoginView) //Welcome Page
-		.start();
+	.addRoute('/play', GamePlayView) //игровое поле
+	.addRoute('/scores', ScoreBoardView)
+	.addRoute('/user', RegistrationView)
+	.addRoute('/', LoginView) //Welcome Page
+	.start();
 })();

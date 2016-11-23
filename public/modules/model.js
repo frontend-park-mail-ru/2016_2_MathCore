@@ -55,6 +55,7 @@
 			});
 		}
 
+
 		send( method, data, _url="", path="") {
 
 
@@ -81,7 +82,7 @@
 
 		}
 
-		
+
 		fetchAll(method = "GET"){
 			const url = this.url();
 			return fetch(url, {
@@ -99,6 +100,7 @@
 			.catch(error => console.log(error));
 
 		}
+
 
 	}
 

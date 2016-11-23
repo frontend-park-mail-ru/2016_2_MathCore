@@ -59,9 +59,11 @@
 
 				window.session.send('POST', userData).then(
 					() => {
+
 						window.session.login(userData.login);
 						this.menu._updateHtml();
-					  (new Router).go('/scores');
+						//alert('Вы успешно авторизовались!');
+						(new Router).go('/play');
 					},
 					() => {
 						form.innerHtml = 'Неверные данные';
@@ -74,11 +76,11 @@
 
 		init(options = {}) {
 			this.menu = new Menu();
-		  this.menu._updateHtml();
-	  }
+			this.menu._updateHtml();
+		}
+
 	}
-
-
+	
 	// export
 	window.LoginView = LoginView;
 
