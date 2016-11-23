@@ -16,8 +16,8 @@
 
       //потом сюда надо будет вбить урл сервера
 			//---------------------------------------------------------------------
-      //var socket = new WebSocket("ws://localhost:8080/game");
-      var socket = new WebSocket("wss://java-heroku-test-victor.herokuapp.com/game");
+      var socket = new WebSocket("ws://localhost:8080/game");
+      //var socket = new WebSocket("wss://java-heroku-test-victor.herokuapp.com/game");
             var messaging = new MessagingTools(socket);
       socket.onopen = function () {
         // Socket open.. start the game loop.

@@ -30,29 +30,9 @@
       red2.diffuseColor = new BABYLON.Color3(1,0,0);
       red3.diffuseColor = new BABYLON.Color3(1,0,0);
 
-      /*let pirat0, pirat1, pirat2;
+      // let pirat0, pirat1, pirat2;
 
-      BABYLON.SceneLoader.ImportMesh("Astronaut", "", "cosmo.babylon", scene, function (newMeshes) {
-      pirat0 = newMeshes[0];
-
-      pirat0.scaling = new BABYLON.Vector3(15,15,15);
-      pirat0.rotation.y = -Math.PI/2;
-      pirat0.material = red1;
-      pirat0.position = new BABYLON.Vector3(-610,15,0);
-      pirat0.renderingGroupId = 1;
-
-      pirat1 = pirat0.clone("pirat1");
-      pirat2 = pirat0.clone("pirat2");
-
-      pirat1.material = red2;
-      pirat1.position.z += 40;
-      pirat1.renderingGroupId = 1;
-
-      pirat2.material = red3;
-      pirat2.position.z -= 40;
-      pirat2.renderingGroupId = 1;
-
-    });*/
+      BABYLON.SceneLoader.ImportMesh("Astronaut", "", "cosmo.babylon", scene, this.onSceneLoad.bind(this));
 
       this.pirats[0] = BABYLON.Mesh.CreateSphere("sphere1", 16, 16, scene);
       this.pirats[1] = BABYLON.Mesh.CreateSphere("sphere2", 16, 16, scene);
@@ -70,6 +50,27 @@
       })
 
       this.gold = 0;
+    }
+
+    onSceneLoad(newMeshes) {
+      this.pirats[0] = newMeshes[0];
+
+      pirat0.scaling = new BABYLON.Vector3(15,15,15);
+      pirat0.rotation.y = -Math.PI/2;
+      pirat0.material = red1;
+      pirat0.position = new BABYLON.Vector3(-610,15,0);
+      pirat0.renderingGroupId = 1;
+
+      pirat1 = pirat0.clone("pirat1");
+      pirat2 = pirat0.clone("pirat2");
+
+      pirat1.material = red2;
+      pirat1.position.z += 40;
+      pirat1.renderingGroupId = 1;
+
+      pirat2.material = red3;
+      pirat2.position.z -= 40;
+      pirat2.renderingGroupId = 1;
     }
 
     url(id){
