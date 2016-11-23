@@ -22,6 +22,7 @@
 
 			this.createSkyBox(scene);
 			this.gameField = this.createGameField(scene);
+			//this.highlight = new BABYLON.HighlightLayer("H1",scene);
 			this.player1 = new Player(0, scene, {});
 			this.player2 = new Player(1, scene, {});
 			this.MovementUnresolved = false;
@@ -89,7 +90,7 @@
 
 		gameInit(evt, pickResult){
 			if(pickResult.hit){
-				let mesh = pickResult.pickedMesh; 
+				let mesh = pickResult.pickedMesh;
 				if(this.pirats.indexOf(mesh) != -1){
 					mesh.material.diffuseColor = new BABYLON.Color3(0, 1, 0);
 					this.index = this.pirats.indexOf(mesh);
@@ -133,14 +134,14 @@
 
 		createScene(engine, canvas){
 			let scene = new BABYLON.Scene(engine);
-			let camera = new BABYLON.ArcRotateCamera("Camera", -Math.PI/2, Math.PI / 3,
-																							 12, new BABYLON.Vector3(-100,100,100), scene);
+			let camera = new BABYLON.ArcRotateCamera("Camera", -Math.PI/2, Math.PI / 5,
+																							 12, new BABYLON.Vector3(0,700,-600), scene);
 			camera.lowerBetaLimit = 0.1;
 			camera.lowerRadiusLimit = 30;
-			camera.upperRadiusLimit = 250;
+			camera.upperRadiusLimit = 700;
 			camera.attachControl(canvas, true);
 			let light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
-			light.intensity = .5;
+			light.intensity = .8;
 			return scene;
 		}
 
