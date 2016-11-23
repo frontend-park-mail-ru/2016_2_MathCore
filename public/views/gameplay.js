@@ -89,7 +89,7 @@
 
 		gameInit(evt, pickResult){
 			if(pickResult.hit){
-				let mesh = pickResult.pickedMesh; //!
+				let mesh = pickResult.pickedMesh; 
 				if(this.pirats.indexOf(mesh) != -1){
 					mesh.material.diffuseColor = new BABYLON.Color3(0, 1, 0);
 					this.index = this.pirats.indexOf(mesh);
