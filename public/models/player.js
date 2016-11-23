@@ -9,72 +9,67 @@
       this.pirats = [];
       this.ids = [];
       this.index = index;
+      this.scene = scene;
 
-      var x, y = 15, z = 0;
+      document.addEventListener("MeshLoading", this.OnMeshLoad.bind(this));
+      this.MeshLoadEvent = new CustomEvent("MeshLoading", {});
 
       if(index == 0){
         this.ids = [78, 78, 78];
-        x = -600;
       }
 
       if(index == 1){
         this.ids = [13*7-1, 13*7 - 1, 13*7 - 1];
-        x = 600;
       }
 
-      var red1 = new BABYLON.StandardMaterial("RedPirat",scene);
-      var red2 = new BABYLON.StandardMaterial("RedPirat",scene);
-      var red3 = new BABYLON.StandardMaterial("RedPirat",scene);
-
-      red1.diffuseColor = new BABYLON.Color3(1,0,0);
-      red2.diffuseColor = new BABYLON.Color3(1,0,0);
-      red3.diffuseColor = new BABYLON.Color3(1,0,0);
-
-      // let pirat0, pirat1, pirat2;
-
       BABYLON.SceneLoader.ImportMesh("Astronaut", "", "cosmo.babylon", scene, this.onSceneLoad.bind(this));
-
-      this.pirats[0] = BABYLON.Mesh.CreateSphere("sphere1", 16, 16, scene);
-      this.pirats[1] = BABYLON.Mesh.CreateSphere("sphere2", 16, 16, scene);
-      this.pirats[2] = BABYLON.Mesh.CreateSphere("sphere3", 16, 16, scene);
-
-      this.pirats[0].material = red1;
-      this.pirats[1].material = red2;
-      this.pirats[2].material = red3;
-
-      this.pirats.forEach(function(elem){
-        elem.position = new BABYLON.Vector3(x, y, z);
-        z += 20;
-        elem.renderingGroupId = 1;
-        elem.isPickable = false;
-      })
-
       this.gold = 0;
     }
 
     onSceneLoad(newMeshes) {
       this.pirats[0] = newMeshes[0];
+      this.pirats[0].scaling = new BABYLON.Vector3(15,15,15);
+      this.pirats[0].renderingGroupId = 1;
+      this.pirats[1] = this.pirats[0].clone("Astronaut1");
+      this.pirats[2] = this.pirats[0].clone("Astronaut2");
 
-      pirat0.scaling = new BABYLON.Vector3(15,15,15);
-      pirat0.rotation.y = -Math.PI/2;
-      pirat0.material = red1;
-      pirat0.position = new BABYLON.Vector3(-610,15,0);
-      pirat0.renderingGroupId = 1;
+      document.dispatchEvent(this.MeshLoadEvent);
+    }
 
-      pirat1 = pirat0.clone("pirat1");
-      pirat2 = pirat0.clone("pirat2");
+    OnMeshLoad(e){
+        let x, y = 5, z = -35;
+        let rotation;
+        let red1 = new BABYLON.StandardMaterial("RedPirat",this.scene);
+        let red2 = new BABYLON.StandardMaterial("RedPirat",this.scene);
+        let red3 = new BABYLON.StandardMaterial("RedPirat",this.scene);
 
-      pirat1.material = red2;
-      pirat1.position.z += 40;
-      pirat1.renderingGroupId = 1;
+        if(this.index === 0){
+          x = -600;
+          rotation = -Math.PI/2;
+        }
+        else{
+          x = 600;
+          rotation = Math.PI/2;
+        }
 
-      pirat2.material = red3;
-      pirat2.position.z -= 40;
-      pirat2.renderingGroupId = 1;
+        red1.diffuseColor = new BABYLON.Color3(1,0,0);
+        red2.diffuseColor = new BABYLON.Color3(1,0,0);
+        red3.diffuseColor = new BABYLON.Color3(1,0,0);
+
+        this.pirats[0].material = red1;
+        this.pirats[1].material = red2;
+        this.pirats[2].material = red3;
+
+        this.pirats.forEach(function(elem){
+          elem.position = new BABYLON.Vector3(x, y, z);
+          elem.rotation.y = rotation;
+          z += 35;
+          elem.isPickable = false;
+        })
     }
 
     url(id){
-      //связь с сервером и т.д.
+
     }
 
     set_ids(newIds){
@@ -104,9 +99,7 @@
     destroy_pirat(mesh){
 
     }
-
   }
 
-  //export
   window.Player = Player;
 })();
