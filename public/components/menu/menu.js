@@ -22,7 +22,9 @@
       let userData = {
         login: window.session.getLogin() || ""
       };
-      this._el.innerHTML = this.template(userData);
+      let params = window.location.pathname.split("/");
+      this._el.innerHTML = this.template({userData:userData, active: params.length==1?"":params[1]});
+
     }
   }
 

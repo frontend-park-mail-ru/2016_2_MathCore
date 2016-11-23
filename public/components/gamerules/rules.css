@@ -1,19 +1,25 @@
 
 .spoiler {
     display: block;
+
+
 }
 
 
 .text{
   color: white;
   margin-left: 20px;
+
+
 }
 
 .library_elem_title {
 	position: relative;
   margin-left: 20px;
 
+
 }
+
 
 .library_elem_title h3 {
 
@@ -28,6 +34,7 @@
 	padding-bottom: 20px;
   color: white;
 }
+
 
 
 .btn {
@@ -59,27 +66,22 @@
     display: none;
 }
 
-.prokrutka {
-overflow-y: scroll;
-
-}
-
-
-
 .spoiler input[type=checkbox] ~ .text {
     display: none;
 }
 
 .spoiler input[type=checkbox]:checked ~ .text {
     display: block;
+
 }
 
 .mainn-page__line
 {
 
+
     width: 1200px;
-    height: 600px;
-    margin:-20px auto;
+
+    margin: -20px auto;
     opacity: 0.9;
     background: #000000;
 
@@ -91,8 +93,14 @@ overflow-y: scroll;
     width: 960px;
     margin: 0 auto;
     margin-top:27px;
+
+
 }
 
+.rules__item {
+  opacity: 0.9;
+  background: #000000;
+}
 
 .cell-content
 {
@@ -100,6 +108,7 @@ overflow-y: scroll;
     margin:0;
     padding:0;
     list-style:none;
+
 }
 
 .cell-content__item

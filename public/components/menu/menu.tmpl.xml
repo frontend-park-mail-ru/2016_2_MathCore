@@ -8,9 +8,9 @@
               <fest:attributes>
                 <fest:attribute name="placeholder">
                   <fest:text >Welcome</fest:text>
-                  <fest:if test="json.login">
+                  <fest:if test="json.userData.login">
                     <fest:text >, </fest:text>
-                    <fest:value>json.login</fest:value>
+                    <fest:value>json.userData.login</fest:value>
                   </fest:if>
                 </fest:attribute>
               </fest:attributes>
@@ -23,10 +23,27 @@
 </div>
 <div class="b-page__line">
   <div class="b-menu">
-    <a href="#" class='b-link b-link_menu b-link_menu_active' >Main</a>
+    <fest:if test="json.active==''">
+      <a href="/" class='b-link b-link_menu b-link_menu_active'>Main</a>
+      <a href="/scores" class='b-link b-link_menu'>Scoreboard</a>
+      <a href="#" class='b-link b-link_menu'>About game</a>
+      <a href="/rules" class='b-link b-link_menu'>Rules</a>
+      <a href="#" class='b-link b-link_menu'>Profile</a>
+  </fest:if>
+  <fest:if test="json.active=='scores'">
+    <a href="/" class='b-link b-link_menu '>Main</a>
+    <a href="/scores" class='b-link b-link_menu b-link_menu_active'>Scoreboard</a>
     <a href="#" class='b-link b-link_menu'>About game</a>
-    <a href="#" class='b-link b-link_menu'>Rules</a>
+    <a href="/rules" class='b-link b-link_menu'>Rules</a>
     <a href="#" class='b-link b-link_menu'>Profile</a>
+</fest:if>
+<fest:if test="json.active=='rules'">
+  <a href="/" class='b-link b-link_menu '>Main</a>
+  <a href="/scores" class='b-link b-link_menu'>Scoreboard</a>
+  <a href="#" class='b-link b-link_menu'>About game</a>
+  <a href="/rules" class='b-link b-link_menu b-link_menu_active'>Rules</a>
+  <a href="#" class='b-link b-link_menu'>Profile</a>
+</fest:if>
   </div>
 </div>
 </fest:template>
