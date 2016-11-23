@@ -1,27 +1,26 @@
-.scoreboard_container{
+.game__menu_score{
    width: 400px;
-   height: 380px;
-   position: fixed;
-   top: 50%;
+   height: 360px;
+   position: absolute;
+   top: 10%;
    left: 50%;
-   margin-top: -190px;
+   margin-top: -10px;
    margin-left: -200px;
    opacity: 0.8;
    background: #000000;
    border-radius: 20px;
-   color: white;
 }
-.menu__title {
+.game__menu__title {
   width: 100%;
-  font-size: 24px;
+  font-size: 30px;
   text-align: center;
   height: 30px;
   line-height: 25px;
-  margin-top: 15px;
+  margin-top: 55px;
   margin-bottom: 15px;
   color: #4eade8;
+  font-family: 'Lilita One', cursive;
 }
-
 .score {
   width: 100%;
   margin-top: 20px;
@@ -38,7 +37,9 @@
   text-align: center;
   color:#4eade8;
 }
-.score__title {
-  font-weight: bold,
+.game__main-page-conteiner{
+  position: relative;
+  min-width: 400px;
+  right: -50px
 
 }

@@ -10,7 +10,7 @@
 			this._el = document.querySelector('.js-login');
 			this.hide();
 
-			// TODO: дописать реализацию
+
 			var options = {
 				el: this._el,
 				data: {
@@ -52,7 +52,7 @@
 		}
 
 		init(options = {}) {
-			// TODO: дописать реализацию
+			
 		}
 	}
 

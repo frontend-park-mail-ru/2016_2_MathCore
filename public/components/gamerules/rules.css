@@ -1,0 +1,159 @@
+
+.b-page__rule-open {
+  display: block;
+}
+
+
+.text{
+  color: white;
+  margin-left: 20px;
+
+
+}
+
+.b-page__rule {
+  position: relative;
+  margin-left: 20px;
+}
+
+
+.b-page__rule h3 {
+
+  padding-right: 200px;
+  margin-bottom: 0;
+  font-size: 25px;
+  text-transform: uppercase;
+  font-weight: normal;
+  font-style: normal;
+  font-family: 'Lilita One', cursive;
+  padding-top: 22px;
+  padding-bottom: 20px;
+  color: white;
+}
+
+
+
+.btn {
+  display: inline-block;
+  border: none;
+  border-radius: 10px;
+  font-size: 22px;
+  padding: 10px 20px;
+  background: #1b70d1;
+  color: #fff;
+  font-family: HelveticaNeue-Bold;
+  cursor: pointer;
+  width: 100px;
+  height: 20px;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  display: block;
+  overflow: hidden;
+  text-align: center;
+}
+
+
+.btn:hover {
+  background-color: #ff3434;
+}
+
+.b-page__rule-open input[type=checkbox] {
+  display: none;
+}
+
+.b-page__rule-open input[type=checkbox] ~ .text {
+  display: none;
+}
+
+.b-page__rule-open input[type=checkbox]:checked ~ .text {
+  display: block;
+
+}
+
+.b-page__line
+{
+
+
+  width: 1200px;
+  margin: -20px auto;
+  opacity: 0.9;
+  background: #000000;
+
+}
+
+
+.page__line
+{
+  width: 960px;
+  margin: 0 auto;
+  margin-top:27px;
+
+
+}
+
+.rules__item {
+  opacity: 0.9;
+  background: #000000;
+}
+
+.cell-content
+{
+  width:100%;
+  margin:0;
+  padding:0;
+  list-style:none;
+
+}
+
+.cell-content__item
+{
+  margin-top:5px;
+  margin-left: 25px;
+  display:block;
+}
+
+.cell__img
+{
+  margin-right:10px;
+
+}
+
+
+.cell__text
+{
+  color:#1b70d1;
+  font-size:14px;
+
+
+
+}
+
+.cell__head
+{
+  color: white;
+  font-family: 'Lilita One', cursive;
+  font-size: 16px;
+
+}
+
+
+.rules__item
+{
+  float:left;
+  margin-left:10px;
+  width:460px;
+}
+
+
+.rules__item_small
+{
+  width:300px
+}
+
+.cell__img
+{
+  float:left;
+  width: 50px;
+  height:50px;
+}

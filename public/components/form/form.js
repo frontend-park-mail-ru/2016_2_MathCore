@@ -7,9 +7,6 @@
 
 	class Form extends Block {
 
-		/**
-		 * Конструктор класса Form
-		 */
 		constructor(options = {data: {}}) {
 			super('form');
 			this.template = window.fest['form/form.tmpl'];
@@ -18,31 +15,23 @@
 			this.render();
 		}
 
-		/**
-		 * Обновляем HTML
-		 */
+
 		render() {
 			this._updateHtml();
 			this._installControls();
 		}
 
-		/**
-		 * Обнуляем форму
-		 */
+
 		reset() {
 			this._el.querySelector('form').reset();
 		}
 
-		/**
-		 * Обновить html компонента
-		 */
+
 		_updateHtml() {
 			this._el.innerHTML = this.template(this.data);
 		}
 
-		/**
-		 * Вставить управляющие элементы в форму
-		 */
+
 		_installControls() {
 			let {controls = []} = this.data;
 

@@ -7,7 +7,7 @@
 				<input type="{field.type}" name="{field.name}" placeholder="{field.placeholder}"/>
 			</li>
 			</fest:for>
-	<li class="js-controls"> </li>
+	<li class="js-controls"></li>
  </ul>
 	</form>
 </fest:template>

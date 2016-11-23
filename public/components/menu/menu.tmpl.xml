@@ -1,39 +1,49 @@
-<fest:template xmlns:fest="http://fest.mail.ru">
-  <div class="main-page__head-line"></div>
-
-  <fest:set name="main-logo">
-    <div class="main-logo">
-        <div class="main-logo__text">
-            <div class="main-logo-text">
-                <div class="main-logo__header  ">
-                    <!-- Jackal|Space -->
-                </div>
-                <div class="main-logo__subtext">
-                    <!-- MathCore 2016 -->
-                </div>
-            </div>
+<fest:template xmlns:fest="http://fest.mail.ru" context_name = "json">
+  <div class="b-page__line">
+    <div class="b-head">
+      <div class="b-head__panel">
+        <div class="b-panel">
+          <div class="b-panel__form">
+            <input type="text" class="b-form b-form_welcome">
+              <fest:attributes>
+                <fest:attribute name="placeholder">
+                  <fest:text >Welcome</fest:text>
+                  <fest:if test="json.userData.login">
+                    <fest:text >, </fest:text>
+                    <fest:value>json.userData.login</fest:value>
+                  </fest:if>
+                </fest:attribute>
+              </fest:attributes>
+            </input>
+          </div><div class="b-panel__form"><div class="b-button">LogOut</div>
         </div>
-        <div class="main-logo__image">
-
-  </fest:set>
-
-  <div class="main-page__line">
-      <div class="main-menu">
-        <a href="#" class='main-link main-link_menu main-link_menu_active' >Главная</a>
-        <a href="#" class='main-link main-link_menu'>Новости</a>
-        <a href="#" class='main-link main-link_menu'>Об игре</a>
-        <a href="#" class='main-link main-link_menu'>Правила</a>
-        <a href="#" class='main-link main-link_menu'>Профиль</a>
       </div>
+    </div>
   </div>
-  <div class="main-page__line">
-      <div class="main-pagelogo">
-          <div class="main-pagelogo__current">
-                fest:get name=main_log
-                 <!-- <img class="main-image main-image_pagelogo" src="image/logo.png"></img> -->
-                  </div>
-              </div>
-          </div>
-      </div>
+</div>
+<div class="b-page__line">
+  <div class="b-menu">
+    <fest:if test="json.active==''">
+      <a href="/" class='b-link b-link_menu b-link_menu_active'>Main</a>
+      <a href="/scores" class='b-link b-link_menu'>Scoreboard</a>
+      <a href="#" class='b-link b-link_menu'>About game</a>
+      <a href="/rules" class='b-link b-link_menu'>Rules</a>
+      <a href="#" class='b-link b-link_menu'>Profile</a>
+  </fest:if>
+  <fest:if test="json.active=='scores'">
+    <a href="/" class='b-link b-link_menu '>Main</a>
+    <a href="/scores" class='b-link b-link_menu b-link_menu_active'>Scoreboard</a>
+    <a href="#" class='b-link b-link_menu'>About game</a>
+    <a href="/rules" class='b-link b-link_menu'>Rules</a>
+    <a href="#" class='b-link b-link_menu'>Profile</a>
+</fest:if>
+<fest:if test="json.active=='rules'">
+  <a href="/" class='b-link b-link_menu '>Main</a>
+  <a href="/scores" class='b-link b-link_menu'>Scoreboard</a>
+  <a href="#" class='b-link b-link_menu'>About game</a>
+  <a href="/rules" class='b-link b-link_menu b-link_menu_active'>Rules</a>
+  <a href="#" class='b-link b-link_menu'>Profile</a>
+</fest:if>
   </div>
+</div>
 </fest:template>

@@ -3,21 +3,18 @@
 
   const Model = window.Model;
 
-  class User extends Model {
+  class CollectionUser extends Model {
      constructor(attributes) {
        super(attributes);
      }
 
      /* пока для осторожности прописываем url напрямую */
      url(id) {
-      let url = 'https://java-heroku-test-victor.herokuapp.com/user/';
-      if(id){
-        return url+id;
-      }
+      let url = 'https://java-heroku-test-victor.herokuapp.com/rating/';
       return url;
  		}
 
   }
 
-  window.User = User;
+  window.CollectionUser = CollectionUser;
 })();
