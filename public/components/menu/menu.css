@@ -1,47 +1,60 @@
 .b-link
 {
-    color:#183b63;
-    font-size:12px;
+  color:#183b63;
+  font-size:12px;
 
 }
 
 .b-head
 {
-    height:36px;
+  height:36px;
 }
 
 .b-head__panel
 {
-    float:right;
+  float:right;
 }
 
 .b-panel__form
 {
-    display:inline-block;
+  display:inline-block;
+
+
+}
+
+
+.panel__form_welcome {
+  color: #1b70d1 ;
+  font-size: 150%;
+  font-family: serif;
+  position: relative;
+  top: 5px;
+  right: 20px;
 }
 
 .b-form
 {
-    background-color: #0c163d;
-    border:0px;
+  background-color: #0c163d;
+  border:0px;
+
 }
 
 .b-form_welcome
 {
-    height:32px;
-    padding:0 10px;
-    width:205px;
-    border-right:none;
+  height:32px;
+  padding:0 10px;
+  width:205px;
+  border-right:none;
 }
 .b-button
 {
-    color:#fefefe;
-    height:32px;
-    padding:0 12px;
-    line-height:33px;
-    cursor:pointer;
-    background-color:#1b70d1;
-    font-family: HelveticaNeue-Bold;
+  color:#fefefe;
+  height:32px;
+  padding:0 12px;
+  line-height:33px;
+  cursor:pointer;
+  background-color:#1b70d1;
+  font-family: HelveticaNeue-Bold;
 }
 
 
@@ -51,42 +64,42 @@
 .b-page__line
 {
 
-    width: 1200px;
-    margin-top:27px;
-    margin: 0 auto;
+  width: 1200px;
+  margin-top:27px;
+  margin: 0 auto;
 
 }
 
 .b-menu
 {
-    margin:0;
-    padding:0;
-    list-style:none;
-    width:100%;
-    display:table;
-    table-layout: fixed;
+  margin:0;
+  padding:0;
+  list-style:none;
+  width:100%;
+  display:table;
+  table-layout: fixed;
 
 }
 
 
 .b-link_menu
 {
-    text-align:center;
-    color:white;
-    cursor:pointer;
-    font-family: 'Lilita One', cursive;
-    font-size:20px;
-    height:40px;
-    background-color:#0c163d;
-    line-height:45px;
-    border: 0.5px solid #07195d;
-    display:table-cell;
-    text-decoration: none;
+  text-align:center;
+  color:white;
+  cursor:pointer;
+  font-family: 'Lilita One', cursive;
+  font-size:20px;
+  height:40px;
+  background-color:#0c163d;
+  line-height:45px;
+  border: 0.5px solid #07195d;
+  display:table-cell;
+  text-decoration: none;
 }
 
 .b-link_menu_active
 {
-    color:#fefefe;
-    background-color:#1b70d1;
-    border:0px solid #0fb9dd;
+  color:#fefefe;
+  background-color:#1b70d1;
+  border:0px solid #0fb9dd;
 }
