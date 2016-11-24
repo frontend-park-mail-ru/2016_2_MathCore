@@ -47,6 +47,7 @@
 		 */
 		getFormData() {
 			let form = this._el.querySelector('form');
+
 			let elements = form.elements;
 			let fields = {};
 

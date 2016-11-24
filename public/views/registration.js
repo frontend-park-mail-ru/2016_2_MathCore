@@ -10,9 +10,7 @@
 		constructor(options = {}) {
 			super(options);
 			this._el = document.querySelector('.js-welcome-panel');
-			//this.hide();
 
-			// TODO: дописать реализацию
 			var options = {
 				el: this._el,
 				data: {
@@ -40,11 +38,21 @@
 					],
 					controls: [
 						{
-							text: 'Зарегистрироваться',
+							text: 'SignUp',
 							attrs: {
-								type: 'submit'
+								type: 'submit',
+								class: 'btnSignUp',
 							}
 						},
+
+						{
+							text: 'Back',
+							attrs: {
+								type: 'button',
+								class: 'btnBack',
+								onclick: "form.hidden = false; (new Router).go('/')"
+							},
+						}
 					]
 				}
 			};
@@ -52,7 +60,7 @@
 			this.init();
 			this.show();
 
-			/* Попробуем обратиться к серверу через модели */
+
 			form.on('submit', (event) => {
 				event.preventDefault();
 				let userData = form.getFormData();
@@ -64,7 +72,7 @@
 						(new Router).go('/scores');
 					},
 					() => {
-						//alert('Что-то пошло не так на сервере и это очень плохо');
+						 window.alert("Такой пользователь уже существует");
 					}
 				)
 			})

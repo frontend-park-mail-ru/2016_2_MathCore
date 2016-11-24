@@ -4,10 +4,9 @@
 }
 
 
-.text{
+.rule__text{
   color: white;
   margin-left: 20px;
-
 
 }
 
@@ -62,11 +61,11 @@
   display: none;
 }
 
-.b-page__rule-open input[type=checkbox] ~ .text {
+.b-page__rule-open input[type=checkbox] ~ .rule__text {
   display: none;
 }
 
-.b-page__rule-open input[type=checkbox]:checked ~ .text {
+.b-page__rule-open input[type=checkbox]:checked ~ .rule__text {
   display: block;
 
 }
@@ -77,8 +76,7 @@
 
   width: 1200px;
   margin: -20px auto;
-  opacity: 0.9;
-  background: #000000;
+  background: rgba(0, 0, 0, 0.9);
 
 }
 
@@ -93,8 +91,7 @@
 }
 
 .rules__item {
-  opacity: 0.9;
-  background: #000000;
+  background: rgba(0, 0, 0, 0.9);
 }
 
 .cell-content
@@ -122,16 +119,14 @@
 
 .cell__text
 {
-  color:#1b70d1;
+  color: white;
   font-size:14px;
-
-
 
 }
 
 .cell__head
 {
-  color: white;
+  color: #1b70d1;
   font-family: 'Lilita One', cursive;
   font-size: 16px;
 
