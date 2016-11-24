@@ -35,7 +35,9 @@
 
 			pause(options = {}) {
 				let container = document.querySelector('.scoreboard_container');
-				container.hidden = true;
+				let logo = document.querySelector('.js-logo');
+				logo.setAttribute('hidden', true);
+				container.setAttribute('hidden', true);
 				this.hide();
 			}
 
