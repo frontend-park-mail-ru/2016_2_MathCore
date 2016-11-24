@@ -17,6 +17,10 @@
       document.addEventListener("updateMenu", this._updateHtml.bind(this));
     }
 
+    show(){
+      this._el.setAttribute('hidden', false);
+    }
+
     _updateHtml() {
       let userData = {
         login: window.session.getLogin() || ""

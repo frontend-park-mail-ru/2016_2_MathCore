@@ -50,6 +50,14 @@
           document.addEventListener("Movement", this.movement.bind(this));
         }
 
+        pause(options = {}){
+          let video = document.querySelector('.bgvideo');
+          video.hidden = false;
+          let menu = document.querySelector('.js-topmenu');
+          menu.hidden = false;
+          this.hide();
+        }
+
         startGame(evt){
                 let temp = evt.content.gameBoard;
                 this.gameCellIds = temp.split(",");
