@@ -23,21 +23,21 @@
 </div>
 <div class="b-page__line">
   <div class="b-menu">
-    <fest:if test="json.active==''">
+    <fest:if test="json.active===''">
       <a href="/" class='b-link b-link_menu b-link_menu_active'>Main</a>
       <a href="/scores" class='b-link b-link_menu'>Scoreboard</a>
       <a href="#" class='b-link b-link_menu'>About game</a>
       <a href="/rules" class='b-link b-link_menu'>Rules</a>
       <a href="#" class='b-link b-link_menu'>Profile</a>
   </fest:if>
-  <fest:if test="json.active=='scores'">
+  <fest:if test="json.active==='scores'">
     <a href="/" class='b-link b-link_menu '>Main</a>
     <a href="/scores" class='b-link b-link_menu b-link_menu_active'>Scoreboard</a>
     <a href="#" class='b-link b-link_menu'>About game</a>
     <a href="/rules" class='b-link b-link_menu'>Rules</a>
     <a href="#" class='b-link b-link_menu'>Profile</a>
 </fest:if>
-<fest:if test="json.active=='rules'">
+<fest:if test="json.active==='rules'">
   <a href="/" class='b-link b-link_menu '>Main</a>
   <a href="/scores" class='b-link b-link_menu'>Scoreboard</a>
   <a href="#" class='b-link b-link_menu'>About game</a>

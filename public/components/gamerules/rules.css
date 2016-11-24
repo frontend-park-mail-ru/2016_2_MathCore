@@ -77,8 +77,7 @@
 
   width: 1200px;
   margin: -20px auto;
-  opacity: 0.9;
-  background: #000000;
+  background: rgba(0, 0, 0, 0.9);
 
 }
 
@@ -93,8 +92,7 @@
 }
 
 .rules__item {
-  opacity: 0.9;
-  background: #000000;
+  background: rgba(0, 0, 0, 0.9);
 }
 
 .cell-content

@@ -60,7 +60,7 @@
 			this.init();
 			this.show();
 
-			/* Попробуем обратиться к серверу через модели */
+
 			form.on('submit', (event) => {
 				event.preventDefault();
 				let userData = form.getFormData();
@@ -72,7 +72,7 @@
 						(new Router).go('/scores');
 					},
 					() => {
-						//alert('Что-то пошло не так на сервере и это очень плохо');
+						 window.alert("Такой пользователь уже существует");
 					}
 				)
 			})
