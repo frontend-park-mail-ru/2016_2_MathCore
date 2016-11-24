@@ -50,7 +50,7 @@
 							attrs: {
 								type: 'button',
 								class: 'btnBack',
-								onclick: " (new Router).go('/')"
+								onclick: "form.hidden = false; (new Router).go('/')"
 							},
 						}
 					]
