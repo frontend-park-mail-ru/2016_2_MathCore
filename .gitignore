@@ -2,4 +2,4 @@ node_modules/
 public/api
 .npm-debug.log
 public/coverage
-
+.DS_Store

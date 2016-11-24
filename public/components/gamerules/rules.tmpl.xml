@@ -5,7 +5,7 @@
       <div class="b-page__rule-open">
         <label class="btn" for="rule_1">Read</label>
         <input type="checkbox" id="rule_1"/>
-        <div class="text">
+        <div class="rule__text">
           The purpose of this game is to collect as many coins as possible and
           bring them to your ship. Seek them by fair means or foul.
           Do you like to bravely go into battle, tactfully avoid meetings with enemies,
@@ -19,7 +19,7 @@
       <div class="b-page__rule-open">
         <label class="btn" for="rule_2">Read</label>
         <input type="checkbox" id="rule_2"/>
-        <div class="text">
+        <div class="rule__text">
           <div class="page__line">
             <div class="rules">
               <div class="rules__item rules__item_small">
