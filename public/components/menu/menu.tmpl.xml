@@ -2,7 +2,6 @@
     <div class="topmenu">
         <div class="b-head">
             <div class="b-head__panel">
-                <div class="b-panel">
                     <div class="b-panel__form">
                         <span class="panel__form_welcome"> <fest:space/>
                             <fest:if test="json.userData.login">
@@ -11,7 +10,6 @@
                             </fest:if>
                         </span>
                     </div>
-                </div>
                 <div class="b-panel__form">
                     <div class="b-button">LogOut</div>
                 </div>
