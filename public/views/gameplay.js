@@ -40,12 +40,14 @@
         }
 
         init(options = {}) {
-      let video = document.querySelector('.bgvideo');
-      video.hidden = true;
+          let menu = document.querySelector('.js-topmenu');
+          menu.setAttribute('hidden',true);
+          let video = document.querySelector('.bgvideo');
+          video.hidden = true;
 
-            document.addEventListener("StartGame", this.startGame.bind(this));
-            document.addEventListener("GetNeighbors", this.getNeighbors.bind(this));
-            document.addEventListener("Movement", this.movement.bind(this));
+          document.addEventListener("StartGame", this.startGame.bind(this));
+          document.addEventListener("GetNeighbors", this.getNeighbors.bind(this));
+          document.addEventListener("Movement", this.movement.bind(this));
         }
 
         startGame(evt){

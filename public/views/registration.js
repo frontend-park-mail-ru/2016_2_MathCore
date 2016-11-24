@@ -10,9 +10,7 @@
 		constructor(options = {}) {
 			super(options);
 			this._el = document.querySelector('.js-welcome-panel');
-			//this.hide();
 
-			// TODO: дописать реализацию
 			var options = {
 				el: this._el,
 				data: {
@@ -42,9 +40,19 @@
 						{
 							text: 'SignUp',
 							attrs: {
-								type: 'submit'
+								type: 'submit',
+								class: 'btnSignUp',
 							}
 						},
+
+						{
+							text: 'Back',
+							attrs: {
+								type: 'button',
+								class: 'btnBack',
+								onclick: " (new Router).go('/')"
+							},
+						}
 					]
 				}
 			};

@@ -35,12 +35,14 @@
 							text: 'SignIn',
 							attrs: {
 								type: 'submit',
+								class: 'btnSignIn'
 							},
 						},
 						{
 							text: 'SignUp',
 							attrs: {
 								type: 'button',
+								class: 'btnSignUp',
 								onclick: "form.hidden = true; (new Router).go('/user')"
 							},
 						}
@@ -80,7 +82,7 @@
 		}
 
 	}
-	
+
 	// export
 	window.LoginView = LoginView;
 
