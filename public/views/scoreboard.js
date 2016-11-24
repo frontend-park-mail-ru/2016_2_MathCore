@@ -42,8 +42,7 @@
 			init(options = {}) {
 				let menu = new Menu();
 				menu._updateHtml();
-				let logo = new Logo();
-				logo._updateHtml();
+
 
 			}
 		}
