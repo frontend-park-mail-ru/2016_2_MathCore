@@ -38,6 +38,7 @@
 		}
 
 		_updateHtml() {
+			
 			this._el.innerHTML = this.template(this.data);
 		}
 
