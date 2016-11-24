@@ -13,7 +13,6 @@
 		}
 
     init() {
-
 			this._updateHtml();
       document.addEventListener("updateMenu", this._updateHtml.bind(this));
     }
@@ -24,7 +23,6 @@
       };
       let params = window.location.pathname.split("/");
       this._el.innerHTML = this.template({userData:userData, active: params.length==1?"":params[1]});
-
     }
   }
 

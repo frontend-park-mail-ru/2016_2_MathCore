@@ -12,7 +12,7 @@
 			super(options);
 			this._el = document.querySelector('.js-welcome-panel');
 
-			let form = new Form({
+			this.form = new Form({
 				el: this._el,
 				data: {
 					title: 'WELCOME TO SPACECORE',
@@ -43,7 +43,7 @@
 							attrs: {
 								type: 'button',
 								class: 'btnSignUp',
-								onclick: "form.hidden = true; (new Router).go('/user')"
+								onclick: "(new Router).go('/user')"
 							},
 						}
 					],
@@ -53,27 +53,7 @@
 			this.init();
 			this.show();
 
-
-
-			form.on('submit', (event) => {
-				event.preventDefault();
-				let userData = form.getFormData();
-
-				window.session.send('POST', userData).then(
-					() => {
-
-						window.session.login(userData.login);
-						this.menu._updateHtml();
-						//alert('Вы успешно авторизовались!');
-						(new Router).go('/play');
-					},
-					() => {
-						form.innerHtml = 'Неверные данные';
-
-					}
-				)
-			})
-
+			this.submitFunc = this.onSubmit.bind(this);
 		}
 
 		init(options = {}) {
@@ -81,6 +61,42 @@
 			this.menu._updateHtml();
 		}
 
+		onSubmit(event){
+			event.preventDefault();
+			let userData = this.form.getFormData();
+
+			window.session.send('POST', userData).then(
+				() => {
+					window.session.login(userData.login);
+					this.menu._updateHtml();
+					(new Router).go('/play');
+				},
+				() => {
+					this.form.innerHtml = 'Неверные данные';
+				}
+			)
+		}
+
+
+
+		resume(options = {}) {
+			this._el.setAttribute('hidden', false);
+			this.form.render();
+			this.form.on('submit', this.submitFunc);
+			console.log('LoginView: resume');
+			console.log(this.form.on.callback);
+
+			this.menu._updateHtml();
+			this.show();
+		}
+
+		pause(options = {}) {
+			this.form.hide();
+			this.form.stop('submit', this.submitFunc);
+			console.log('LoginView: pause');
+			console.log(this.form.on.callback);
+			this.hide();
+		}
 	}
 
 	// export

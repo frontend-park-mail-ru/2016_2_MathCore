@@ -21,6 +21,21 @@
 			this._installControls();
 		}
 
+		hide(){
+			let controls = this._el.querySelector('.js-controls');
+			let btns = controls.children;
+			Array.prototype.forEach.call(btns, function(btn){
+				if (btn.hasAttribute('onclick')){
+					btn.onclick = '';
+				}
+			});
+			this._el.innerHTML = '';
+		}
+
+		/*remove(){
+			this._el.remove();
+		}*/
+
 
 		reset() {
 			this._el.querySelector('form').reset();
@@ -29,6 +44,7 @@
 
 		_updateHtml() {
 			this._el.innerHTML = this.template(this.data);
+		//	this._installControls();
 		}
 
 

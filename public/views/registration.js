@@ -50,41 +50,61 @@
 							attrs: {
 								type: 'button',
 								class: 'btnBack',
-								onclick: "form.hidden = false; (new Router).go('/')"
+								onclick: "(new Router).go('/')"
 							},
 						}
 					]
 				}
 			};
- 			var form = new Form(options);
+ 			this.form = new Form(options);
 			this.init();
 			this.show();
 
+			this.submitFunc = this.onSubmit.bind(this);
 
-			form.on('submit', (event) => {
-				event.preventDefault();
-				let userData = form.getFormData();
-				const user = new User(userData);
+		}
 
-				user.send('POST', userData).then(
-					() => {
-						alert('Регистрация прошла успешно!');
-						(new Router).go('/scores');
-					},
-					() => {
-						 window.alert("Такой пользователь уже существует");
-					}
-				)
-			})
+		onSubmit(event){
+			event.preventDefault();
+			let userData = this.form.getFormData();
+			const user = new User(userData);
 
+			user.send('POST', userData).then(
+				() => {
+					(new Router).go('/scores');
+				},
+				() => {
+					 window.alert("Такой пользователь уже существует");
+				}
+			)
 		}
 
 		init(options = {}) {
-			// TODO: дописать реализацию
-			let menu = new Menu();
-			menu._updateHtml();
+			this.menu = new Menu();
+			this.menu._updateHtml();
 		}
 
+
+
+		pause(options = {}) {
+			this.form.hide();
+			//this.form.on('submit', function(){});
+			this.form.stop('submit', this.submitFunc);
+			console.log('RegistrationView: pause');
+			console.log(this.form.on.callback);
+			this.hide();
+		}
+
+		resume(options = {}) {
+			this._el.setAttribute('hidden', false);
+			this.form.render();
+
+			this.form.on('submit', this.submitFunc);
+			console.log('RegistrationView: resume');
+			console.log(this.form.on.callback);
+			this.menu._updateHtml();
+			this.show();
+		}
 	}
 
 

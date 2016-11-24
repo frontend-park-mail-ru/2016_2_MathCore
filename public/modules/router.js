@@ -19,7 +19,7 @@
 
 			this.history = window.history;
 			this.startflag = false;
-
+ 
 			Router.__instance = this;
 		}
 
