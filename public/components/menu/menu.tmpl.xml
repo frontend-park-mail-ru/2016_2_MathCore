@@ -1,44 +1,44 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name = "json">
-  <div class="b-page__line">
-    <div class="b-head">
-      <div class="b-head__panel">
-        <div class="b-panel">
-          <div class="b-panel__form">
-            <span class="panel__form_welcome"> <fest:space/>
-            <fest:if test="json.userData.login">
-              <fest:text >Hello, </fest:text><fest:space/>
-              <fest:value output="text">json.userData.login</fest:value> !  <fest:space/>
+    <div class="topmenu">
+        <div class="b-head">
+            <div class="b-head__panel">
+                <div class="b-panel">
+                    <div class="b-panel__form">
+                        <span class="panel__form_welcome"> <fest:space/>
+                            <fest:if test="json.userData.login">
+                                <fest:text >Hello, </fest:text><fest:space/>
+                                <fest:value output="text">json.userData.login</fest:value> !  <fest:space/>
+                            </fest:if>
+                        </span>
+                    </div>
+                </div>
+                <div class="b-panel__form">
+                    <div class="b-button">LogOut</div>
+                </div>
+            </div>
+        </div>
+        <div class="b-menu">
+            <fest:if test="json.active===''">
+                <a href="/" class='b-link b-link_menu b-link_menu_active'>Main</a>
+                <a href="/scores" class='b-link b-link_menu'>Scoreboard</a>
+                <a href="#" class='b-link b-link_menu'>About game</a>
+                <a href="/rules" class='b-link b-link_menu'>Rules</a>
+                <a href="#" class='b-link b-link_menu'>Profile</a>
             </fest:if>
-          </span>
-        </div><div class="b-panel__form"><div class="b-button">LogOut</div>
-      </div>
+            <fest:if test="json.active==='scores'">
+                <a href="/" class='b-link b-link_menu'>Main</a>
+                <a href="/scores" class='b-link b-link_menu b-link_menu_active'>Scoreboard</a>
+                <a href="#" class='b-link b-link_menu'>About game</a>
+                <a href="/rules" class='b-link b-link_menu'>Rules</a>
+                <a href="#" class='b-link b-link_menu'>Profile</a>
+            </fest:if>
+            <fest:if test="json.active==='rules'">
+                <a href="/" class='b-link b-link_menu '>Main</a>
+                <a href="/scores" class='b-link b-link_menu'>Scoreboard</a>
+                <a href="#" class='b-link b-link_menu'>About game</a>
+                <a href="/rules" class='b-link b-link_menu b-link_menu_active'>Rules</a>
+                <a href="#" class='b-link b-link_menu'>Profile</a>
+            </fest:if>
+        </div>
     </div>
-  </div>
-</div>
-</div>
-<div class="b-page__line">
-  <div class="b-menu">
-    <fest:if test="json.active===''">
-      <a href="/" class='b-link b-link_menu b-link_menu_active'>Main</a>
-      <a href="/scores" class='b-link b-link_menu'>Scoreboard</a>
-      <a href="#" class='b-link b-link_menu'>About game</a>
-      <a href="/rules" class='b-link b-link_menu'>Rules</a>
-      <a href="#" class='b-link b-link_menu'>Profile</a>
-    </fest:if>
-    <fest:if test="json.active==='scores'">
-      <a href="/" class='b-link b-link_menu'>Main</a>
-      <a href="/scores" class='b-link b-link_menu b-link_menu_active'>Scoreboard</a>
-      <a href="#" class='b-link b-link_menu'>About game</a>
-      <a href="/rules" class='b-link b-link_menu'>Rules</a>
-      <a href="#" class='b-link b-link_menu'>Profile</a>
-    </fest:if>
-    <fest:if test="json.active==='rules'">
-      <a href="/" class='b-link b-link_menu '>Main</a>
-      <a href="/scores" class='b-link b-link_menu'>Scoreboard</a>
-      <a href="#" class='b-link b-link_menu'>About game</a>
-      <a href="/rules" class='b-link b-link_menu b-link_menu_active'>Rules</a>
-      <a href="#" class='b-link b-link_menu'>Profile</a>
-    </fest:if>
-  </div>
-</div>
 </fest:template>
