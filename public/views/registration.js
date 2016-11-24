@@ -69,6 +69,7 @@
 			let userData = this.form.getFormData();
 			const user = new User(userData);
 
+			if(this.form.isValid()){
 			user.send('POST', userData).then(
 				() => {
 					(new Router).go('/scores');
@@ -78,13 +79,13 @@
 				}
 			)
 		}
+		}
+
 
 		init(options = {}) {
 			this.menu = new Menu();
 			this.menu._updateHtml();
 		}
-
-
 
 		pause(options = {}) {
 			this.form.hide();

@@ -65,6 +65,7 @@
 			event.preventDefault();
 			let userData = this.form.getFormData();
 
+      if(this.form.isValid()){
 			window.session.send('POST', userData).then(
 				() => {
 					window.session.login(userData.login);
@@ -75,6 +76,7 @@
 					this.form.innerHtml = 'Неверные данные';
 				}
 			)
+		}
 		}
 
 
