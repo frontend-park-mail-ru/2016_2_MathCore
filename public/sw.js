@@ -16,7 +16,7 @@
 // 	"/hand.js",
 //
 //   "/modules/swLoader.js",
-//   
+//
 //
 //   "/libs/technolibs/index.js",
 //   "/modules/pathToRegex.js",

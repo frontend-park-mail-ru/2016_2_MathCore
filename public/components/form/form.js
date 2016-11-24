@@ -28,6 +28,7 @@
 
 
 		_updateHtml() {
+			debugger;
 			this._el.innerHTML = this.template(this.data);
 		}
 
