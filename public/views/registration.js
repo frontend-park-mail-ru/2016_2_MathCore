@@ -10,9 +10,7 @@
 		constructor(options = {}) {
 			super(options);
 			this._el = document.querySelector('.js-welcome-panel');
-			this.hide();
 
-			// TODO: дописать реализацию
 			var options = {
 				el: this._el,
 				data: {
@@ -40,46 +38,67 @@
 					],
 					controls: [
 						{
-							text: 'Зарегистрироваться',
+							text: 'SignUp',
 							attrs: {
-								type: 'submit'
+								type: 'submit',
+								class: 'btnSignUp',
 							}
 						},
+
 						{
-							text: 'Назад',
+							text: 'Back',
 							attrs: {
-								type: 'button'
-							}
+								type: 'button',
+								class: 'btnBack',
+								onclick: "(new Router).go('/')"
+							},
 						}
 					]
 				}
 			};
- 			var form = new Form(options);
+ 			this.form = new Form(options);
 			this.init();
 			this.show();
 
-			/* Попробуем обратиться к серверу через модели */
-			form.on('submit', (event) => {
-				event.preventDefault();
-				let userData = form.getFormData();
-				const user = new User(userData);
-
-				user.send('POST', userData).then(
-					() => {
-						alert('Регистрация прошла успешно!');
-					},
-					() => {
-						alert('Что-то пошло не так на сервере и это очень плохо');
-					}
-				)
-			})
+			this.submitFunc = this.onSubmit.bind(this);
 
 		}
 
+		onSubmit(event){
+			event.preventDefault();
+			let userData = this.form.getFormData();
+			const user = new User(userData);
+
+			if(this.form.isValid()){
+			user.send('POST', userData).then(
+				() => {
+					(new Router).go('/scores');
+				},
+				() => {
+					 window.alert("Такой пользователь уже существует");
+				}
+			)
+		}
+		}
+
+
 		init(options = {}) {
-			// TODO: дописать реализацию
-			let menu = new Menu();
-			menu._updateHtml();
+			this.menu = new Menu();
+			this.menu._updateHtml();
+		}
+
+		pause(options = {}) {
+			this.form.hide();
+			this.form.stop('submit', this.submitFunc);
+			this.hide();
+		}
+
+		resume(options = {}) {
+			this._el.setAttribute('hidden', false);
+			this.form.render();
+			this.form.on('submit', this.submitFunc);
+			this.menu._updateHtml();
+			this.show();
 		}
 	}
 

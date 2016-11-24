@@ -7,14 +7,13 @@ body {
   }
 .js-welcome-panel{
    width: 400px;
-   height: 380px;
+   height: 350px;
    position: fixed;
-   top: 50%;
+   top: 40%;
    left: 50%;
    margin-top: -190px;
    margin-left: -200px;
-   opacity: 0.8;
-   background: #000000;
+   background: rgba(0, 0, 0, 0.8);
    border-radius: 20px;
    color: white;
 }

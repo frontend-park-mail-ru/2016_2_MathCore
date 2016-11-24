@@ -12,7 +12,7 @@
      url(id) {
       let url = 'https://java-heroku-test-victor.herokuapp.com/user/';
       if(id){
-        return url;
+        return url+id;
       }
       return url;
  		}

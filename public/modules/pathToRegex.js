@@ -8,7 +8,7 @@
 			.split('/')
 			.filter(part => part)
 			.map((part, i, parts) => {
-	      if(i != parts.length - 1){
+	      if (i != parts.length - 1){
 	      if (/^:/.exec(part)) {
 	        keyNames.push(part.slice(1));
 	        return new RegExp(`^\/([^/]+)`, `i`);
