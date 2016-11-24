@@ -88,20 +88,14 @@
 
 		pause(options = {}) {
 			this.form.hide();
-			//this.form.on('submit', function(){});
 			this.form.stop('submit', this.submitFunc);
-			console.log('RegistrationView: pause');
-			console.log(this.form.on.callback);
 			this.hide();
 		}
 
 		resume(options = {}) {
 			this._el.setAttribute('hidden', false);
 			this.form.render();
-
 			this.form.on('submit', this.submitFunc);
-			console.log('RegistrationView: resume');
-			console.log(this.form.on.callback);
 			this.menu._updateHtml();
 			this.show();
 		}

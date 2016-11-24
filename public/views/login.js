@@ -83,9 +83,6 @@
 			this._el.setAttribute('hidden', false);
 			this.form.render();
 			this.form.on('submit', this.submitFunc);
-			console.log('LoginView: resume');
-			console.log(this.form.on.callback);
-
 			this.menu._updateHtml();
 			this.show();
 		}
@@ -93,8 +90,6 @@
 		pause(options = {}) {
 			this.form.hide();
 			this.form.stop('submit', this.submitFunc);
-			console.log('LoginView: pause');
-			console.log(this.form.on.callback);
 			this.hide();
 		}
 	}
