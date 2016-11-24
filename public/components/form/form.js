@@ -46,8 +46,8 @@
 		 * @return {object}
 		 */
 		getFormData() {
-			let formSignIN = this._el.querySelector('formSignIN');
-			let formSignUP = this._el.querySelector('formSignUP');
+			let form = this._el.querySelector('form');
+
 			let elements = form.elements;
 			let fields = {};
 
