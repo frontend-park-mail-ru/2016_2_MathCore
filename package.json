@@ -32,7 +32,6 @@
     "techno-gendoc": "0.4.1"
   },
   "devDependencies": {
-    "autoprefixer": "^6.5.3",
     "eslint": "^3.5.0",
     "eslint-config-airbnb": "11.1.0",
     "eslint-config-standard": "^6.1.0",
@@ -62,6 +61,7 @@
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2",
     "extract-text-webpack-plugin": "^1.0.1",
-    "node-sass": "3.7.0"
+    "node-sass": "3.13.0",
+    "postcss-cli": "2.6.0",
+    "autoprefixer": "6.5.3"
   }
-}

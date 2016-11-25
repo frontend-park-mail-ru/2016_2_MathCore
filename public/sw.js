@@ -28,8 +28,6 @@ const cacheUrls = [
   "/components/scoreboard/scoreboard.tmpl.js",
   "/components/gamerules/rules.js",
   "/components/gamerules/rules.tmpl.js",
-  "/components/logo/logo.js",
-  "/components/logo/logo.tmpl.js",
   "/views/main.js",
   "/views/login.js",
   "/views/scoreboard.js",

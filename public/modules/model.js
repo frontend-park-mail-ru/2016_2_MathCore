@@ -57,8 +57,6 @@
 
 
 		send( method, data, _url="", path="") {
-
-
 			let url = _url?_url:this.url();
 			url = path?url+path:url;
 			if (data&&data.id) {
