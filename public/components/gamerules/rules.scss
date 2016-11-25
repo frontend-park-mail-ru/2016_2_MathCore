@@ -1,0 +1,139 @@
+
+$text-color: white;
+$font-family: 'Lilita One', cursive;
+$font-size: 14px;
+$width: 50px;
+$height: 50px;
+$float: left;
+
+
+
+.b-page__rule-open {
+		display: block;
+}
+
+.rule__text{
+		color: $text-color;
+		margin-left: 20px;
+}
+
+.b-page__rule {
+		position: relative;
+		margin-left: 20px;
+
+	h3 {
+		padding-right: 200px;
+		margin-bottom: 0;
+		font-size: $font-size + 11px;
+		text-transform: uppercase;
+		font-weight: normal;
+		font-style: normal;
+		font-family: $font-family;
+		padding-top: 22px;
+		padding-bottom: 20px;
+		color: $text-color;
+	}
+}
+
+.btn {
+		display: inline-block;
+		border: none;
+		border-radius: 10px;
+		font-size:  $font-size + 8px;
+		padding: 10px 20px;
+		background: #1b70d1;
+		color: #fff;
+		font-family: HelveticaNeue-Bold;
+		cursor: pointer;
+		width: $width + 50px;
+		height: $width - 30px;
+		position: absolute;
+		top: 10px;
+		right: 15px;
+		display: block;
+		overflow: hidden;
+		text-align: center;
+}
+
+.btn:hover {
+		background-color: #ff3434;
+}
+
+.b-page__rule-open input[type=checkbox] {
+		display: none;
+}
+
+.b-page__rule-open input[type=checkbox] ~ .rule__text {
+		display: none;
+}
+
+.b-page__rule-open input[type=checkbox]:checked ~ .rule__text {
+		display: block;
+}
+
+.b-page__line
+{
+		width: $width + 1150px;
+		margin: -20px auto;
+		background: rgba(0, 0, 0, 0.9);
+}
+
+
+.page__line
+{
+		width: $width + 910px;
+		margin: 0 auto;
+		margin-top:27px;
+}
+
+.rules__item {
+		background: rgba(0, 0, 0, 0.9);
+}
+
+.cell-content
+{
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+}
+
+.cell-content__item
+{
+		margin-top: 5px;
+		margin-left: 25px;
+		display:block;
+}
+
+.cell__text
+{
+		color: white;
+		font-size:  $font-size;
+}
+
+.cell__head
+{
+		color: #1b70d1;
+		font-family: $font-family;
+		font-size:  $font-size + 2px;
+}
+
+.rules__item
+{
+		float: $float;
+		margin-left: 10px;
+		width: $width + 410px;
+}
+
+.rules__item_small
+{
+		width: $width + 250px;
+}
+
+.cell__img
+{
+		float: $float;
+		width: $width;
+		height: $width;
+		margin-right:10px;
+}
