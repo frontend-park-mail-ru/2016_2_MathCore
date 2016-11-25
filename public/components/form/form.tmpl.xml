@@ -4,7 +4,7 @@
 			<li> <h1>	<fest:value>data.title</fest:value>	</h1> </li>
 			<fest:for iterate="data.fields" index="i" value="field">
 				<li>
-					<input type="{field.type}" name="{field.name}" placeholder="{field.placeholder}"/>
+					<input type="{field.type}" name="{field.name}" required="{field.required}" placeholder="{field.placeholder}"/>
 				</li>
 			</fest:for>
 			<li class="js-controls"></li>
