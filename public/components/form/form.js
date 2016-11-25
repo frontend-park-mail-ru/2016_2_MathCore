@@ -7,42 +7,42 @@
 
 	class Form extends Block {
 
-		/**
-		 * Конструктор класса Form
-		 */
 		constructor(options = {data: {}}) {
 			super('form');
 			this.template = window.fest['form/form.tmpl'];
 			this.data = options.data;
 			this._el = options.el;
+			this.validFlag = false;
 			this.render();
 		}
 
-		/**
-		 * Обновляем HTML
-		 */
+
 		render() {
 			this._updateHtml();
 			this._installControls();
 		}
 
-		/**
-		 * Обнуляем форму
-		 */
+		hide(){
+			let controls = this._el.querySelector('.js-controls');
+			let btns = controls.children;
+			Array.prototype.forEach.call(btns, function(btn){
+				if (btn.hasAttribute('onclick')){
+					btn.onclick = '';
+				}
+			});
+			this._el.innerHTML = '';
+		}
+
 		reset() {
 			this._el.querySelector('form').reset();
 		}
 
-		/**
-		 * Обновить html компонента
-		 */
 		_updateHtml() {
+			
 			this._el.innerHTML = this.template(this.data);
 		}
 
-		/**
-		 * Вставить управляющие элементы в форму
-		 */
+
 		_installControls() {
 			let {controls = []} = this.data;
 
@@ -52,26 +52,40 @@
 			});
 		}
 
+		isValid(){
+			return this.validFlag;
+		}
+
 		/**
 		 * Взять данные формы
 		 * @return {object}
 		 */
 		getFormData() {
 			let form = this._el.querySelector('form');
+
 			let elements = form.elements;
+			let check = true;
 			let fields = {};
 
-			Object.keys(elements).forEach(element => {
-				let name = elements[element].name;
-				let value = elements[element].value;
+			Array.prototype.forEach.call(elements, function(element){
+					let name = element.name;
+					let value = element.value;
 
-				if (!name) {
-					return;
-				}
+					if(!name){
+						return;
+					}
 
-				fields[name] = value;
-			});
+					if(value === ''){
+						alert('Заполните поле ' + name + '!!');
+						check = check && false;
+					}
+					else{
+						fields[name] = value;
+						check = check && true;
+					}
+		  });
 
+			this.validFlag = check;
 			return fields;
 		}
 
