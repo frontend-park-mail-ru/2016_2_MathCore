@@ -32,7 +32,6 @@
     "techno-gendoc": "0.4.1"
   },
   "devDependencies": {
-    "autoprefixer": "^6.5.3",
     "eslint": "^3.5.0",
     "eslint-config-airbnb": "11.1.0",
     "eslint-config-standard": "^6.1.0",
@@ -66,4 +65,3 @@
     "postcss-cli": "2.6.0",
     "autoprefixer": "6.5.3"
   }
-}
