@@ -22,26 +22,60 @@
         this.ids = [13*7-1, 13*7 - 1, 13*7 - 1];
       }
 
-      BABYLON.SceneLoader.ImportMesh("Astronaut", "", "cosmo.babylon", scene, this.onSceneLoad.bind(this));
+      BABYLON.SceneLoader.ImportMesh("", "static/cosmo_babylon/", "cosmo.babylon", scene, this.onSceneLoad.bind(this));
+      BABYLON.SceneLoader.ImportMesh("", "static/ufo_babylon/", "ufo.babylon", scene, this.onShipLoad.bind(this));
       this.gold = 0;
     }
 
     onSceneLoad(newMeshes) {
       this.pirats[0] = newMeshes[0];
-      this.pirats[0].scaling = new BABYLON.Vector3(15,15,15);
+      this.pirats[0].scaling = new BABYLON.Vector3(20,20,20);
       this.pirats[0].renderingGroupId = 1;
+
       this.pirats[1] = this.pirats[0].clone("Astronaut1");
       this.pirats[2] = this.pirats[0].clone("Astronaut2");
+
+      this.pirats[1].material = this.pirats[0].material.clone("Material1");
+      this.pirats[2].material = this.pirats[0].material.clone("Material2");
 
       document.dispatchEvent(this.MeshLoadEvent);
     }
 
+    onShipLoad(newMeshes){
+      let y = 35, z = 0;
+      let x = this.index === 0 ? -600 : 600;
+      this.ship = [];
+      for(let j = 1; j < newMeshes.length; j++){
+        this.ship[j] = newMeshes[j].clone("ShipPart"+j);
+        //this.ship[j].material = newMeshes[j].material.clone("ShipMaterial"+j);
+        this.ship[j].scaling = new BABYLON.Vector3(3,3,3);
+        this.ship[j].renderingGroupId = 1;
+      }
+      this.set_ship_position(new BABYLON.Vector3(x,y,z));
+      this.set_ship_light()
+    }
+
+    set_ship_position(position){
+      this.ship.forEach(function(elem){
+        elem.position = position;
+      })
+    }
+
+    set_ship_light(){
+      this.ship.forEach(function(elem){
+        elem.material.diffuseColor = new BABYLON.Color3(1,0,0);
+      })
+    }
+
+    unset_ship_light(){
+      this.ship.forEach(function(elem){
+        elem.material.emissiveColor = new BABYLON.Color3(0,0,0);
+      })
+    }
+
     OnMeshLoad(e){
-        let x, y = 5, z = -35;
+        let x, y = 20, z = -35;
         let rotation;
-        let red1 = new BABYLON.StandardMaterial("RedPirat",this.scene);
-        let red2 = new BABYLON.StandardMaterial("RedPirat",this.scene);
-        let red3 = new BABYLON.StandardMaterial("RedPirat",this.scene);
 
         if(this.index === 0){
           x = -600;
@@ -52,19 +86,12 @@
           rotation = Math.PI/2;
         }
 
-        red1.diffuseColor = new BABYLON.Color3(1,0,0);
-        red2.diffuseColor = new BABYLON.Color3(1,0,0);
-        red3.diffuseColor = new BABYLON.Color3(1,0,0);
-
-        this.pirats[0].material = red1;
-        this.pirats[1].material = red2;
-        this.pirats[2].material = red3;
-
         this.pirats.forEach(function(elem){
           elem.position = new BABYLON.Vector3(x, y, z);
           elem.rotation.y = rotation;
           z += 35;
           elem.isPickable = false;
+          //elem.isVisible = false;
         })
     }
 

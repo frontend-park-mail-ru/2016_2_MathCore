@@ -39,7 +39,7 @@ const cacheUrls = [
 	'/main.js'
 ];
 
-this.addEventListener('install', function (event) {
+/*this.addEventListener('install', function (event) {
 	// задержим обработку события
 	// если произойдёт ошибка, serviceWorker не установится
 	event.waitUntil(
@@ -70,4 +70,4 @@ this.addEventListener('fetch', function (event) {
 			return fetch(event.request);
 		})
 	);
-});
+});*/
