@@ -14,6 +14,7 @@
             this.show();
 
             let socket = new Socket();
+            let msg = socket.getMessaging();
             this.messaging = socket.getMessaging();
 
             let engine = new BABYLON.Engine(this._el, true);
@@ -76,6 +77,7 @@
                 this.pirats.forEach(function(mesh){
                     mesh.isPickable = true;
                 });
+                this.messaging.sendPingMessage();
         }
 
         getNeighbors(evt){
@@ -146,7 +148,7 @@
         createScene(engine, canvas){
             let scene = new BABYLON.Scene(engine);
             let camera = new BABYLON.ArcRotateCamera("Camera", -Math.PI/2, Math.PI / 5,
-                                                      12, new BABYLON.Vector3(0,200,-600), scene);
+                                                      12, new BABYLON.Vector3(0,650,-700), scene);
             camera.lowerBetaLimit = 0.1;
             camera.lowerRadiusLimit = 30;
             camera.upperRadiusLimit = 700;

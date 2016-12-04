@@ -47,7 +47,6 @@
       this.ship = [];
       for(let j = 1; j < newMeshes.length; j++){
         this.ship[j] = newMeshes[j].clone("ShipPart"+j);
-        //this.ship[j].material = newMeshes[j].material.clone("ShipMaterial"+j);
         this.ship[j].scaling = new BABYLON.Vector3(3,3,3);
         this.ship[j].renderingGroupId = 1;
       }

@@ -6,19 +6,19 @@
             this.socket = socket;
         }
 
+        sendPingMessage(){
+          let PingMessage = {};
+          PingMessage.type = "ru.mail.park.mechanics.requests.GetPingMessage$Request";
+          PingMessage.content = "{}";
+          this.socket.send(JSON.stringify(PingMessage));
+        }
+
         sendMyTestMessage(){
           let myTestMessage = {};
           myTestMessage.type="ru.mail.park.websocket.TestMessage$Request";
           myTestMessage.content="{}";
           this.socket.send(JSON.stringify(myTestMessage));
         }
-
-        sendUpdatePingMsg(){
-          let getPingMessage = {};
-          getPingMessage.type="ru.mail.park.pinger.requests.GetPing$Request";
-          getPingMessage.content="{}";
-          this.socket.send(JSON.stringify(getPingMessage));
-        };
 
         sendJoinGameMsg(){
           let joinGameMessage = {}
