@@ -29,7 +29,7 @@
 
     onSceneLoad(newMeshes) {
       this.pirats[0] = newMeshes[0];
-      this.pirats[0].scaling = new BABYLON.Vector3(20,20,20);
+      this.pirats[0].scaling = new BABYLON.Vector3(25,25,25);
       this.pirats[0].renderingGroupId = 1;
 
       this.pirats[1] = this.pirats[0].clone("Astronaut1");
@@ -42,12 +42,12 @@
     }
 
     onShipLoad(newMeshes){
-      let y = 35, z = 0;
-      let x = this.index === 0 ? -600 : 600;
+      let y = 40, z = 0;
+      let x = this.index === 0 ? -700 : 700;
       this.ship = [];
       for(let j = 1; j < newMeshes.length; j++){
         this.ship[j] = newMeshes[j].clone("ShipPart"+j);
-        this.ship[j].scaling = new BABYLON.Vector3(3,3,3);
+        this.ship[j].scaling = new BABYLON.Vector3(4,4,4);
         this.ship[j].renderingGroupId = 1;
       }
       this.set_ship_position(new BABYLON.Vector3(x,y,z));
