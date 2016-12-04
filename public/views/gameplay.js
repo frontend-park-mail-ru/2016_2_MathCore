@@ -97,16 +97,12 @@
                     for(let j = 0; j < movements.length; j++){
                       let move = movements[j];
                       this.PiratId = move.piratId;
-                      //this.TargetCell = move.targetCellIndex;
                       let pirats = [];
-                      //let ids = [];
                       if(this.Enemy.get_index() === move.playerIngameId){
                         pirats = this.Enemy.get_pirats();
-                        //ids = this.Enemy.get_ids();
                       }
                       else{
                         pirats = this.Player.get_pirats();
-                        //ids = this.Player.get_ids();
                         this.targetCellIndex = move.targetCellIndex;
                         console.log(this.targetCellIndex);
                       }
@@ -119,12 +115,6 @@
                       let ids = this.Player.get_ids();
                       ids[this.index] = this.targetCellIndex;
                       this.Player.set_ids(ids);
-
-                      //let ids = this.Player.get_ids();
-                      //ids[this.index] = this.targetCellIndex || id;
-                      //console.log("ids[this.index]:");
-                      //console.log(ids[this.index]);
-                      //this.Player.set_ids(ids);
                     }
         }
 
@@ -150,11 +140,6 @@
                     let id = pickResult.subMeshId;
                     if(this.neighbors.indexOf(id) != -1){
                         this.pirats[this.index].material.emissiveColor = new BABYLON.Color3(0,0,0);
-                        //let ids = this.Player.get_ids();
-                        //ids[this.index] = this.targetCellIndex || id;
-                        //console.log("ids[this.index]:");
-                        //console.log(ids[this.index]);
-                        //this.Player.set_ids(ids);
                         this.picked = false;
                         for (let i = 0; i < this.neighbors.length; ++i){
                             this.gameField.subMeshes[this.neighbors[i]].materialIndex = 1;
@@ -164,7 +149,6 @@
                         });
                         let piratMove = {};
                         piratMove.targetCellIndex = id;
-                        //piratMove.targetCellIndex = ids[this.index];
                         piratMove.piratId = this.index;
                         this.messaging.sendPiratMove(piratMove);
                     }
