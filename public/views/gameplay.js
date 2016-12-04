@@ -97,19 +97,34 @@
                     for(let j = 0; j < movements.length; j++){
                       let move = movements[j];
                       this.PiratId = move.piratId;
-                      this.TargetCell = move.targetCellIndex;
+                      //this.TargetCell = move.targetCellIndex;
                       let pirats = [];
+                      //let ids = [];
                       if(this.Enemy.get_index() === move.playerIngameId){
                         pirats = this.Enemy.get_pirats();
+                        //ids = this.Enemy.get_ids();
                       }
                       else{
                         pirats = this.Player.get_pirats();
+                        //ids = this.Player.get_ids();
+                        this.targetCellIndex = move.targetCellIndex;
+                        console.log(this.targetCellIndex);
                       }
                       let posx = move.playerIngameId === 0 ? 0.1 : -0.2 ;
                       let posz = move.playerIngameId === 0 ? 0.2 :  0.8 ;
-                      let x = - (6 - this.TargetCell%13 + posx)*(1200/13);
-                      let z = - (6 - this.TargetCell/13 + posz)*(1200/13);
+                      let x = - (6 - move.targetCellIndex%13 + posx)*(1200/13);
+                      let z = - (6 - move.targetCellIndex/13 + posz)*(1200/13);
                       pirats[this.PiratId].position = new BABYLON.Vector3(x,20,z);
+
+                      let ids = this.Player.get_ids();
+                      ids[this.index] = this.targetCellIndex;
+                      this.Player.set_ids(ids);
+
+                      //let ids = this.Player.get_ids();
+                      //ids[this.index] = this.targetCellIndex || id;
+                      //console.log("ids[this.index]:");
+                      //console.log(ids[this.index]);
+                      //this.Player.set_ids(ids);
                     }
         }
 
@@ -134,12 +149,12 @@
                 if((mesh === this.gameField)&&(this.picked == true)){
                     let id = pickResult.subMeshId;
                     if(this.neighbors.indexOf(id) != -1){
-                        //this.pirats[this.index].position = pickResult.pickedPoint;
-                        //this.pirats[this.index].position.y = 20;
                         this.pirats[this.index].material.emissiveColor = new BABYLON.Color3(0,0,0);
-                        let ids = this.Player.get_ids();
-                        ids[this.index] = id;
-                        this.Player.set_ids(ids);
+                        //let ids = this.Player.get_ids();
+                        //ids[this.index] = this.targetCellIndex || id;
+                        //console.log("ids[this.index]:");
+                        //console.log(ids[this.index]);
+                        //this.Player.set_ids(ids);
                         this.picked = false;
                         for (let i = 0; i < this.neighbors.length; ++i){
                             this.gameField.subMeshes[this.neighbors[i]].materialIndex = 1;
@@ -149,6 +164,7 @@
                         });
                         let piratMove = {};
                         piratMove.targetCellIndex = id;
+                        //piratMove.targetCellIndex = ids[this.index];
                         piratMove.piratId = this.index;
                         this.messaging.sendPiratMove(piratMove);
                     }
