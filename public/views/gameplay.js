@@ -60,11 +60,9 @@
         }
 
         startGame(evt){
-                let temp = evt.content.gameBoard;
-                this.gameCellIds = temp.split(",");
-                for(let j = 0; j < this.gameCellIds.length; j++){
-                    this.gameCellIds[j]= +this.gameCellIds[j];
-                };
+                this.gameCellIds = JSON.parse(evt.content.gameBoard);
+                console.log("GameBoard:");
+                console.log(this.gameCellIds);
                 if(evt.content.active){
                     this.Player = this.player1;
                     this.Enemy = this.player2;
@@ -81,10 +79,9 @@
         }
 
         getNeighbors(evt){
-                let temp = evt.content.neighbors;
-                this.neighbors = temp.split(",");
+                this.neighbors = JSON.parse(evt.content.neighbors);
+                console.log(this.neighbors);
                 for(let j = 0; j < this.neighbors.length; j++){
-                    this.neighbors[j]= +this.neighbors[j];
                     this.gameField.subMeshes[this.neighbors[j]].materialIndex = 0;
                 }
         }
@@ -105,8 +102,12 @@
                 let mesh = pickResult.pickedMesh;
                 if(this.pirats.indexOf(mesh) != -1){
                     mesh.material.emissiveColor = new BABYLON.Color3(0, 0.6, 0);
-
                     this.index = this.pirats.indexOf(mesh);
+                    /*for(let j = 0; j < 3; j++){
+                      if(j!= this.index){
+                        this.pirats[j].isPickable = false;
+                      }
+                    }*/
                     let ids = this.Player.get_ids();
                     let cellIndex = ids[this.index];
                     let getCellneighbors = {};
@@ -139,8 +140,11 @@
             }
             if(this.MovementUnresolved){
                 let enemyPirats = this.Enemy.get_pirats();
-                let x = - (6 - this.TargetCell%13 + 0.3)*(1200/13);
-                let z = - (6 - this.TargetCell/13 + 0.3)*(1200/13);
+                //let sign = Math.pow(-1, this.Enemy.get_index());
+                //let posx = Math.random() * (0.9 - 0.4) + 0.4;
+                //let posy = Math.random() * (0.9 - 0.4) + 0.4;
+                let x = - (6 - this.TargetCell%13 + 0.1)*(1200/13);
+                let z = - (6 - this.TargetCell/13 + 0.1)*(1200/13);
                 enemyPirats[this.PiratId].position = new BABYLON.Vector3(x,20,z);
             }
         }
