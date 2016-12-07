@@ -20,7 +20,7 @@
 							type: 'text',
 							placeholder: 'Your login here'
 						},
-            {
+						{
 							name: 'email',
 							type: 'email',
 							placeholder: 'Your email here'
@@ -30,7 +30,7 @@
 							type: 'password',
 							placeholder: 'Your password here'
 						},
-            {
+						{
 							name: 'password',
 							type: 'password',
 							placeholder: 'Repeat your password'
@@ -38,10 +38,10 @@
 					],
 					controls: [
 						{
-							text: 'SignUp',
+							text: 'Sign up',
 							attrs: {
 								type: 'submit',
-								class: 'btnSignUp',
+								class: 'btnsignup',
 							}
 						},
 
@@ -49,14 +49,14 @@
 							text: 'Back',
 							attrs: {
 								type: 'button',
-								class: 'btnBack',
+								class: 'btnback',
 								onclick: "(new Router).go('/')"
 							},
 						}
 					]
 				}
 			};
- 			this.form = new Form(options);
+			this.form = new Form(options);
 			this.init();
 			this.show();
 
@@ -70,21 +70,29 @@
 			const user = new User(userData);
 
 			if(this.form.isValid()){
-			user.send('POST', userData).then(
-				() => {
-					(new Router).go('/scores');
-				},
-				() => {
-					 window.alert("Такой пользователь уже существует");
-				}
-			)
-		}
+				user.send('POST', userData).then(
+					() => {
+
+
+						document.dispatchEvent( new CustomEvent("updateMenu", {
+							detail:{
+								isAuthorized: true
+							}
+						}) );
+
+						(new Router).go('/scores');
+					},
+					() => {
+						window.alert("Такой пользователь уже существует");
+					}
+				)
+			}
 		}
 
 
 		init(options = {}) {
-			this.menu = new Menu();
-			this.menu._updateHtml();
+			// this.menu = new Menu();
+			// this.menu._updateHtml();
 		}
 
 		pause(options = {}) {
@@ -97,8 +105,8 @@
 			this._el.setAttribute('hidden', false);
 			this.form.render();
 			this.form.on('submit', this.submitFunc);
-			this.menu._updateHtml();
 			this.show();
+
 		}
 	}
 

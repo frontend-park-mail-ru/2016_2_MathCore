@@ -26,7 +26,7 @@
                 <ul class="cell-content">
                   <li class="cell-content__item">
                     <div class="cell">
-                      <img class="cell__img" src="static/sq.png"></img>
+                      <img class="cell__img" src="static/img/sq.png"></img>
                       <div class="cell__head">
                         Coins
                       </div>
@@ -37,7 +37,7 @@
                   </li>
                   <li class="cell-content__item">
                     <div class="cell">
-                      <img class="cell__img" src="static/sq.png"></img>
+                      <img class="cell__img" src="static/img/sq.png"></img>
                       <div class="cell__head">
                         Arrows
                       </div>
@@ -48,7 +48,7 @@
                   </li>
                   <li class="cell-content__item">
                     <div class="cell">
-                      <img class="cell__img" src="static/sq.png"></img>
+                      <img class="cell__img" src="static/img/sq.png"></img>
                       <div class="cell__head">
                         Labyrinths
                       </div>
@@ -59,7 +59,7 @@
                   </li>
                   <li class="cell-content__item">
                     <div class="cell">
-                      <img class="cell__img" src="static/sq.png"></img>
+                      <img class="cell__img" src="static/img/sq.png"></img>
                       <div class="cell__head">
                         Ice
                       </div>
@@ -70,7 +70,7 @@
                   </li>
                   <li class="cell-content__item">
                     <div class="cell">
-                      <img class="cell__img" src="static/sq.png"></img>
+                      <img class="cell__img" src="static/img/sq.png"></img>
                       <div class="cell__head">
                         Trap
                       </div>
@@ -81,7 +81,7 @@
                   </li>
                   <li class="cell-content__item">
                     <div class="cell">
-                      <img class="cell__img" src="static/sq.png"></img>
+                      <img class="cell__img" src="static/img/sq.png"></img>
                       <div class="cell__head">
                         Gun
                       </div>
@@ -99,7 +99,7 @@
                 <ul class="cell-content">
                   <li class="cell-content__item">
                     <div class="cell">
-                      <img class="cell__img" src="static/sq.png"></img>
+                      <img class="cell__img" src="static/img/sq.png"></img>
                       <div class="cell__head">
                         Beacon
                       </div>
@@ -110,7 +110,7 @@
                   </li>
                   <li class="cell-content__item">
                     <div class="cell">
-                      <img class="cell__img" src="static/sq.png"></img>
+                      <img class="cell__img" src="static/img/sq.png"></img>
                       <div class="cell__head">
                         Cave
                       </div>
@@ -121,7 +121,7 @@
                   </li>
                   <li class="cell-content__item">
                     <div class="cell">
-                      <img class="cell__img" src="static/sq.png"></img>
+                      <img class="cell__img" src="static/img/sq.png"></img>
                       <div class="cell__head">
                         Earthquake
                       </div>
@@ -132,7 +132,7 @@
                   </li>
                   <li class="cell-content__item">
                     <div class="cell">
-                      <img class="cell__img" src="static/sq.png"></img>
+                      <img class="cell__img" src="static/img/sq.png"></img>
                       <div class="cell__head">
                         Jungle
                       </div>
@@ -143,7 +143,7 @@
                   </li>
                   <li class="cell-content__item">
                     <div class="cell">
-                      <img class="cell__img" src="static/sq.png"></img>
+                      <img class="cell__img" src="static/img/sq.png"></img>
                       <div class="cell__head">
                         Balloon
                       </div>
@@ -155,7 +155,7 @@
                   </li>
                   <li class="cell-content__item">
                     <div class="cell">
-                      <img class="cell__img" src="static/sq.png"></img>
+                      <img class="cell__img" src="static/img/sq.png"></img>
                       <div class="cell__head">
                         Wheelbarrow
                       </div>
@@ -172,7 +172,7 @@
                 <ul class="cell-content">
                   <li class="cell-content__item">
                     <div class="cell">
-                      <img class="cell__img" src="static/sq.png"></img>
+                      <img class="cell__img" src="static/img/sq.png"></img>
                       <div class="cell__head">
                         Horse
                       </div>
@@ -183,7 +183,7 @@
                   </li>
                   <li class="cell-content__item">
                     <div class="cell">
-                      <img class="cell__img" src="static/sq.png"></img>
+                      <img class="cell__img" src="static/img/sq.png"></img>
                       <div class="cell__head">
                         Castle
                       </div>
@@ -194,7 +194,7 @@
                   </li>
                   <li class="cell-content__item">
                     <div class="cell">
-                      <img class="cell__img" src="static/sq.png"></img>
+                      <img class="cell__img" src="static/img/sq.png"></img>
                       <div class="cell__head">
                         Rum Cask
                       </div>
@@ -205,7 +205,7 @@
                   </li>
                   <li class="cell-content__item">
                     <div class="cell">
-                      <img class="cell__img" src="static/sq.png"></img>
+                      <img class="cell__img" src="static/img/sq.png"></img>
                       <div class="cell__head">
                         Crocodile
                       </div>
@@ -217,7 +217,7 @@
                   </li>
                   <li class="cell-content__item">
                     <div class="cell">
-                      <img class="cell__img" src="static/sq.png"></img>
+                      <img class="cell__img" src="static/img/sq.png"></img>
                       <div class="cell__head">
                         Cannibal
                       </div>
@@ -228,7 +228,7 @@
                   </li>
                   <li class="cell-content__item">
                     <div class="cell">
-                      <img class="cell__img" src="static/sq.png"></img>
+                      <img class="cell__img" src="static/img/sq.png"></img>
                       <div class="cell__head">
                         Plane
                       </div>

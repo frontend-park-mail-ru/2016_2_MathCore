@@ -1,31 +1,63 @@
-var path = require("path");
-var webpack = require("webpack");
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
-var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+'use strict';
+
+const path = require('path');
+const webpack = require('webpack');
+const precss = require('precss');
+const autoprefixer = require('autoprefixer');
+const HtmlPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
 module.exports = {
-  entry: "./public/main.js",
-  output: {
-    path: path.join(__dirname, "dist"),
-    filename: "output.js"
-  },
-  module: {
-    loaders: [{
-      test: /\.css$/,
-      loader: "style!css"
-    },{
-      test: /\.js$/,
-      loader: "null"
-    }]
-  },
-  resolve: {
-    extensions:["", ".js", ".css"]
-  },
-  plugins: [
-    new webpack.NoErrorsPlugin(),
-    new HtmlWebpackPlugin({
-        template: path.join(__dirname, 'public', 'index.html'),
-        filename: path.join(__dirname, 'dist', 'index.html')
-    })
-  ]
+	devtool: 'eval-source-map',
+	entry: [
+		'babel-polyfill',
+		'eventsource-polyfill',
+		path.resolve(__dirname, 'public/main.js')
+	],
+	output: {
+		path: path.resolve(__dirname, 'dist'),
+		filename: path.join('assets', 'js', 'bundle.js'),
+		publicPath: '/'
+	},
+	module: {
+		loaders: [
+			{
+				test: /\.js$/,
+				exclude: /(node_modules|bower_components)/,
+				loader: 'babel-loader',
+				query: {
+					presets: ['latest']
+				}
+			},
+			{
+				test: /\.(s)?css/,
+				loader: 'style-loader!css-loader!postcss-loader!sass-loader'
+			},
+			{
+				test: /\.tmpl\.xml/,
+				loader: 'fest-loader'
+			}
+		]
+	},
+	resolve: {
+		alias: {}
+	},
+	resolveLoader: {
+		moduleExtensions: ['-loader'],
+		alias: {
+			'fest-loader': path.resolve(__dirname, './fest-loader')
+		}
+	},
+	plugins: [
+		new CleanWebpackPlugin('dist'),
+		new webpack.LoaderOptionsPlugin({
+			debug: true,
+			postcss: [precss, autoprefixer]
+		}),
+		new webpack.NoErrorsPlugin(),
+		new HtmlPlugin({
+			filename: 'index.html',
+			template: path.resolve(__dirname, 'public/index.html')
+		})
+	]
 };

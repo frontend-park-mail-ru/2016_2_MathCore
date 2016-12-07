@@ -1,61 +1,57 @@
-.btn-form, .btnSignIn, .btnSignUp, .btnBack {
-  width: 200px;
-  height: 40px;
+@charset "UTF-8";
+.btn-form, .btnsignin, .btnsignup, .btnback {
   margin-left: 100px;
   margin-top: 10px;
-  border-radius: 12px;
-  font-family: HelveticaNeue-Bold;
-  font-weight: bold;
-  font-size: 20px;
-  color: white;
-  cursor: pointer; }
+  font-family: "Roboto-Regular";
+  display: inline-block;
+  position: relative;
+  width: 200px;
+  height: 40px;
+  line-height: 32px;
+  border-radius: 2px;
+  font-size: 1em;
+  background-color: #0d183d;
+  color: #fff;
+  border: 1px solid #5675e0; }
 
-.btnSignIn {
+.btnsignin {
   background-color: #0d183d;
   border: 1px solid #5675e0; }
 
-.btnSignUp {
+.btnsignup {
   background-color: #1b69c3;
   border: 1px solid #1b69c3; }
 
-.btnBack {
+.btnback {
   background-color: #0d183d;
   border: 1px solid #5675e0; }
 
-.chat {
-  height: 50vh;
-  overflow: scroll;
-  margin: 1vh 0;
-  border: 1px solid #ececec;
-  padding: 1vw; }
+.btnplay {
+  width: 400px;
+  height: 60px;
+  position: absolute;
+  left: 50%;
+  margin-left: -200px;
+  top: 200px;
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #1b70d1;
+  border: none;
+  border-radius: 4px; }
 
-.chat__message {
-  font-size: 20px;
-  padding: 1vw;
-  border-radius: 15px;
-  background-color: #bdbdbd;
-  margin: 0.5vw 0;
-  margin-right: 5vw;
-  word-wrap: break-word; }
+.btnplay:hover {
+  background-color: #0d183d; }
 
-.chat__message_my {
-  background-color: #0e751f;
-  color: #bdbdbd;
-  margin-right: 0;
-  margin-left: 5vw;
-  text-align: right; }
-
-.chat__input {
-  font-size: 24px; }
-
-.chat__email {
-  text-align: right;
-  font-size: 10px;
-  color: #000; }
-
-.chat__message_my .chat__email {
-  text-align: left;
-  color: #fff; }
+.btnplay:active {
+  background-color: #1b70d1;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px); }
 
 body {
   overflow: hidden;
@@ -75,9 +71,34 @@ body {
   background: rgba(0, 0, 0, 0.8);
   border-radius: 20px;
   color: white; }
-
-.login_form {
-  margin: 20px; }
+  .js-welcome-panel__login-form ul {
+    width: 400px;
+    list-style-type: none;
+    list-style-position: outside;
+    margin: 0px;
+    padding: 0px; }
+  .js-welcome-panel__login-form li {
+    padding: 5px;
+    position: relative; }
+  .js-welcome-panel__login-form input {
+    height: 40px;
+    width: 300px;
+    margin-left: 50px;
+    margin-top: -5px;
+    padding: 5px, 5px;
+    border: 1px solid #aaa;
+    box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
+    border-radius: 3px; }
+  .js-welcome-panel__login-form label {
+    width: 300px;
+    margin-left: 50px;
+    margin-top: -3px;
+    display: inline-block;
+    float: left;
+    padding: 3px;
+    color: white; }
+  .js-welcome-panel__login-form h1 {
+    margin-left: 50px; }
 
 .bgvideo {
   position: fixed;
@@ -88,35 +109,6 @@ body {
   width: auto;
   height: auto;
   z-index: -9999; }
-
-.js-welcome-panel__login-form ul {
-  width: 400px;
-  list-style-type: none;
-  list-style-position: outside;
-  margin: 0px;
-  padding: 0px; }
-.js-welcome-panel__login-form li {
-  padding: 5px;
-  position: relative; }
-.js-welcome-panel__login-form input {
-  height: 40px;
-  width: 300px;
-  margin-left: 50px;
-  margin-top: -5px;
-  padding: 5px, 5px;
-  border: 1px solid #aaa;
-  box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
-  border-radius: 3px; }
-.js-welcome-panel__login-form label {
-  width: 300px;
-  margin-left: 50px;
-  margin-top: -3px;
-  display: inline-block;
-  float: left;
-  padding: 3px;
-  color: white; }
-.js-welcome-panel__login-form h1 {
-  margin-left: 50px; }
 
 .b-page__rule-open {
   display: block; }
@@ -135,7 +127,7 @@ body {
     text-transform: uppercase;
     font-weight: normal;
     font-style: normal;
-    font-family: "Lilita One", cursive;
+    font-family: "Litita-One";
     padding-top: 22px;
     padding-bottom: 20px;
     color: white; }
@@ -201,7 +193,7 @@ body {
 
 .cell__head {
   color: #1b70d1;
-  font-family: "Lilita One", cursive;
+  font-family: "Litita-One";
   font-size: 16px; }
 
 .rules__item {
@@ -218,76 +210,91 @@ body {
   height: 50px;
   margin-right: 10px; }
 
-.b-link {
-  color: #183b63;
-  font-size: 12px; }
-
-.b-head {
-  height: 36px; }
-
-.b-head__panel {
-  float: right; }
-
-.b-panel__form {
-  display: inline-block; }
-
-.panel__form_welcome {
-  color: #1b70d1;
-  font-size: 150%;
-  font-family: serif;
-  position: relative;
-  top: 5px;
-  right: 20px; }
-
-.b-form {
-  background-color: #0c163d;
-  border: 0px; }
-
-.b-form_welcome {
-  height: 32px;
-  padding: 0 10px;
-  width: 205px;
-  border-right: none; }
-
-.b-button {
-  color: #fefefe;
-  height: 32px;
-  padding: 0 12px;
-  line-height: 33px;
-  cursor: pointer;
-  background-color: #1b70d1;
-  font-family: HelveticaNeue-Bold; }
-
-.header__topmenu {
-  width: 1200px;
-  margin-top: 45px;
-  margin: 0 auto; }
-
 .b-menu {
   margin: 0;
   padding: 0;
   list-style: none;
   width: 100%;
   display: table;
-  table-layout: fixed; }
+  table-layout: fixed;
+  color: #183b63;
+  font-size: 12px; }
+  .b-menu__link {
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    font-family: "Litita-One";
+    font-size: 20px;
+    height: 40px;
+    background-color: #0c163d;
+    line-height: 45px;
+    border: 0.5px solid #07195d;
+    display: table-cell;
+    text-decoration: none; }
+    .b-menu__link_active {
+      color: #fefefe;
+      background-color: #1b70d1;
+      border: 0px solid #0fb9dd; }
 
-.b-link_menu {
-  text-align: center;
-  color: white;
-  cursor: pointer;
-  font-family: "Lilita One", cursive;
-  font-size: 20px;
-  height: 40px;
-  background-color: #0c163d;
-  line-height: 45px;
-  border: 0.5px solid #07195d;
-  display: table-cell;
-  text-decoration: none; }
+.b-head {
+  height: 36px; }
+  .b-head__panel {
+    float: right; }
 
-.b-link_menu_active {
-  color: #fefefe;
+.b-panel__form {
+  display: inline-block; }
+  .b-panel__form_welcome {
+    color: #1b70d1;
+    font-size: 150%;
+    font-family: serif;
+    position: relative;
+    top: 5px;
+    right: 20px; }
+
+.b-button {
+  display: inline-block;
+  border-radius: 4px;
   background-color: #1b70d1;
-  border: 0px solid #0fb9dd; }
+  border: none;
+  padding: 0 12px;
+  width: 120px;
+  line-height: 32px;
+  font-size: 0.9em;
+  font-family: HelveticaNeue-Bold;
+  color: #fff; }
+  .b-button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s; }
+  .b-button span:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s; }
+
+.b-button:hover {
+  background-color: #0d183d; }
+  .b-button:hover span {
+    padding-right: 25px; }
+  .b-button:hover span:after {
+    opacity: 1;
+    right: 0; }
+
+.b-button:active {
+  background-color: #1b70d1;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px); }
+
+.game__main-page-wrapper {
+  min-width: 400px;
+  right: -100px;
+  height: 400px;
+  margin-top: 20px;
+  display: block;
+  background-image: url(/static/img/logo.png); }
 
 .game__main_score {
   width: 400px;
@@ -308,7 +315,7 @@ body {
   margin-top: 10px;
   margin-bottom: 10px;
   color: #4eade8;
-  font-family: "Lilita One", cursive; }
+  font-family: "Litita-One"; }
 
 .score {
   width: 100%;
@@ -316,23 +323,13 @@ body {
   margin-bottom: 20px;
   padding-left: 10%;
   padding-right: 10%; }
-
-.score__login {
-  width: 80%;
-  color: #4eade8; }
-
-.score__rating {
-  width: 20%;
-  text-align: center;
-  color: #4eade8; }
-
-.game__main-page-conteiner {
-  min-width: 400px;
-  right: -100px;
-  height: 400px;
-  margin-top: 20px;
-  display: block;
-  background-image: url(/static/logo.png); }
+  .score__login {
+    width: 80%;
+    color: #4eade8; }
+  .score__rating {
+    width: 20%;
+    text-align: center;
+    color: #4eade8; }
 
 body {
   width: 100%;
@@ -340,7 +337,7 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background: url(/static/space.jpg) no-repeat;
+  background: url(/static/img/space.jpg) no-repeat;
   background-size: 100%; }
 
 .js-canvas {

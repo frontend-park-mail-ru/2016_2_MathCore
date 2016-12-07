@@ -19,9 +19,15 @@
 		if (userData.isAuthorized){
 
 			window.session.login(userData.login);
-			document.dispatchEvent( new CustomEvent("updateMenu", {}) );
+
 
 		}
+
+		document.dispatchEvent( new CustomEvent("updateMenu", {
+			detail:{
+				isAuthorized: userData.isAuthorized
+			}
+		}) );
 
 	});
 

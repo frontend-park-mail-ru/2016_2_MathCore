@@ -4,17 +4,30 @@
 	const Menu = window.Menu;
 	const Scoreboard = window.Scoreboard;
 	const CollectionUser = window.CollectionUser;
+	const Button = window.Button;
 
 	class ScoreBoardView extends View {
 		constructor(options = {}) {
 			super(options);
+			this._el = document.querySelector('.scoreboard_container');
 			this._init();
 			this.show();
+			// this.menu.show();
 		}
 
 		_init() {
 			let container = document.querySelector('.scoreboard_container');
-			container.hidden = false;
+			this.btnplay = new Button({
+				text: "Play",
+				attrs: {
+				type: 'button',
+				class: 'btnplay',
+				onclick: "(new Router).go('/play')"
+			}
+		});
+		// container.setAttribute('hidden', false);
+
+			this.btnplay.renderTo(container);
 			this.menu = new Menu();
 			this.menu._updateHtml();
 			this.collectionUser = new CollectionUser({});
@@ -31,22 +44,35 @@
 
 			resume(options = {}) {
 				this.show();
+				this.menu.show();
+
+
+				let container = document.querySelector('.scoreboard_container');
+				container.removeAttribute('hidden');
+
+
+
+				document.dispatchEvent( new CustomEvent("updateMenu", {
+					detail:{
+						isAuthorized: true
+					}
+				}) );
 			}
 
 			pause(options = {}) {
 				let container = document.querySelector('.scoreboard_container');
-				let logo = document.querySelector('.js-logo');
-				logo.setAttribute('hidden', true);
 				container.setAttribute('hidden', true);
+
 				this.hide();
 			}
 
 			init(options = {}) {
-				let menu = new Menu();
-				menu._updateHtml();
-
+				this.menu = new Menu();
+				this.menu._updateHtml();
+				this.menu.show();
 
 			}
+
 		}
 
 		window.ScoreBoardView = ScoreBoardView;

@@ -11,7 +11,6 @@
 		constructor(options = {}) {
 			super(options);
 			this._el = document.querySelector('.js-welcome-panel');
-
 			this.form = new Form({
 				el: this._el,
 				data: {
@@ -32,17 +31,17 @@
 					],
 					controls: [
 						{
-							text: 'SignIn',
+							text: 'Sign in',
 							attrs: {
 								type: 'submit',
-								class: 'btnSignIn'
+								class: 'btnsignin'
 							},
 						},
 						{
-							text: 'SignUp',
+							text: 'Sign up',
 							attrs: {
 								type: 'button',
-								class: 'btnSignUp',
+								class: 'btnsignup',
 								onclick: "(new Router).go('/user')"
 							},
 						}
@@ -57,8 +56,8 @@
 		}
 
 		init(options = {}) {
-			this.menu = new Menu();
-			this.menu._updateHtml();
+			// this.menu = new Menu();
+			// this.menu._updateHtml();
 		}
 
 		onSubmit(event){
@@ -69,8 +68,17 @@
 			window.session.send('POST', userData).then(
 				() => {
 					window.session.login(userData.login);
-					this.menu._updateHtml();
-					(new Router).go('/play');
+					// this.menu._updateHtml();
+
+
+					document.dispatchEvent( new CustomEvent("updateMenu", {
+						detail:{
+							isAuthorized: true
+						}
+					}) );
+
+					(new Router).go('/scores');
+
 				},
 				() => {
 					this.form.innerHtml = 'Неверные данные';
@@ -85,7 +93,6 @@
 			this._el.setAttribute('hidden', false);
 			this.form.render();
 			this.form.on('submit', this.submitFunc);
-			this.menu._updateHtml();
 			this.show();
 		}
 

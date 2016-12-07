@@ -14,11 +14,29 @@
 
     init() {
 			this._updateHtml();
-      document.addEventListener("updateMenu", this._updateHtml.bind(this));
+            document.addEventListener("updateMenu", this.performupdate.bind(this));
+            let btn = document.getElementById('btnlogOut');
+            btn.onclick=window.session.__proto__.logout;
+    }
+
+    performupdate(options){
+        if (!options.detail || !options.detail.isAuthorized){
+            this.hide();
+            return;
+        }
+        this._updateHtml();
+        this.show();
+
     }
 
     show(){
-      this._el.setAttribute('hidden', false);
+    //   this._el.setAttribute('hidden', false);
+    this._el.style.display="block";
+    }
+
+    hide(){
+    //   this._el.setAttribute('hidden', true);
+    this._el.style.display="none";
     }
 
     _updateHtml() {
