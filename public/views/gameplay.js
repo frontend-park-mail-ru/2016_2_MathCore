@@ -1,12 +1,11 @@
-(function () {
-    'use strict'
 
-    const View = window.View;
-    const Player = window.Player;
-    const MessagingTools = window.MessagingTools;
-    const Socket = window.Socket;
+import View from "../modules/view";
+import Player from "../models/player";
+import MessagingTools from "../modules/messaging";
+import Socket from "../modules/socket";
 
-    class GamePlayView extends View {
+
+    export default class GamePlayView extends View {
         constructor(options = {}) {
             super(options);
             this._el = document.querySelector('.js-canvas');
@@ -240,7 +239,3 @@
              return tiledGround;
          }
     }
-
-    window.GamePlayView = GamePlayView;
-
-})();

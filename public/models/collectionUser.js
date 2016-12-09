@@ -1,20 +1,15 @@
-(function(){
-  'use strict'
+import Model from "../modules/model";
 
-  const Model = window.Model;
 
-  class CollectionUser extends Model {
-     constructor(attributes) {
-       super(attributes);
-     }
+export default class CollectionUser extends Model {
+   constructor(attributes) {
+     super(attributes);
+   }
 
-     /* пока для осторожности прописываем url напрямую */
-     url(id) {
-      let url = 'https://java-heroku-test-victor.herokuapp.com/rating/';
-      return url;
- 		}
+   /* пока для осторожности прописываем url напрямую */
+   url(id) {
+    let url = 'https://java-heroku-test-victor.herokuapp.com/rating/';
+    return url;
+      }
 
-  }
-
-  window.CollectionUser = CollectionUser;
-})();
+}

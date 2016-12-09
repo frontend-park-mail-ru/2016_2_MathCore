@@ -1,33 +1,25 @@
-// GameRulesView
-(function () {
-	'use strict';
+import View from "../modules/view";
+import Menu from "../components/menu/menu";
 
-	const View = window.View;
-  const Menu = window.Menu;
-  const Logo = window.Logo;
-	const GameRules = window.GameRules;
+import GameRules from "../components/gamerules/rules";
 
 
-	class GameRulesView extends View {
-		constructor(options = {}) {
-			super(options);
-			this._el = document.querySelector('.js-rules');
-			this.show();
-
-		}
-
-
-		init(options = {}) {
-      let menu = new Menu();
-      menu._updateHtml();
-
-			let rules= new GameRules();
-			rules._updateHtml();
-	  }
-
+export default class GameRulesView extends View {
+	constructor(options = {}) {
+		super(options);
+		this._el = document.querySelector('.js-rules');
+		this.show();
 
 	}
 
-	window.GameRulesView = GameRulesView;
 
-})();
+	init(options = {}) {
+  let menu = new Menu();
+  menu._updateHtml();
+
+		let rules= new GameRules();
+		rules._updateHtml();
+  }
+
+
+}

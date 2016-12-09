@@ -1,9 +1,8 @@
-
-@import "button.scss";
-@import "form.scss";
-@import "rules.scss";
-@import "menu.scss";
-@import "scoreboard.scss";
+@import "../components/button/button.scss";
+@import "../components/form/form.scss";
+@import "../components/gamerules/rules.scss";
+@import "../components/menu/menu.scss";
+@import "../components/scoreboard/scoreboard.scss";
 
 
 $width: 100%;

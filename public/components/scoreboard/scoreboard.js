@@ -1,27 +1,22 @@
-(function(){
-  'use strict';
+import Block from "../block/block";
+import './scoreboard.scss';
+import template from './scoreboard.tmpl.xml';
 
-  const Block = window.Block;
 
+export default class Scoreboard extends Block {
+  constructor(options = {data: {}}) {
+    super('div');
+    this.data = options.data;
+    this.template = template;
 
-  class Scoreboard extends Block {
-    constructor(options = {data: {}}) {
-      super('div');
-      this.data = options.data;
-      this.template = window.fest["scoreboard/scoreboard.tmpl"];
-
-      this.render();
-    }
-
-    render() {
-      this._updateHtml();
-    }
-
-    _updateHtml() {
-      this._el.innerHTML = this.template(this.data);
-    }
+    this.render();
   }
 
-  window.Scoreboard = Scoreboard;
+  render() {
+    this._updateHtml();
+  }
 
-})();
+  _updateHtml() {
+    this._el.innerHTML = this.template(this.data);
+  }
+}

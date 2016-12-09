@@ -1,27 +1,22 @@
-(function(){
-  'use strict';
+import Block from "../block/block";
+import './rules.scss';
+import template from './rules.tmpl.xml';
 
-  const Block = window.Block;
+export default class GameRules extends Block{
 
-  class GameRules extends Block{
+  constructor(options = {data: {}}) {
+    super('div', options);
+    this._el = document.querySelector(".js-rules");
+          this.template = template;
+    this.init();
+    this._el.innerHTML = this.template();
+      }
 
-    constructor(options = {data: {}}) {
-      super('div', options);
-      this._el = document.querySelector(".js-rules");
-			this.template = window.fest['gamerules/rules.tmpl'];
-      this.init();
-      this._el.innerHTML = this.template();
-		}
-
-    init() {
-			this._updateHtml();
-    }
-
-    _updateHtml() {
-      this._el.innerHTML = this.template();
-    }
+  init() {
+          this._updateHtml();
   }
 
-  window.GameRules = GameRules;
-
-})();
+  _updateHtml() {
+    this._el.innerHTML = this.template();
+  }
+}
