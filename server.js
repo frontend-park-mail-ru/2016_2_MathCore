@@ -6,12 +6,20 @@ const technoDoc = require('techno-gendoc');
 
 const mime = require('mime');
 
-app.use('/', express.static('public', { maxAge: 1 }));
-app.use('/user', express.static('public', {maxAge: 1})); //
-app.use('/play', express.static('public', {maxAge: 1})); //
-app.use('/scores', express.static('public', {maxAge: 1})); //
-app.use('/rules', express.static('public', {maxAge: 1})); //
-technoDoc.generate(require('./api'), 'public');
+const path = require('path');
+
+technoDoc.generate(require('./api'), 'dist');
+
+
+app.use('/', express.static('dist', { maxAge: 1 }));
+app.use('/user', express.static('dist', {maxAge: 1})); //
+app.use('/play', express.static('dist', {maxAge: 1})); //
+app.use('/scores', express.static('dist', {maxAge: 1})); //
+app.use('/rules', express.static('dist', {maxAge: 1})); //
+app.use('/profile', express.static('dist', {maxAge: 1})); //
+app.use('/about', express.static('dist', {maxAge: 1}));
+
+// app.use('/dist', express.static('dist'));
 
 mime.define({
   'application/babylon': ['babylon',],

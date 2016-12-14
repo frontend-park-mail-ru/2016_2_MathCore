@@ -12,7 +12,7 @@ module.exports = {
 	devtool: 'eval-source-map',
 	entry: {
 		app: path.resolve(__dirname, 'public', 'main.js'),
-		vendor: ['babel-polyfill', 'eventsource-polyfill']
+		vendor: ['babel-polyfill', 'eventsource-polyfill', './public/babylon.js', './public/hand.js']
 	},
 	output: {
 		path: path.resolve(__dirname, 'dist'),
@@ -36,6 +36,10 @@ module.exports = {
 			{
 				test: /\.tmpl\.xml/,
 				loader: 'fest-loader'
+			},
+			{
+				test: /\/sw.js$/,
+				loader: `file?name=${path.join('..', 'dist', '[name].[hash].js')}&publicPath=/&outputPath=/`
 			}
 		]
 	},

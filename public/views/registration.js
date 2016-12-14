@@ -2,12 +2,14 @@ import View from "../modules/view";
 import Form from "../components/form/form";
 import Menu from "../components/menu/menu";
 import User from "../models/user";
+import Router from "../modules/router";
+import Button from "../components/button/button";
 
 export default class RegistrationView extends View {
 	constructor(options = {}) {
 		super(options);
 		this._el = document.querySelector('.js-welcome-panel');
-
+		//this.handleClick = this.handleClick.bind(this);
 		var options = {
 			el: this._el,
 			data: {
@@ -47,7 +49,8 @@ export default class RegistrationView extends View {
 						attrs: {
 							type: 'button',
 							class: 'btnback',
-							onclick: "(new Router).go('/')"
+							id: 'btnback',
+							//onclick: this.handleClick
 						},
 					}
 				]
@@ -56,9 +59,7 @@ export default class RegistrationView extends View {
 		this.form = new Form(options);
 		this.init();
 		this.show();
-
 		this.submitFunc = this.onSubmit.bind(this);
-
 	}
 
 	onSubmit(event){
@@ -69,8 +70,6 @@ export default class RegistrationView extends View {
 		if(this.form.isValid()){
 			user.send('POST', userData).then(
 				() => {
-
-
 					document.dispatchEvent( new CustomEvent("updateMenu", {
 						detail:{
 							isAuthorized: true
@@ -91,11 +90,19 @@ export default class RegistrationView extends View {
 		// this.menu = new Menu();
 		// this.menu._updateHtml();
 	}
+	// handleClick(){
+	// 	(new Router).go('/');
+	// }
+	handleClick(){
+	   (new Router).go('/');
+	}
 
 	pause(options = {}) {
 		this.form.hide();
 		this.form.stop('submit', this.submitFunc);
 		this.hide();
+		// let button = document.getElementById('btnback');
+		// button.onclick = this.handleClick;
 	}
 
 	resume(options = {}) {
@@ -103,6 +110,7 @@ export default class RegistrationView extends View {
 		this.form.render();
 		this.form.on('submit', this.submitFunc);
 		this.show();
-
+		let button = document.getElementById('btnback');
+		button.onclick = this.handleClick;
 	}
 }

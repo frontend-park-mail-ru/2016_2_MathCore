@@ -2,7 +2,7 @@ import View from "../modules/view";
 import Menu from "../components/menu/menu";
 import CollectionUser from "../models/collectionUser";
 import Button from "../components/button/button";
-import ScoreBoard from "../components/scoreboard/scoreboard";
+import Scoreboard from "../components/scoreboard/scoreboard";
 import Router from "../modules/router";
 
 
@@ -18,9 +18,7 @@ export default class ScoreBoardView extends View {
 	}
 
 	handleClick(){
-
 		(new Router).go('/play');
-
 	}
 
 	_init() {

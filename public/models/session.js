@@ -1,4 +1,5 @@
 import Model from "../modules/model";
+import Router from "../modules/router";
 
 export default class Session extends Model {
   constructor(attributes) {

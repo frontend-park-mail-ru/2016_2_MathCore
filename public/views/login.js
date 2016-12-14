@@ -4,13 +4,15 @@ import Menu from "../components/menu/menu";
 import Scoreboard from "../components/scoreboard/scoreboard";
 import Session from "../models/session";
 import Router from "../modules/router";
+import Button from "../components/button/button";
 
 
 export default class LoginView extends View {
 	constructor(options = {}) {
 		super(options);
 		this._el = document.querySelector('.js-welcome-panel');
-		this.handleClick = this.handleClick.bind(this);
+		// this.handleClick = this.handleClick.bind(this);
+		// this.init = this.init.bind(this);
 		this.form = new Form({
 			el: this._el,
 			data: {
@@ -42,24 +44,22 @@ export default class LoginView extends View {
 						attrs: {
 							type: 'button',
 							class: 'btnsignup',
-							onclick: this.handleClick
+							id: 'btnsignup'
 							// onclick: "(new Router).go('/user')"
 						},
 					}
+
+
 				],
 			},
 		});
-
 		this.init();
 		this.show();
-
 		this.submitFunc = this.onSubmit.bind(this);
-
 	}
 
 	init(options = {}) {
-		// this.menu = new Menu();
-		// this.menu._updateHtml();
+
 	}
 
 	onSubmit(event){
@@ -70,8 +70,6 @@ export default class LoginView extends View {
 		window.session.send('POST', userData).then(
 			() => {
 				window.session.login(userData.login);
-				// this.menu._updateHtml();
-
 
 				document.dispatchEvent( new CustomEvent("updateMenu", {
 					detail:{
@@ -89,20 +87,17 @@ export default class LoginView extends View {
 	}
 	}
 
-	handleClick(){
-
-		(new Router).go('/user');
-
-	}
-
-
-
+	 handleClick(){
+	 	(new Router).go('/user');
+	 }
 
 	resume(options = {}) {
 		this._el.setAttribute('hidden', false);
 		this.form.render();
 		this.form.on('submit', this.submitFunc);
 		this.show();
+		let button = document.getElementById('btnsignup');
+		button.onclick = this.handleClick;
 	}
 
 	pause(options = {}) {

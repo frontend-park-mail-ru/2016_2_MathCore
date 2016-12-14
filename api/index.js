@@ -2,12 +2,12 @@ module.exports = {
 	'swagger': '2.0',
 	'info': {
 		'version': '0.0.3',
-		'title': 'TechnoChat API',
-		'description': '**ТехноЧат**',
+		'title': 'MathCore API',
+		'description': '**MathCore**',
 	},
 	'basePath': '/api',
 	'schemes': ['http'],
-	'host': 'http://localhost:3000',
+	'host': 'http://localhost:3001',
 
 	paths: {
 		'/session': require('./resources/session'),

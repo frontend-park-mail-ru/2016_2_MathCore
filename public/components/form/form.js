@@ -45,7 +45,8 @@ export default class Form extends Block {
 		let {controls = []} = this.data;
 
 		controls.forEach(data => {
-				let control = new Button({text: data.text, attrs: data.attrs});
+				let control = data instanceof Button ? data:
+				new Button({text: data.text, attrs: data.attrs});
 			this._el.querySelector('.js-controls').appendChild(control._get());
 		});
 	}

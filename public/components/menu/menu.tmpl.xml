@@ -20,15 +20,27 @@
         <div class="b-menu">
             <fest:if test="json.active==='scores'">
                 <a href="/scores" class='b-menu b-menu__link b-menu__link_active'>Main</a>
-                <a href="#" class='b-menu b-menu__link'>About game</a>
+                <a href="/about" class='b-menu b-menu__link'>About game</a>
                 <a href="/rules" class='b-menu b-menu__link'>Rules</a>
-                <a href="#" class='b-menu b-menu__link'>Profile</a>
+                <a href="/profile" class='b-menu b-menu__link'>Profile</a>
             </fest:if>
             <fest:if test="json.active==='rules'">
                 <a href="/scores" class='b-menu b-menu__link'>Main</a>
-                <a href="#" class='b-menu b-menu__link'>About game</a>
+                <a href="/about" class='b-menu b-menu__link'>About game</a>
                 <a href="/rules" class='b-menu b-menu__link b-menu__link_active'>Rules</a>
-                <a href="#" class='b-menu b-menu__link'>Profile</a>
+                <a href="/profile" class='b-menu b-menu__link'>Profile</a>
+            </fest:if>
+            <fest:if test="json.active==='profile'">
+                <a href="/scores" class='b-menu b-menu__link'>Main</a>
+                <a href="/about" class='b-menu b-menu__link'>About game</a>
+                <a href="/rules" class='b-menu b-menu__link'>Rules</a>
+                <a href="/profile" class='b-menu b-menu__link b-menu__link_active'>Profile</a>
+            </fest:if>
+            <fest:if test="json.active==='about'">
+                <a href="/scores" class='b-menu b-menu__link'>Main</a>
+                <a href="/about" class='b-menu b-menu__link b-menu__link_active'>About game</a>
+                <a href="/rules" class='b-menu b-menu__link'>Rules</a>
+                <a href="/profile" class='b-menu b-menu__link'>Profile</a>
             </fest:if>
         </div>
     </div>

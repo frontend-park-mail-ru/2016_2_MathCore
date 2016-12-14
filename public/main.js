@@ -11,6 +11,8 @@ import ScoreBoardView from './views/scoreboard';
 import GamePlayView from './views/gameplay';
 import GameRulesView from './views/gamerules';
 import Session from "./models/session";
+import ProfileView from './views/profile';
+import GameAboutView from './views/gameabout';
 
 window.session = new Session({});
 window.session.isAuthorised().then((response) => {
@@ -34,9 +36,11 @@ window.session.isAuthorised().then((response) => {
 // TIP: роуты нужно указывать от наиболее специфичного к наименее специфичному
 // З.Ы. чтобы более ранние роуты не были префиксами более поздних ;]
 (new Router)
-.addRoute('/rules', GameRulesView)   // rules static page
-.addRoute('/play', GamePlayView) //игровое поле
+.addRoute('/about', GameAboutView)
+.addRoute('/profile', ProfileView)
+.addRoute('/rules', GameRulesView)
+.addRoute('/play', GamePlayView)
 .addRoute('/scores', ScoreBoardView)
 .addRoute('/user', RegistrationView)
-.addRoute('/', LoginView) //Welcome Page
+.addRoute('/', LoginView) 
 .start();

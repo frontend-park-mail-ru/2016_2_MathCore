@@ -1,3 +1,4 @@
+import {pathToRegex} from "./pathToRegex";
 let id = 0;
 /** Класс представляет собой Путь в вашем приложении */
 export default class Route {
@@ -9,7 +10,7 @@ export default class Route {
 	 */
 	constructor(pathname, view, options = {}) {
 		//TODO: Сущий адище, нам нужно менеджерить депсы
-		this.pathToRegex = window.pathToRegex;
+		this.pathToRegex = pathToRegex;
 
 		this.id = 'p' + id;
 		id++;
