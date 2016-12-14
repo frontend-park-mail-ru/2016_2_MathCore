@@ -230,19 +230,19 @@
              var tiledGround = new BABYLON.Mesh.CreateTiledGround("Tiled Ground", xmin, zmin, xmax, zmax,
                                                                                                                          subdivisions, precision, scene);
              var LightGreen = new BABYLON.StandardMaterial("LGreen", scene);
-             LightGreen.diffuseTexture = new BABYLON.Texture("static/texture1.3.jpg", scene);
-             LightGreen.bumpTexture = new BABYLON.Texture("static/normalMap.jpg", scene);
+             LightGreen.diffuseTexture = new BABYLON.Texture("static/img/texture1.3.jpg", scene);
+             LightGreen.bumpTexture = new BABYLON.Texture("static/img/normalMap.jpg", scene);
              LightGreen.emissiveColor = new BABYLON.Color3(0, 0.5 , 0);
 
              var bumpMaterial = new BABYLON.StandardMaterial("bumpMaterial", scene);
-             bumpMaterial.diffuseTexture = new BABYLON.Texture("static/texture1.3.jpg", scene);
-             bumpMaterial.bumpTexture = new BABYLON.Texture("static/normalMap.jpg", scene);
+             bumpMaterial.diffuseTexture = new BABYLON.Texture("static/img/texture1.3.jpg", scene);
+             bumpMaterial.bumpTexture = new BABYLON.Texture("static/img/normalMap.jpg", scene);
              bumpMaterial.emissiveColor = new BABYLON.Color3(0.5, 0.5 , 0.5);
              bumpMaterial.alpha = 0.3;
 
              var DarkGreen = new BABYLON.StandardMaterial("DGreen", scene);
-             DarkGreen.diffuseTexture = new BABYLON.Texture("static/texture1.3.jpg", scene);
-             DarkGreen.bumpTexture = new BABYLON.Texture("static/normalMap.jpg", scene);
+             DarkGreen.diffuseTexture = new BABYLON.Texture("static/img/texture1.3.jpg", scene);
+             DarkGreen.bumpTexture = new BABYLON.Texture("static/img/normalMap.jpg", scene);
              DarkGreen.emissiveColor = new BABYLON.Color3(0, 0 , 1);
              DarkGreen.alpha = 0.4;
 

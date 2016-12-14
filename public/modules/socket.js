@@ -46,6 +46,7 @@
           return;
       }
       if(message.type === "ru.mail.park.mechanics.requests.BoardMapForUsers$Request"){
+          
           console.log("Wow. Seems loke game been started");
           content = JSON.parse(message.content);
           this.StartGameEvent.content = content;
