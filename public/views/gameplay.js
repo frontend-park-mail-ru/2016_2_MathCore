@@ -5,6 +5,7 @@
     const Player = window.Player;
     const MessagingTools = window.MessagingTools;
     const Socket = window.Socket;
+    //const ScreenLoader = window.ScreenLoader;
 
     class GamePlayView extends View {
         constructor(options = {}) {
@@ -20,12 +21,19 @@
             let engine = new BABYLON.Engine(this._el, true);
             let canvas = this._el;
             let scene = this.createScene(engine, canvas);
+            
+            engine.loadingUIText = " Подождите, идет загрузка и поиск игрока ... ";
+            engine.loadingUIBackgroundColor = '#0B0B3B';
+            engine.displayLoadingUI();
+
+            this.scene = scene;
+            this.engine = engine;
 
             this.createSkyBox(scene);
             this.gameField = this.createGameField(scene);
             //this.highlight = new BABYLON.HighlightLayer("H1",scene);
             this.player1 = new Player(0, scene, {});
-            this.player2 = new Player(1, scene, {});
+            this.player2 = new Player(1, scene, {});            
             this.MovementUnresolved = false;
             this.picked = false;
 
@@ -60,6 +68,7 @@
         }
 
         startGame(evt){
+                this.engine.loadingUIText = " Соперник найден! ";
                 this.gameCellIds = JSON.parse(evt.content.gameBoard);
                 console.log("GameBoard:");
                 console.log(this.gameCellIds);
@@ -76,6 +85,7 @@
                     mesh.isPickable = true;
                 });
                 this.messaging.sendPingMessage();
+                this.engine.hideLoadingUI();
         }
 
         getNeighbors(evt){
@@ -106,11 +116,40 @@
                         this.targetCellIndex = move.targetCellIndex;
                         console.log(this.targetCellIndex);
                       }
-                      let posx = move.playerIngameId === 0 ? 0.1 : -0.2 ;
-                      let posz = move.playerIngameId === 0 ? 0.2 :  0.8 ;
+                      let posx = move.playerIngameId === 0 ? 0.1 : -0.2 ; //?
+                      let posz = move.playerIngameId === 0 ? 0.2 :  0.8 ; //?
                       let x = - (6 - move.targetCellIndex%13 + posx)*(1200/13);
                       let z = - (6 - move.targetCellIndex/13 + posz)*(1200/13);
-                      pirats[this.PiratId].position = new BABYLON.Vector3(x,20,z);
+                      pirats[this.PiratId].position = new BABYLON.Vector3(x, 20, z);
+
+                      //try to add normal animation
+                      /*let pirat = pirats[this.PiratId];
+                      let dx, dz;
+                      dx = Math.abs(pirat.position.x - x)/200;
+                      dz = Math.abs(pirat.position.z - z)/200;
+                      let walk = this.scene.beginAnimation(pirat,0,60,true);
+                      let first_pos = pirat.position;
+
+                      console.log("x:");
+                      console.log(x);
+                      console.log("z:");
+                      console.log(z);
+
+                      console.log("pirat.position:");
+                      console.log("x = " + first_pos.x + " z = "+ first_pos.z);
+
+
+                      this.scene.registerBeforeRender(function () {
+                          if((Math.abs(pirat.position.x) - Math.abs(x) <= 0.0001) && (Math.abs(pirat.position.z) - Math.abs(z) <= 0.0001)){
+                            walk.pause();
+                            return;
+                          }
+                          else{
+                            pirat.position.x += Math.sign(x - first_pos.x)*dx;
+                            pirat.position.z += Math.sign(z - first_pos.z)*dz;
+                            first_pos = pirat.position;
+                          }
+	                  	});*/
 
                       let ids = this.Player.get_ids();
                       ids[this.index] = this.targetCellIndex;
@@ -159,7 +198,7 @@
         createScene(engine, canvas){
             let scene = new BABYLON.Scene(engine);
             let camera = new BABYLON.ArcRotateCamera("Camera", -Math.PI/2, Math.PI / 5,
-                                                      12, new BABYLON.Vector3(0,650,-700), scene);
+                                                      12, new BABYLON.Vector3(-100,300,-500), scene);
             camera.lowerBetaLimit = 0.1;
             camera.lowerRadiusLimit = 30;
             camera.upperRadiusLimit = 700;
@@ -177,7 +216,7 @@
             skybox.material = skyboxMaterial;
             skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
             skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
-            skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("sky34/sky34", scene);
+            skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("static/sky34/sky34", scene);
             skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
             skybox.renderingGroupId = 0;
         }
@@ -191,18 +230,19 @@
              var tiledGround = new BABYLON.Mesh.CreateTiledGround("Tiled Ground", xmin, zmin, xmax, zmax,
                                                                                                                          subdivisions, precision, scene);
              var LightGreen = new BABYLON.StandardMaterial("LGreen", scene);
-             LightGreen.diffuseTexture = new BABYLON.Texture("texture1.3.jpg", scene);
-             LightGreen.bumpTexture = new BABYLON.Texture("normalMap.jpg", scene);
+             LightGreen.diffuseTexture = new BABYLON.Texture("static/texture1.3.jpg", scene);
+             LightGreen.bumpTexture = new BABYLON.Texture("static/normalMap.jpg", scene);
              LightGreen.emissiveColor = new BABYLON.Color3(0, 0.5 , 0);
 
              var bumpMaterial = new BABYLON.StandardMaterial("bumpMaterial", scene);
-             bumpMaterial.diffuseTexture = new BABYLON.Texture("texture1.3.jpg", scene);
-             bumpMaterial.bumpTexture = new BABYLON.Texture("normalMap.jpg", scene);
+             bumpMaterial.diffuseTexture = new BABYLON.Texture("static/texture1.3.jpg", scene);
+             bumpMaterial.bumpTexture = new BABYLON.Texture("static/normalMap.jpg", scene);
              bumpMaterial.emissiveColor = new BABYLON.Color3(0.5, 0.5 , 0.5);
+             bumpMaterial.alpha = 0.3;
 
              var DarkGreen = new BABYLON.StandardMaterial("DGreen", scene);
-             DarkGreen.diffuseTexture = new BABYLON.Texture("texture1.3.jpg", scene);
-             DarkGreen.bumpTexture = new BABYLON.Texture("normalMap.jpg", scene);
+             DarkGreen.diffuseTexture = new BABYLON.Texture("static/texture1.3.jpg", scene);
+             DarkGreen.bumpTexture = new BABYLON.Texture("static/normalMap.jpg", scene);
              DarkGreen.emissiveColor = new BABYLON.Color3(0, 0 , 1);
              DarkGreen.alpha = 0.4;
 
@@ -250,8 +290,12 @@
                  new BABYLON.SubMesh(subMeshIndex, 0, verticesCount, base , tileIndicesLength, tiledGround);
                  base += tileIndicesLength;
              }
+            
+            let loader = BABYLON.SceneLoader;
+            
+            loader.ShowLoadingScreen = true;
 
-             BABYLON.SceneLoader.ImportMesh("", "static/crystalls_babylon/", "crystalls.babylon", scene, function(newMeshes){
+             loader.ImportMesh("", "static/crystalls_babylon/", "crystalls.babylon", scene, function(newMeshes){
                let crystalls = []
                console.log(crystalls);
                for(let j = 1; j < newMeshes.length; j++){
@@ -266,6 +310,7 @@
                  crystalls[j].position = BABYLON.Vector3.Zero();
                }
              });
+            
 
 
              return tiledGround;

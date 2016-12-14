@@ -23,21 +23,20 @@
       }
 
       BABYLON.SceneLoader.ImportMesh("", "static/cosmo_babylon/", "cosmo.babylon", scene, this.onSceneLoad.bind(this));
+      //BABYLON.SceneLoader.ImportMesh("", "static/walking_babylon/", "mycosmo1.babylon", scene, this.onSceneLoad.bind(this));
       BABYLON.SceneLoader.ImportMesh("", "static/ufo_babylon/", "ufo.babylon", scene, this.onShipLoad.bind(this));
       this.gold = 0;
     }
 
-    onSceneLoad(newMeshes) {
-      this.pirats[0] = newMeshes[0];
-      this.pirats[0].scaling = new BABYLON.Vector3(25,25,25);
-      this.pirats[0].renderingGroupId = 1;
-
-      this.pirats[1] = this.pirats[0].clone("Astronaut1");
-      this.pirats[2] = this.pirats[0].clone("Astronaut2");
-
-      this.pirats[1].material = this.pirats[0].material.clone("Material1");
-      this.pirats[2].material = this.pirats[0].material.clone("Material2");
-
+    onSceneLoad(newMeshes, skeletons) {
+      let index = this.index;
+      for(let j = 0; j < 3; j++){
+          this.pirats[j] = newMeshes[0].clone("Astronaut" + j + index);
+          this.pirats[j].skeleton = newMeshes[0].skeleton.clone("skelet" + j +index);
+          this.pirats[j].material = newMeshes[0].material.clone("Material" + j +index);
+          this.pirats[j].scaling = new BABYLON.Vector3(25,25,25);
+          this.pirats[j].renderingGroupId = 1;
+      }
       document.dispatchEvent(this.MeshLoadEvent);
     }
 
@@ -92,6 +91,13 @@
           elem.isPickable = false;
           //elem.isVisible = false;
         })
+
+        let pirats = this.pirats;
+
+      //  this.scene.beginAnimation(pirats[0].skeleton, 0, 60, true, 1.0);
+      //  this.scene.beginAnimation(pirats[1].skeleton, 0, 60, true, 1.0);
+      //  this.scene.beginAnimation(pirats[2].skeleton, 0, 60, true, 1.0);
+
     }
 
     url(id){
