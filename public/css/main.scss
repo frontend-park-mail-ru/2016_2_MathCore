@@ -1,9 +1,10 @@
 @import "../components/button/button.scss";
-@import "../components/chat/chat.scss";
 @import "../components/form/form.scss";
 @import "../components/gamerules/rules.scss";
 @import "../components/menu/menu.scss";
 @import "../components/scoreboard/scoreboard.scss";
+@import "../components/profileForm/profile.scss";
+@import "../components/aboutgame/about.scss";
 
 
 $width: 100%;
@@ -15,7 +16,7 @@ body {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
-	background: url(/static/space.jpg) no-repeat;
+	background: url(/static/img/space.jpg) no-repeat;
 	background-size: 100%;
 }
 

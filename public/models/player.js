@@ -1,26 +1,27 @@
-(function(){
-  'use strict'
+import Model from "../modules/model";
 
-  const Model = window.Model;
+export default class Player extends Model {
+  constructor(index, scene, attributes = {}) {
+    super(attributes);
+    this.pirats = [];
+    this.ids = [];
+    this.index = index;
+    this.scene = scene;
 
-  class Player extends Model {
-    constructor(index, scene, attributes = {}) {
-      super(attributes);
-      this.pirats = [];
-      this.ids = [];
-      this.index = index;
-      this.scene = scene;
+    document.addEventListener("MeshLoading", this.OnMeshLoad.bind(this));
+    this.MeshLoadEvent = new CustomEvent("MeshLoading", {});
 
-      document.addEventListener("MeshLoading", this.OnMeshLoad.bind(this));
-      this.MeshLoadEvent = new CustomEvent("MeshLoading", {});
+    if(index == 0){
+      this.ids = [78, 78, 78];
+    }
 
-      if(index == 0){
-        this.ids = [78, 78, 78];
-      }
+    if(index == 1){
+      this.ids = [13*7-1, 13*7 - 1, 13*7 - 1];
+    }
 
-      if(index == 1){
-        this.ids = [13*7-1, 13*7 - 1, 13*7 - 1];
-      }
+    BABYLON.SceneLoader.ImportMesh("Astronaut", "", "cosmo.babylon", scene, this.onSceneLoad.bind(this));
+    this.gold = 0;
+  }
 
       BABYLON.SceneLoader.ImportMesh("", "static/cosmo_babylon/", "cosmo.babylon", scene, this.onSceneLoad.bind(this));
       //BABYLON.SceneLoader.ImportMesh("", "static/walking_babylon/", "mycosmo1.babylon", scene, this.onSceneLoad.bind(this));
@@ -100,38 +101,35 @@
 
     }
 
-    url(id){
+  url(id){
 
-    }
-
-    set_ids(newIds){
-      this.ids = newIds;
-    }
-
-    set_gold(newNumber){
-      this.gold = newNumber;
-    }
-
-    get_pirats(){
-      return this.pirats;
-    }
-
-    get_ids(){
-      return this.ids;
-    }
-
-    get_index(){
-      return this.index;
-    }
-
-    get_gold(){
-
-    }
-
-    destroy_pirat(mesh){
-
-    }
   }
 
-  window.Player = Player;
-})();
+  set_ids(newIds){
+    this.ids = newIds;
+  }
+
+  set_gold(newNumber){
+    this.gold = newNumber;
+  }
+
+  get_pirats(){
+    return this.pirats;
+  }
+
+  get_ids(){
+    return this.ids;
+  }
+
+  get_index(){
+    return this.index;
+  }
+
+  get_gold(){
+
+  }
+
+  destroy_pirat(mesh){
+
+  }
+}

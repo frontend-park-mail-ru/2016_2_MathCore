@@ -1,7 +1,4 @@
-(function(){
-  'use strict'
-
-    class MessagingTools{
+export default class MessagingTools{
         constructor(socket){
             this.socket = socket;
         }
@@ -42,23 +39,19 @@
           this.socket.send(JSON.stringify(clientPiratMoveMessage));
         }
 
-        sendShipMove(shipMove){
-          let clientShipMoveMessage = {};
-          clientShipMoveMessage.type = "ru.mail.park.mechanics.requests.ShipMoveRequest";
-          clientShipMoveMessage.content = JSON.stringify(shipMove);
-          this.socket.send(JSON.stringify(clientShipMoveMessage));
-        }
-
-        sendGetNeighbors(cellID){
-          let clientCellMessage = {};
-          clientCellMessage.type = "ru.mail.park.mechanics.requests.GetNeighbors";
-          clientCellMessage.content = JSON.stringify(cellID);
-          console.log(JSON.stringify(clientCellMessage));
-          this.socket.send(JSON.stringify(clientCellMessage));
-          console.log('Отправлен запрос на получение смежных клеток...');
-        }
+    sendShipMove(shipMove){
+      let clientShipMoveMessage = {};
+      clientShipMoveMessage.type = "ru.mail.park.mechanics.requests.ShipMoveRequest";
+      clientShipMoveMessage.content = JSON.stringify(shipMove);
+      this.socket.send(JSON.stringify(clientShipMoveMessage));
     }
 
-window.MessagingTools = MessagingTools;
-
-})();
+    sendGetNeighbors(cellID){
+      let clientCellMessage = {};
+      clientCellMessage.type = "ru.mail.park.mechanics.requests.GetNeighbors";
+      clientCellMessage.content = JSON.stringify(cellID);
+      console.log(JSON.stringify(clientCellMessage));
+      this.socket.send(JSON.stringify(clientCellMessage));
+      console.log('Отправлен запрос на получение смежных клеток...');
+    }
+}

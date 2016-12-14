@@ -1,13 +1,10 @@
-(function () {
-    'use strict'
+import View from "../modules/view";
+import Player from "../models/player";
+import MessagingTools from "../modules/messaging";
+import Socket from "../modules/socket";
 
-    const View = window.View;
-    const Player = window.Player;
-    const MessagingTools = window.MessagingTools;
-    const Socket = window.Socket;
-    //const ScreenLoader = window.ScreenLoader;
 
-    class GamePlayView extends View {
+    export default class GamePlayView extends View {
         constructor(options = {}) {
             super(options);
             this._el = document.querySelector('.js-canvas');
@@ -21,7 +18,7 @@
             let engine = new BABYLON.Engine(this._el, true);
             let canvas = this._el;
             let scene = this.createScene(engine, canvas);
-            
+
             engine.loadingUIText = " Подождите, идет загрузка и поиск игрока ... ";
             engine.loadingUIBackgroundColor = '#0B0B3B';
             engine.displayLoadingUI();
@@ -33,7 +30,7 @@
             this.gameField = this.createGameField(scene);
             //this.highlight = new BABYLON.HighlightLayer("H1",scene);
             this.player1 = new Player(0, scene, {});
-            this.player2 = new Player(1, scene, {});            
+            this.player2 = new Player(1, scene, {});
             this.MovementUnresolved = false;
             this.picked = false;
 
@@ -290,9 +287,9 @@
                  new BABYLON.SubMesh(subMeshIndex, 0, verticesCount, base , tileIndicesLength, tiledGround);
                  base += tileIndicesLength;
              }
-            
+
             let loader = BABYLON.SceneLoader;
-            
+
             loader.ShowLoadingScreen = true;
 
              loader.ImportMesh("", "static/crystalls_babylon/", "crystalls.babylon", scene, function(newMeshes){
@@ -310,13 +307,6 @@
                  crystalls[j].position = BABYLON.Vector3.Zero();
                }
              });
-            
-
-
              return tiledGround;
          }
     }
-
-    window.GamePlayView = GamePlayView;
-
-})();

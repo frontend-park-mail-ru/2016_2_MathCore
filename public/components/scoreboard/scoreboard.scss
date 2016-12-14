@@ -1,10 +1,19 @@
-
 $font-color: #4eade8;
 $score-width: 100%;
 $score-height: 400px;
-$font-family: 'Lilita One', cursive;
+$font-family: 'Litita-One';
 
-.game__main_score{
+
+.game__main-page-wrapper {
+		min-width: 400px;
+		right: -100px;
+		height: $score-height;
+		margin-top: 20px;
+		display: block;
+		background-image: url(/static/img/logo.png);
+}
+
+.game__main_score {
 		width: 400px;
 		height: 360px;
 		position: absolute;
@@ -14,6 +23,7 @@ $font-family: 'Lilita One', cursive;
 		border-radius: 20px;
 		bottom: 0;
 }
+
 .game-score__title {
 		width: $score-width;
 		font-size: 30px;
@@ -31,21 +41,16 @@ $font-family: 'Lilita One', cursive;
 		margin-bottom: 20px;
 		padding-left: 10%;
 		padding-right: 10%;
-}
-.score__login {
-		width: $score-width - 20%;
-		color: $font-color;
-}
-.score__rating {
-		width: $score-width - 80%;
-		text-align: center;
-		color: $font-color;
-}
-.game__main-page-conteiner{
-		min-width: 400px;
-		right: -100px;
-		height: $score-height;
-		margin-top: 20px;
-		display: block;
-		background-image: url(/static/logo.png);
+
+		&__login {
+				width: $score-width - 20%;
+				color: $font-color;
+		}
+
+		&__rating {
+				width: $score-width - 80%;
+				text-align: center;
+				color: $font-color;
+		}
+
 }

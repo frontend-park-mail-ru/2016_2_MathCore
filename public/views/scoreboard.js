@@ -1,54 +1,83 @@
-(function () {
-	'use strict';
-	const View = window.View;
-	const Menu = window.Menu;
-	const Scoreboard = window.Scoreboard;
-	const CollectionUser = window.CollectionUser;
+import View from "../modules/view";
+import Menu from "../components/menu/menu";
+import CollectionUser from "../models/collectionUser";
+import Button from "../components/button/button";
+import Scoreboard from "../components/scoreboard/scoreboard";
+import Router from "../modules/router";
 
-	class ScoreBoardView extends View {
-		constructor(options = {}) {
-			super(options);
-			this._init();
-			this.show();
+
+
+export default class ScoreBoardView extends View {
+	constructor(options = {}) {
+		super(options);
+		this._el = document.querySelector('.scoreboard_container');
+		this._init();
+		this.show();
+		// this.menu.show();
+		this.handleClick = this.handleClick.bind(this);
+	}
+
+	handleClick(){
+		(new Router).go('/play');
+	}
+
+	_init() {
+		let container = document.querySelector('.scoreboard_container');
+		this.btnplay = new Button({
+			text: "Play",
+			attrs: {
+			type: 'button',
+			class: 'btnplay',
+			// onclick: "(new Router).go('/play')"
+			onclick: this.handleClick
+		}
+	});
+	// container.setAttribute('hidden', false);
+
+		this.btnplay.renderTo(container);
+		this.menu = new Menu();
+		this.menu._updateHtml();
+		this.collectionUser = new CollectionUser({});
+		this.collectionUser.fetchAll().then(response => {
+			let json = {
+				data: {
+					scores: JSON.parse(response)
+				}};
+				this._menu = new Scoreboard(json);
+				this._el = this._menu._el;
+				container.appendChild(this._menu._el);
+			})
 		}
 
-		_init() {
+		resume(options = {}) {
+			this.show();
+			this.menu.show();
+
+
 			let container = document.querySelector('.scoreboard_container');
-			container.hidden = false;
+			container.removeAttribute('hidden');
+
+
+
+			document.dispatchEvent( new CustomEvent("updateMenu", {
+				detail:{
+					isAuthorized: true
+				}
+			}) );
+		}
+
+		pause(options = {}) {
+			let container = document.querySelector('.scoreboard_container');
+			container.setAttribute('hidden', true);
+
+			this.hide();
+		}
+
+		init(options = {}) {
 			this.menu = new Menu();
 			this.menu._updateHtml();
-			this.collectionUser = new CollectionUser({});
-			this.collectionUser.fetchAll().then(response => {
-				let json = {
-					data: {
-						scores: JSON.parse(response)
-					}};
-					this._menu = new Scoreboard(json);
-					this._el = this._menu._el;
-					container.appendChild(this._menu._el);
-				})
-			}
+			this.menu.show();
 
-			resume(options = {}) {
-				this.show();
-			}
-
-			pause(options = {}) {
-				let container = document.querySelector('.scoreboard_container');
-				let logo = document.querySelector('.js-logo');
-				logo.setAttribute('hidden', true);
-				container.setAttribute('hidden', true);
-				this.hide();
-			}
-
-			init(options = {}) {
-				let menu = new Menu();
-				menu._updateHtml();
-
-
-			}
 		}
 
-		window.ScoreBoardView = ScoreBoardView;
-
-	})();
+	}
