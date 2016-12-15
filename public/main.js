@@ -1,7 +1,7 @@
 
 import './modules/swLoader';
 import './css/main.scss';
-import './hand';
+import './lib/hand';
 
 import Router from './modules/router';
 import MainView from './views/main';
@@ -42,5 +42,5 @@ window.session.isAuthorised().then((response) => {
 .addRoute('/play', GamePlayView)
 .addRoute('/scores', ScoreBoardView)
 .addRoute('/user', RegistrationView)
-.addRoute('/', LoginView) 
+.addRoute('/', LoginView)
 .start();

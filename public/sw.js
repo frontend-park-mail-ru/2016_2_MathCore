@@ -1,10 +1,10 @@
 // наименование для нашего хранилища кэша
-const CACHE_NAME = 'app_mathcore_service-worker';
-// ссылки на кэшируемые файлы
-const cacheUrls = [
-  '/'
-
-];
+// const CACHE_NAME = 'app_mathcore_service-worker';
+// // ссылки на кэшируемые файлы
+// const cacheUrls = [
+//   '/'
+//
+// ];
 
 /*this.addEventListener('install', function (event) {
 	// задержим обработку события

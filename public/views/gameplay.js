@@ -2,6 +2,7 @@ import View from "../modules/view";
 import Player from "../models/player";
 import MessagingTools from "../modules/messaging";
 import Socket from "../modules/socket";
+import BABYLON from "../lib/babylon.js";
 
 
     export default class GamePlayView extends View {

@@ -6,20 +6,16 @@ import Scoreboard from "../components/scoreboard/scoreboard";
 import Router from "../modules/router";
 
 
-
 export default class ScoreBoardView extends View {
 	constructor(options = {}) {
 		super(options);
 		this._el = document.querySelector('.scoreboard_container');
 		this._init();
 		this.show();
-		// this.menu.show();
 		this.handleClick = this.handleClick.bind(this);
 	}
 
-	handleClick(){
-		(new Router).go('/play');
-	}
+
 
 	_init() {
 		let container = document.querySelector('.scoreboard_container');
@@ -28,11 +24,11 @@ export default class ScoreBoardView extends View {
 			attrs: {
 			type: 'button',
 			class: 'btnplay',
+			id: 'btnplay'
 			// onclick: "(new Router).go('/play')"
-			onclick: this.handleClick
+			// onclick: this.handleClick
 		}
 	});
-	// container.setAttribute('hidden', false);
 
 		this.btnplay.renderTo(container);
 		this.menu = new Menu();
@@ -49,15 +45,18 @@ export default class ScoreBoardView extends View {
 			})
 		}
 
+
+		handleClick(){
+			(new Router).go('/play');
+		}
+
 		resume(options = {}) {
 			this.show();
 			this.menu.show();
-
-
 			let container = document.querySelector('.scoreboard_container');
 			container.removeAttribute('hidden');
-
-
+			let button = document.getElementById('btnplay');
+			button.onclick = this.handleClick;
 
 			document.dispatchEvent( new CustomEvent("updateMenu", {
 				detail:{

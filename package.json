@@ -36,6 +36,7 @@
     "babel-plugin-transform-strict-mode": "^6.18.0",
     "babel-polyfill": "^6.16.0",
     "babel-preset-latest": "^6.16.0",
+    "babylon-file-loader": "^0.1.0",
     "clean-webpack-plugin": "^0.1.14",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.25.0",

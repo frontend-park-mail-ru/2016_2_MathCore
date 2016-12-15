@@ -29,20 +29,18 @@
 .game-preview {
 	display: inline-block;
 	vertical-align: top;
-	margin-top: 25px;
+	margin-top: 80px;
 	margin-left: 45px;
     &__img_big {
     	background-repeat: no-repeat;
     	background-position: center;
-    	background-color: #fff;
+    	background-color: #000;
         margin-bottom: 0 0 15px 0;
-
-    	//size: 501px;
     	transition: .5s;
     	cursor: pointer;
     }
     &__img_small {
-    	background-color: #fff;
+    	background-color: #000;
     	background-repeat: no-repeat;
     	background-position: center;
     	display: inline-block;

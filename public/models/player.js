@@ -1,4 +1,5 @@
 import Model from "../modules/model";
+import BABYLON from "../lib/babylon.js";
 
 export default class Player extends Model {
   constructor(index, scene, attributes = {}) {
@@ -18,10 +19,6 @@ export default class Player extends Model {
     if(index == 1){
       this.ids = [13*7-1, 13*7 - 1, 13*7 - 1];
     }
-
-    BABYLON.SceneLoader.ImportMesh("Astronaut", "", "cosmo.babylon", scene, this.onSceneLoad.bind(this));
-    this.gold = 0;
-  }
 
       BABYLON.SceneLoader.ImportMesh("", "static/cosmo_babylon/", "cosmo.babylon", scene, this.onSceneLoad.bind(this));
       //BABYLON.SceneLoader.ImportMesh("", "static/walking_babylon/", "mycosmo1.babylon", scene, this.onSceneLoad.bind(this));
