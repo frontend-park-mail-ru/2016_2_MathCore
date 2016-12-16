@@ -73,11 +73,13 @@ export default class LoginView extends View {
 					}
 				}) );
 				(new Router).go('/scores');
-			},
-			() => {
-				this.form.innerHtml = 'Неверные данные';
-			}
-		)
+			}).catch(
+				(error) => {
+					console.log(error);
+					alert("This user doesn't exist");
+					this.form.reset();
+
+			});
 	}
 	}
 

@@ -4,7 +4,6 @@ import './css/main.scss';
 import './lib/hand';
 
 import Router from './modules/router';
-import MainView from './views/main';
 import LoginView from './views/login';
 import RegistrationView from './views/registration';
 import ScoreBoardView from './views/scoreboard';
@@ -22,6 +21,11 @@ window.session.isAuthorised().then((response) => {
 
 		window.session.login(userData.login);
 
+	}else{
+		//(new Router).go("/");
+		if (window.location.pathname=="/") return;
+		window.location.pathname='/';
+		return;
 	}
 
 	document.dispatchEvent( new CustomEvent("updateMenu", {

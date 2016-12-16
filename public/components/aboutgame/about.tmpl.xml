@@ -4,7 +4,7 @@
             <div class="left-content">
                 <div class="game-preview">
                     <div class = "game-preview__img_big">
-                        <img src="static/img/game5.png" alt="big_game" id="img"></img>
+                        <img src="static/img/game5.png" width="480" height="239" alt="big_game" id="img"></img>
                     </div>
                     <div class = "game-preview__img_small">
                         <!-- <img src="static/img/game2.png" alt="small_game1"></img> -->

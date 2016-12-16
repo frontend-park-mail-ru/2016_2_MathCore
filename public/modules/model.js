@@ -74,7 +74,7 @@ export default class Model {
 			return Promise.reject(new Error(response.statusText))
 		})
 		.then(response => response.text())
-		.catch(error => console.log(error));
+		//.catch(error => console.log(error));
 
 	}
 

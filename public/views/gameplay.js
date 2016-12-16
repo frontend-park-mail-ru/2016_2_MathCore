@@ -3,6 +3,10 @@ import Player from "../models/player";
 import MessagingTools from "../modules/messaging";
 import Socket from "../modules/socket";
 import BABYLON from "../lib/babylon.js";
+//var crystalls_babylon_url = require("file?emitFile=false!../static/crystalls_babylon/crystalls.babylon");
+//var crystalls_babylon_url = require("file?emitFile=true!../static/crystalls_babylon/crystalls.babylon");
+//console.log(crystalls_babylon_url);
+
 
 
     export default class GamePlayView extends View {

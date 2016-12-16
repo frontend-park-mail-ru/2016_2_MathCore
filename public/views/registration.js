@@ -13,6 +13,7 @@ export default class RegistrationView extends View {
 		var options = {
 			el: this._el,
 			data: {
+				title: 'Registration',
 				fields: [
 					{
 						name: 'login',
