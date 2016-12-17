@@ -1,10 +1,7 @@
-(function () {
-	'use strict';
-
-	/**
+/**
 	 * Класс представляет собой view
 	 */
-	class View {
+export default class View {
 		/**
 		 * Создаёт новую view
 		 * @param {Object} [options={}] - Объект с параметрами
@@ -122,8 +119,3 @@
 		}
 
 	}
-
-	// export
-	window.View = View;
-
-})();
